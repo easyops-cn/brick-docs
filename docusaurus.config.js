@@ -1,58 +1,119 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const path = require("path");
+const CopyPlugin = require("copy-webpack-plugin");
+const { createHash } = require("crypto");
+const MonacoEditorWebpackPlugin = require("monaco-editor-webpack-plugin");
+
+const baseUrl = "/";
+const brickPackages = [
+  "@next-bricks/shoelace",
+  "@next-bricks/basic",
+  "@next-bricks/icons",
+];
+
+const bootstrapJson = {
+  brickPackages: brickPackages
+    .map((pkg) => require(`${pkg}/dist/bricks.json`))
+    .map((pkg) => ({
+      ...pkg,
+      filePath: `${baseUrl}preview/${pkg.filePath}`,
+    })),
+  settings: {
+    misc: {
+      weather_api_key: "9e08e5e99e0c4b4c89023605231804",
+    },
+  },
+};
+const bootstrapJsonContent = JSON.stringify(bootstrapJson);
+const bootstrapJsonHash = getContentHash(bootstrapJsonContent);
+const bootstrapJsonPath = `bootstrap.${bootstrapJsonHash}.json`;
+
+class EmitBootstrapJsonPlugin {
+  /**
+   * @param {import("webpack").Compiler} compiler
+   */
+  apply(compiler) {
+    compiler.hooks.thisCompilation.tap(
+      "EmitBootstrapJsonPlugin",
+      (compilation) => {
+        compilation.hooks.processAssets.tapAsync(
+          {
+            name: "EmitBootstrapJsonPlugin",
+            stage: compiler.webpack.Compilation.PROCESS_ASSETS_STAGE_ADDITIONAL,
+          },
+          async (unusedAssets, callback) => {
+            const { RawSource } = compiler.webpack.sources;
+            const source = new RawSource(bootstrapJsonContent);
+            compilation.emitAsset(`preview/${bootstrapJsonPath}`, source);
+
+            const todos = [
+              {
+                title: "Hard work",
+                done: true,
+              },
+              {
+                title: "Have launch",
+                done: false,
+              },
+              {
+                title: "Go on vacation",
+                done: false,
+              },
+            ];
+            const todosSource = new RawSource(JSON.stringify(todos, null, 2));
+            compilation.emitAsset("preview/todos.json", todosSource);
+
+            callback();
+          }
+        );
+      }
+    );
+  }
+}
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
-  favicon: 'img/favicon.ico',
+  title: "Bricks",
+  tagline: "A Web Components library designed for Brick Next",
+  favicon: "img/favicon.png",
 
   // Set the production url of your site here
-  url: 'https://your-docusaurus-test-site.com',
+  url: "https://bricks.js.org",
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
+  baseUrl,
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: "easyops-cn", // Usually your GitHub org/user name.
+  projectName: "bricks", // Usually your repo name.
 
-  onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
+  onBrokenLinks: "throw",
+  onBrokenMarkdownLinks: "warn",
 
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
   // to replace "en" with "zh-Hans".
   i18n: {
-    defaultLocale: 'en',
-    locales: ['en'],
+    defaultLocale: "zh",
+    locales: ["zh"],
   },
 
   presets: [
     [
-      'classic',
+      "classic",
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          routeBasePath: "/",
+          sidebarPath: require.resolve("./sidebars.js"),
+          // editUrl: "https://github.com/easyops-cn/next-docs/tree/master/",
         },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-        },
+        blog: false,
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
+          customCss: require.resolve("./src/css/custom.css"),
         },
       }),
     ],
@@ -62,78 +123,193 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       // Replace with your project's social card
-      image: 'img/docusaurus-social-card.jpg',
+      image: "img/brick-next-social-card.png",
+      colorMode: {
+        respectPrefersColorScheme: true,
+      },
       navbar: {
-        title: 'My Site',
+        title: "Bricks",
         logo: {
-          alt: 'My Site Logo',
-          src: 'img/logo.svg',
+          alt: "My Site Logo",
+          src: "img/logo.svg",
         },
         items: [
           {
-            type: 'docSidebar',
-            sidebarId: 'tutorialSidebar',
-            position: 'left',
-            label: 'Tutorial',
+            href: "https://brick-next.js.org/docs/learn/quick-start",
+            position: "left",
+            label: "Brick Next",
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
+          { href: "https://brick-next.js.org/blog", label: "Blog", position: "left" },
           {
-            href: 'https://github.com/facebook/docusaurus',
-            label: 'GitHub',
-            position: 'right',
+            href: "https://github.com/easyops-cn/next-bricks",
+            position: "right",
+            className: "header-github-link",
+            "aria-label": "GitHub repository",
           },
         ],
       },
       footer: {
-        style: 'dark',
+        style: "dark",
         links: [
           {
-            title: 'Docs',
+            title: "Docs",
             items: [
               {
-                label: 'Tutorial',
-                to: '/docs/intro',
+                label: "Overview",
+                to: "/",
+              },
+              {
+                label: "Button",
+                to: "/button",
               },
             ],
           },
           {
-            title: 'Community',
+            title: "Community",
             items: [
               {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+                label: "Stack Overflow",
+                href: "https://stackoverflow.com/questions/tagged/docusaurus",
               },
               {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
+                label: "Discord",
+                href: "https://discordapp.com/invite/docusaurus",
               },
               {
-                label: 'Twitter',
-                href: 'https://twitter.com/docusaurus',
+                label: "Twitter",
+                href: "https://twitter.com/docusaurus",
               },
             ],
           },
           {
-            title: 'More',
+            title: "More",
             items: [
               {
-                label: 'Blog',
-                to: '/blog',
+                label: "Brick Next",
+                href: "https://brick-next.js.org/",
               },
               {
-                label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                label: "Blog",
+                href: "https://brick-next.js.org/blog",
+              },
+              {
+                label: "GitHub",
+                href: "https://github.com/easyops-cn/next-bricks",
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} UWinTech, Inc.`,
       },
-      prism: {
-        theme: lightCodeTheme,
-        darkTheme: darkCodeTheme,
+      prism: {},
+    }),
+
+  themes: [
+    [
+      require.resolve("@easyops-cn/docusaurus-search-local"),
+      // /** @type {import("@easyops-cn/docusaurus-search-local").PluginOptions} */
+      {
+        hashed: true,
+        language: ["en", "zh"],
+        removeDefaultStopWordFilter: true,
+        explicitSearchResultPath: true,
+        docsRouteBasePath: "/",
+        indexBlog: false,
+      },
+    ],
+  ],
+
+  plugins: [
+    () => ({
+      name: "docusaurus-next-runtime",
+      configureWebpack(config, isServer, utils) {
+        const previewDir = path.join(
+          require.resolve("@next-core/preview/package.json"),
+          "../dist"
+        );
+        return {
+          mergeStrategy: { "module.rules": "prepend" },
+          devServer: {
+            client: {
+              overlay: false,
+            },
+          },
+          module: {
+            rules: [
+              {
+                test: /\.yaml/,
+                type: "asset/source",
+              },
+            ],
+          },
+          plugins: [
+            new CopyPlugin({
+              patterns: [
+                {
+                  from: previewDir,
+                  to: "preview",
+                  // Terser skip this file for minimization
+                  info: { minimized: true },
+                  transform(buf, filePath) {
+                    if (filePath === path.join(previewDir, "index.html")) {
+                      return buf
+                        .toString()
+                        .replace("bootstrap.hash.json", bootstrapJsonPath);
+                    }
+                    return buf;
+                  },
+                },
+                ...brickPackages.map((pkg) => ({
+                  from: path.join(
+                    require.resolve(`${pkg}/package.json`),
+                    "../dist"
+                  ),
+                  to: path.join("preview/bricks", pkg.split("/").pop(), "dist"),
+                  // Terser skip this file for minimization
+                  info: { minimized: true },
+                })),
+              ],
+            }),
+            new EmitBootstrapJsonPlugin(),
+            new MonacoEditorWebpackPlugin({
+              languages: ["javascript", "typescript", "css" /* , 'yaml' */],
+              features: [
+                "!accessibilityHelp",
+                "!codelens",
+                "!colorPicker",
+                "!documentSymbols",
+                "!fontZoom",
+                "!iPadShowKeyboard",
+                "!inspectTokens",
+                "!stickyScroll",
+                "!links",
+                "!inlayHints",
+                "!documentSymbols",
+                "!browser",
+              ],
+              filename: `workers/[name].[contenthash:8].worker.js`,
+            }),
+          ],
+        };
       },
     }),
+  ],
 };
 
-module.exports = config;
+function getContentHash(content) {
+  const hash = createHash("sha1");
+  hash.update(content);
+  return hash.digest("hex").slice(0, 8);
+}
+
+async function createConfig() {
+  const lightCodeTheme = (await import("./src/utils/prismLight.mjs")).default;
+  const darkCodeTheme = (await import("./src/utils/prismDark.mjs")).default;
+  config.themeConfig.prism.theme = lightCodeTheme;
+  config.themeConfig.prism.darkTheme = darkCodeTheme;
+  return config;
+}
+
+module.exports = createConfig;
+
+// module.exports = config;

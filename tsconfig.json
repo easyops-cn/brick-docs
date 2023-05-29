@@ -2,6 +2,12 @@
   // This file is not used in compilation. It is here just for a nice editor experience.
   "extends": "@tsconfig/docusaurus/tsconfig.json",
   "compilerOptions": {
-    "baseUrl": "."
-  }
+    "baseUrl": ".",
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "strictNullChecks": false
+  },
+  "include": ["src"],
+  "exclude": ["**/*.js"]
 }
