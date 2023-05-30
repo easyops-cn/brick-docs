@@ -1,0 +1,59 @@
+.slidesActive :global(.monaco-editor) :global(.cursors-layer) :global(.cursor) {
+  visibility: hidden !important;
+}
+
+.cursor {
+  position: relative;
+}
+
+.cursor::before {
+  position: absolute;
+  content: "";
+  width: 2px;
+  background-color: #000000;
+  height: 22px;
+  top: -3.5px;
+  left: -0.5px;
+}
+
+html[data-theme="dark"] .cursor::before {
+  background-color: #aeafad;
+}
+
+.added,
+.modified {
+  width: 3px !important;
+  margin-left: 5px;
+}
+
+.added {
+  background: #2ea043;
+}
+
+.modified {
+  background-image: linear-gradient(
+    -45deg,
+    #005fb8 25%,
+    #ffffff 0,
+    #ffffff 50%,
+    #005fb8 0,
+    #005fb8 75%,
+    #ffffff 0,
+    #ffffff
+  );
+  background-repeat: repeat-y;
+  background-size: 3px 3px;
+}
+
+html[data-theme="dark"] .modified {
+  background-image: linear-gradient(
+    -45deg,
+    #0078d4 25%,
+    #1f1f1f 0,
+    #1f1f1f 50%,
+    #0078d4 0,
+    #0078d4 75%,
+    #1f1f1f 0,
+    #1f1f1f
+  );
+}

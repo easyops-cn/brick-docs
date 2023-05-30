@@ -1,0 +1,14 @@
+.editor {
+  margin: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.editor :global(.prism-code) {
+  border-radius: 0;
+}
+
+.editor :global(.prism-code) > code {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}

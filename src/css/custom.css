@@ -6,25 +6,90 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
-  --ifm-code-font-size: 95%;
+  --ifm-color-primary: #0071eb;
+  --ifm-color-primary-dark: #0066d3;
+  --ifm-color-primary-darker: #0060c8;
+  --ifm-color-primary-darkest: #004fa5;
+  --ifm-color-primary-light: #037cff;
+  --ifm-color-primary-lighter: #0f83ff;
+  --ifm-color-primary-lightest: #3295ff;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+
+  --ifm-font-weight-bold: 600;
+  --ifm-hero-background-color: var(--ifm-color-emphasis-100);
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
-[data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
+[data-theme="dark"] {
+  --ifm-color-primary: #368aff;
+  --ifm-color-primary-dark: #1778ff;
+  --ifm-color-primary-darker: #086fff;
+  --ifm-color-primary-darkest: #005ad8;
+  --ifm-color-primary-light: #559cff;
+  --ifm-color-primary-lighter: #64a5ff;
+  --ifm-color-primary-lightest: #93c0ff;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+html[data-theme="dark"] {
+  --ifm-background-color: #29292d;
+  --ifm-navbar-shadow: 0 0 2px 0 rgba(255, 255, 255, 0.3);
+}
+
+html:not([data-theme="dark"]) .theme-code-block-highlighted-line {
+  background-color: rgba(0, 0, 0, 0.05);
+  box-shadow: inset 3px 0 var(--ifm-color-primary-lightest);
+}
+
+html[data-theme="dark"] .theme-code-block-highlighted-line {
+  background-color: rgba(0, 0, 0, 0.2);
+  box-shadow: inset 3px 0 var(--ifm-color-primary-darkest);
+}
+
+.prism-code {
+  font-size: 13px;
+  line-height: 22px;
+}
+
+button {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: inherit;
+  color: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  appearance: button;
+  background-color: transparent;
+  background-image: none;
+}
+
+[role="button"],
+button {
+  cursor: pointer;
+}
+
+.button--primary:not(.button--outline) {
+  color: #fff;
+}
+
+.header-github-link::before {
+  content: "";
+  display: flex;
+  width: 24px;
+  height: 24px;
+  background: url(../../static/img/github-mark.svg) no-repeat;
+  background-size: 100% 100%;
+}
+
+html[data-theme="dark"] .header-github-link::before {
+  background-image: url(../../static/img/github-mark-white.svg);
+}
+
+@media (min-width: 997px) {
+  .header-search .navbar__search-input {
+    width: 20rem;
+  }
 }

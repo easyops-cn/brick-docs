@@ -135,11 +135,16 @@ const config = {
         },
         items: [
           {
+            type: 'search',
+            position: 'left',
+            className: 'header-search',
+          },
+          {
             href: "https://brick-next.js.org/docs/learn/quick-start",
-            position: "left",
+            position: "right",
             label: "Brick Next",
           },
-          { href: "https://brick-next.js.org/blog", label: "Blog", position: "left" },
+          { href: "https://easyops-cn.github.io/next-bricks/playground/?example=basic%2Fbutton", label: "Playground", position: "right" },
           {
             href: "https://github.com/easyops-cn/next-bricks",
             position: "right",
@@ -254,7 +259,8 @@ const config = {
                     if (filePath === path.join(previewDir, "index.html")) {
                       return buf
                         .toString()
-                        .replace("bootstrap.hash.json", bootstrapJsonPath);
+                        .replace("bootstrap.hash.json", bootstrapJsonPath)
+                        .replace("</head>", `<style>body{--body-background:transparent}div#preview-root{padding:2em}</style></head>`);
                     }
                     return buf;
                   },
@@ -272,7 +278,7 @@ const config = {
             }),
             new EmitBootstrapJsonPlugin(),
             new MonacoEditorWebpackPlugin({
-              languages: ["javascript", "typescript", "css" /* , 'yaml' */],
+              languages: ["javascript", "typescript", "css" /* , 'html' , 'yaml' */],
               features: [
                 "!accessibilityHelp",
                 "!codelens",
