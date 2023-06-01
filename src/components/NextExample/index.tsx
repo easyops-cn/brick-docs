@@ -166,7 +166,9 @@ export default function NextExample({
           onClick={toggleShowSource}
         >
           {sourceShown ? <ChevronUp width={14} height={14} /> : <ChevronDown width={14} height={14} />}
-          <span>Source</span>
+          <span>
+            Source {type.toUpperCase()}
+          </span>
         </button>
         <Link className={styles.button} href={`http://easyops-cn.github.io/next-bricks/playground/?mode=${type}#${b64EncodeUnicode(JSON.stringify({
           [type]: currentCode
