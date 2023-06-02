@@ -27,10 +27,10 @@ export default function BrickDocMethods({
                 {
                   method.params.map(
                     (param, index, array) => (
-                      <>
+                      <React.Fragment key={index}>
                         <code>{param as string}</code>
                         {index < array.length - 1 ? ", " : ""}
-                      </>
+                      </React.Fragment>
                     )
                   )
                 }

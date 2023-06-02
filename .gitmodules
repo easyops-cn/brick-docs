@@ -1,0 +1,3 @@
+[submodule "bricks"]
+	path = bricks
+	url = https://github.com/easyops-cn/next-bricks.git

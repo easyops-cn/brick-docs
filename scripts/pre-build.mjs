@@ -1,34 +1,32 @@
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { createRequire } from "node:module";
 import { existsSync } from "node:fs";
-import { cp, mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
-import manifestOfE2e from "@next-bricks/e2e/dist/manifest.json" assert { type: "json" };
-import manifestOfIcons from "@next-bricks/icons/dist/manifest.json" assert { type: "json" };
+import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
+import packages from "./brick-packages.mjs";
 
-const require = createRequire(import.meta.url);
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-const packages = [manifestOfE2e, manifestOfIcons];
+const targetBricksDir = path.join(__dirname, "../docs/bricks");
+if (existsSync(targetBricksDir)) {
+  await rm(targetBricksDir, { recursive: true, force: true });
+}
+await mkdir(targetBricksDir);
+await writeFile(path.join(targetBricksDir, ".gitignore"), "*");
 
-for (const pkg of packages) {
-  const srcDocsDir = path.join(require.resolve(`${pkg.package}/package.json`), "../docs");
-  const targetDir = path.join(__dirname, "../docs/bricks", pkg.name);
-  if (existsSync(targetDir)) {
-    await rm(targetDir, { recursive: true, force: true });
-  }
-  await mkdir(targetDir, { recursive: true });
-  await writeFile(path.join(targetDir, ".gitignore"), "*");
+for (const { path: pkgPath, manifest } of packages) {
+  const srcDocsDir = path.join((`${pkgPath}/package.json`), "../docs");
+  const targetDir = path.join(targetBricksDir, manifest.name);
+  await mkdir(targetDir);
 
   await writeFile(path.join(targetDir, "_category_.json"), JSON.stringify({
     "link": {
       "type": "generated-index",
-      "title": `Brick package: ${pkg.name}`,
-      description: pkg.description,
+      "title": `Brick package: ${manifest.name}`,
+      description: manifest.description,
     }
   }, null, 2));
 
-  for (const brick of pkg.bricks) {
+  for (const brick of manifest.bricks) {
     const nameParts = brick.name.split(".");
     const lastName = nameParts.pop();
     const targetFilePath = path.join(targetDir, `${lastName}.md`);
@@ -48,7 +46,7 @@ for (const pkg of packages) {
 
     const content =
 `---
-description: ${JSON.stringify(`Brick: ${brick.name}`)}
+description: ${JSON.stringify(`<${brick.name}>`)}
 ---
 
 import BrickTagName from "@site/src/components/BrickTagName";

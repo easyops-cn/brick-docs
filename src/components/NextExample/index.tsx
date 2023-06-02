@@ -22,12 +22,14 @@ export interface NextExampleProps {
   code: string;
   type?: "html" | "yaml";
   wait?: boolean;
+  hiddenStyle?: string;
 }
 
 export default function NextExample({
   code,
   type: _type,
   wait,
+  hiddenStyle
 }: NextExampleProps): JSX.Element {
   const type = _type ?? "yaml";
   const containerRef = useRef<HTMLDivElement>();
@@ -74,9 +76,10 @@ export default function NextExample({
       },
       {
         theme: colorMode,
+        styleText: hiddenStyle
       }
     );
-  }, [colorMode, deferredCode, ready, type]);
+  }, [colorMode, deferredCode, ready, type, hiddenStyle]);
 
   useLayoutEffect(() => {
     if (!ready) {
