@@ -25,10 +25,44 @@ export interface NextExampleProps {
   hiddenStyle?: string;
 }
 
+type WaitCallback = () => void;
+
+let initialized = false;
+let firstFrameReady = false;
+
+function isTheFirstFrame() {
+  if (initialized) {
+    return false;
+  }
+  initialized = true;
+  return true;
+}
+
+const waitList: WaitCallback[] = [];
+
+function waitForTheFirstFrame(callback: WaitCallback) {
+  if (firstFrameReady) {
+    callback();
+  } else {
+    waitList.push(callback);
+  }
+}
+
+function setFirstFrameReady() {
+  if (firstFrameReady) {
+    return;
+  }
+  firstFrameReady = true;
+  waitList.forEach((callback) => {
+    callback();
+  });
+  waitList.length = 0;
+}
+
 export default function NextExample({
   code,
   type: _type,
-  wait,
+  // wait,
   hiddenStyle
 }: NextExampleProps): JSX.Element {
   const type = _type ?? "yaml";
@@ -47,10 +81,19 @@ export default function NextExample({
   );
   const [sourceShown, setSourceShown] = useState(false);
 
+  const [wait, setWait] = useState(() => !isTheFirstFrame());
+
+  useEffect(() => {
+    waitForTheFirstFrame(() => {
+      setWait(false);
+    });
+  }, []);
+
   const handleIframeLoad = useCallback(() => {
     const check = () => {
       if ((iframeRef.current?.contentWindow as any)?._preview_only_render) {
         setReady(true);
+        setFirstFrameReady();
       } else {
         setTimeout(check, 100);
       }
@@ -136,7 +179,7 @@ export default function NextExample({
             />
           </div>
         )}
-        {(wait || !ready) && <LoadingRing />}
+        {(wait || !ready) && <div style={{ height: iframeHeight }}><LoadingRing /></div>}
       </div>
       <div className={clsx(styles.editorBox, {
         [styles.sourceShown]: sourceShown
