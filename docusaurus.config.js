@@ -140,7 +140,7 @@ const config = {
             position: "right",
             label: "Brick Next",
           },
-          { href: "https://easyops-cn.github.io/next-bricks/playground/?example=basic%2Fbutton", label: "Playground", position: "right" },
+          { href: "https://easyops-cn.github.io/next-bricks/playground/?example=basic%2Fgeneral-button%2Ftypes", label: "Playground", position: "right" },
           {
             href: "https://github.com/easyops-cn/next-bricks",
             position: "right",
@@ -163,10 +163,6 @@ const config = {
               {
                 label: "Overview",
                 to: "/",
-              },
-              {
-                label: "Button",
-                to: "/button",
               },
             ],
           },
