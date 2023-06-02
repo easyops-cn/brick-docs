@@ -32,7 +32,7 @@ jobs:
       working-directory: ./bricks
 
     - name: Build (Bricks)
-      run: yarn build --ignore @next-bricks/v2-adapter --ignore @next-bricks/devtools
+      run: npx lerna run build:manifest
       working-directory: ./bricks
 
     # Fix `yarn install --frozen-lockfile` not working in monorepo.
