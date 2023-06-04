@@ -5,7 +5,15 @@ import { readdir } from "node:fs/promises";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-const bricksDir = path.join(__dirname, "../bricks/bricks");
+/** @type {string} */
+let bricksDir;
+const ciBricksDir = path.join(__dirname, "../ci-bricks/bricks");
+
+if (existsSync(ciBricksDir)) {
+  bricksDir = ciBricksDir;
+} else {
+  bricksDir = path.join(__dirname, "../bricks/bricks");
+}
 
 const dirs = await readdir(bricksDir, { withFileTypes: true });
 
