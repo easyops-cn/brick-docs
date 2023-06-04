@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkbrick_docs=self.webpackChunkbrick_docs||[]).push([[382],{70382:(e,s,c)=>{c.r(s),c.d(s,{default:()=>o});var r=c(67294),t=c(1534),a=c(86010);const n={editor:"editor_TseG"};function o(e){let{code:s,type:c,showLineNumbers:o,className:u}=e;return r.createElement(t.Z,{className:(0,a.Z)(u,n.editor),language:c??"yaml",showLineNumbers:o},s)}}}]);

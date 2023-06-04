@@ -1,0 +1,46 @@
+{
+  "id": "bricks/basic",
+  "bricks": [
+    "basic.http-request",
+    "basic.general-button",
+    "basic.general-link",
+    "basic.general-text",
+    "basic.general-image",
+    "basic.dropdown-button",
+    "basic.general-dropdown",
+    "basic.general-menu",
+    "basic.general-menu-item",
+    "basic.general-tag",
+    "basic.general-tag-list"
+  ],
+  "elements": [],
+  "processors": [],
+  "dependencies": {
+    "basic.general-button": [
+      "icons.general-icon"
+    ],
+    "basic.general-link": [
+      "icons.general-icon"
+    ],
+    "basic.general-image": [
+      "icons.general-icon"
+    ],
+    "basic.dropdown-button": [
+      "basic.general-button",
+      "basic.general-dropdown",
+      "basic.general-menu",
+      "basic.general-menu-item"
+    ],
+    "basic.general-menu-item": [
+      "icons.general-icon"
+    ],
+    "basic.general-tag": [
+      "icons.general-icon"
+    ],
+    "basic.general-tag-list": [
+      "basic.general-tag",
+      "icons.general-icon"
+    ]
+  },
+  "filePath": "bricks/basic/dist/index.31199949.js"
+}
