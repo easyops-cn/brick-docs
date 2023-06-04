@@ -136,7 +136,7 @@ const config = {
             className: 'header-search',
           },
           {
-            href: "https://brick-next.js.org/docs/learn/quick-start",
+            href: "https://brick-next.js.org/",
             position: "right",
             label: "Brick Next",
           },

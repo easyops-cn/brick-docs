@@ -1,5 +1,6 @@
 import React, {
   useEffect,
+  useLayoutEffect,
   useRef,
 } from "react";
 import * as monaco from "monaco-editor/esm/vs/editor/editor.api";
@@ -7,11 +8,13 @@ import {
   EDITOR_SCROLLBAR_SIZE,
   EDITOR_PADDING_TOP,
   EXAMPLE_CODE_LINE_HEIGHT,
+  EXAMPLE_MIN_HEIGHT,
 } from "@site/src/constants";
 import { register as registerJavaScript } from "@next-core/monaco-contributions/javascript";
 import { register as registerTypeScript } from "@next-core/monaco-contributions/typescript";
 import { register as registerYaml } from "@next-core/monaco-contributions/yaml";
 import { register as registerHtml } from "@next-core/monaco-contributions/html";
+import getContentHeightByCode from "@site/src/utils/getContentHeightByCode";
 
 registerJavaScript();
 registerTypeScript();
@@ -40,6 +43,10 @@ export default function MonacoEditor(
 ): JSX.Element {
   const containerRef = useRef<HTMLDivElement>();
   const editorRef = useRef<monaco.editor.IStandaloneCodeEditor>();
+  const size = useRef<monaco.editor.IDimension>({
+    width: 300,
+    height: getContentHeightByCode(code),
+  });
 
   useEffect(() => {
     if (theme) {
@@ -48,6 +55,29 @@ export default function MonacoEditor(
       monaco.editor.setTheme(theme);
     }
   }, [theme]);
+
+  useLayoutEffect(() => {
+    size.current.width = containerRef.current.getBoundingClientRect().width;
+    editorRef.current?.layout(size.current);
+
+    const observer = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.target === containerRef.current) {
+          const newWidth = entry.contentBoxSize ? entry.contentBoxSize[0].inlineSize : entry.contentRect.width;
+          if (newWidth !== size.current.width) {
+            size.current.width = newWidth;
+            editorRef.current?.layout(size.current);
+          }
+          break;
+        }
+      }
+    });
+    observer.observe(containerRef.current);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   useEffect(() => {
     if (editorRef.current) {
@@ -65,7 +95,7 @@ export default function MonacoEditor(
       scrollBeyondLastLine: false,
       tabSize: 2,
       insertSpaces: true,
-      automaticLayout: true,
+      // automaticLayout: true,
       fontSize: 13,
       lineHeight: EXAMPLE_CODE_LINE_HEIGHT,
       scrollbar: {
@@ -98,6 +128,19 @@ export default function MonacoEditor(
         document.dispatchEvent(keydown);
       }
     });
+
+    editorRef.current.onDidContentSizeChange((e) => {
+      if (e.contentHeightChanged) {
+        const newHeight = fixEditorHeightWithScrollBar(e.contentHeight);
+        if (newHeight !== size.current.height) {
+          size.current.height = newHeight;
+          editorRef.current.layout(size.current);
+        }
+      }
+    });
+
+    size.current.height = fixEditorHeightWithScrollBar(editorRef.current.getContentHeight());
+    editorRef.current.layout(size.current);
   }, [code, type]);
 
   useEffect(() => {
@@ -123,4 +166,12 @@ export default function MonacoEditor(
       className={className}
     ></div>
   );
+}
+
+function fixEditorHeightWithScrollBar(contentHeight: number): number {
+  let fixedHeight = contentHeight;
+  if ((contentHeight - EDITOR_PADDING_TOP) % EXAMPLE_CODE_LINE_HEIGHT === 0) {
+    fixedHeight = contentHeight + EDITOR_SCROLLBAR_SIZE;
+  }
+  return Math.max(fixedHeight, EXAMPLE_MIN_HEIGHT);
 }

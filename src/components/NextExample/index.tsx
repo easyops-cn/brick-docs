@@ -1,27 +1,22 @@
-import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import { useColorMode } from "@docusaurus/theme-common";
 import BrowserOnly from "@docusaurus/BrowserOnly";
+import Link from "@docusaurus/Link";
 import IconExternalLink from '@theme/Icon/ExternalLink';
 import clsx from "clsx";
 import useDeferredValue from "@site/src/hooks/useDeferredValue";
-import {
-  EDITOR_PADDING_TOP,
-  EDITOR_SCROLLBAR_SIZE,
-  EXAMPLE_CODE_LINE_HEIGHT,
-  EXAMPLE_IFRAME_MIN_HEIGHT,
-  EXAMPLE_MIN_HEIGHT,
-} from "@site/src/constants";
+import { EXAMPLE_IFRAME_MIN_HEIGHT } from "@site/src/constants";
+import getContentHeightByCode from "@site/src/utils/getContentHeightByCode";
 import ChevronUp from "./chevron-up.svg";
 import ChevronDown from "./chevron-down.svg";
-import LoadingRing from "../LoadingRing";
 import styles from "./styles.module.css";
-import Link from "@docusaurus/Link";
+import LoadingRingBox from "../LoadingRingBox";
+import LoadingRing from "../LoadingRing";
 
 export interface NextExampleProps {
   code: string;
   type?: "html" | "yaml";
-  wait?: boolean;
   hiddenStyle?: string;
 }
 
@@ -62,7 +57,6 @@ function setFirstFrameReady() {
 export default function NextExample({
   code,
   type: _type,
-  // wait,
   hiddenStyle
 }: NextExampleProps): JSX.Element {
   const type = _type ?? "yaml";
@@ -73,15 +67,9 @@ export default function NextExample({
   const [iframeHeight, setIframeHeight] = useState(EXAMPLE_IFRAME_MIN_HEIGHT);
   const [ready, setReady] = useState(false);
   const [currentCode, setCurrentCode] = useState(code);
-  const [codeLines, setCodeLines] = useState(() =>
-    currentCode.split("\n").length
-  );
-  const [contentMaxHeight, setContentMaxHeight] = useState(() =>
-    getContentMaxHeight(codeLines)
-  );
   const [sourceShown, setSourceShown] = useState(false);
-
-  const [wait, setWait] = useState(() => !isTheFirstFrame());
+  const [wait, setWait] = useState(!isTheFirstFrame());
+  const editorInitialHeight = useMemo(() => getContentHeightByCode(code), [code]);
 
   useEffect(() => {
     waitForTheFirstFrame(() => {
@@ -146,14 +134,6 @@ export default function NextExample({
     };
   }, [ready]);
 
-  useEffect(() => {
-    setCodeLines(currentCode.split("\n").length);
-  }, [currentCode]);
-
-  useEffect(() => {
-    setContentMaxHeight(getContentMaxHeight(codeLines));
-  }, [codeLines]);
-
   const toggleShowSource = useCallback(() => {
     setSourceShown(prev => !prev);
   }, []);
@@ -179,17 +159,18 @@ export default function NextExample({
             />
           </div>
         )}
-        {(wait || !ready) && <div style={{ height: iframeHeight }}><LoadingRing /></div>}
+        {wait
+          ? <LoadingRingBox height={EXAMPLE_IFRAME_MIN_HEIGHT} />
+          : (!ready && <LoadingRing />)
+        }
       </div>
       <div className={clsx(styles.editorBox, {
         [styles.sourceShown]: sourceShown
-      })} style={{
-        height: Math.max(contentMaxHeight, EXAMPLE_MIN_HEIGHT)
-      }}>
+      })}>
         {wait ? (
-          <LoadingRing />
+          <LoadingRingBox height={editorInitialHeight} />
         ) : (
-          <BrowserOnly fallback={<LoadingRing />}>
+          <BrowserOnly fallback={<LoadingRingBox height={editorInitialHeight} />}>
             {() => {
               const MixedEditor = require("../MixedEditor").default;
               return (
@@ -197,7 +178,7 @@ export default function NextExample({
                   type={type}
                   code={code}
                   theme={colorMode === "dark" ? "vs-dark" : "vs"}
-                  className={styles.editorContainer}
+                  loadingHeight={editorInitialHeight}
                   onChange={setCurrentCode}
                 />
               );
@@ -225,12 +206,6 @@ export default function NextExample({
       </div>
     </div>
   );
-}
-
-function getContentMaxHeight(codeLines: number): number {
-  return codeLines * EXAMPLE_CODE_LINE_HEIGHT +
-    EDITOR_SCROLLBAR_SIZE +
-    EDITOR_PADDING_TOP;
 }
 
 function b64EncodeUnicode(str: string) {
