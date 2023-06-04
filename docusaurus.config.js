@@ -6,7 +6,7 @@ const CopyPlugin = require("copy-webpack-plugin");
 const { createHash } = require("crypto");
 const MonacoEditorWebpackPlugin = require("monaco-editor-webpack-plugin");
 
-const baseUrl = "/brick-docs/";
+const baseUrl = "/";
 const brickPackages = [
   "@next-bricks/shoelace",
   "@next-bricks/basic",
@@ -75,8 +75,7 @@ const config = {
   favicon: "img/favicon.png",
 
   // Set the production url of your site here
-  // url: "https://bricks.js.org",
-  url: "https://easyops-cn.github.io",
+  url: "https://bricks.js.org",
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl,
