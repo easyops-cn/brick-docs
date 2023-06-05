@@ -23,6 +23,7 @@ for (const { path: pkgPath, manifest } of packages) {
       "type": "generated-index",
       "title": `Brick package: ${manifest.name}`,
       description: manifest.description,
+      slug: `/bricks/category/${manifest.name}`,
     }
   }, null, 2));
 
