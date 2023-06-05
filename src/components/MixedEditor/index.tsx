@@ -3,6 +3,7 @@ import type {
   MonacoEditorProps,
 } from "../MonacoEditor";
 import LoadingRingBox from "../LoadingRingBox";
+import LoadingRing from "../LoadingRing";
 
 const SimpleEditor = React.lazy(
   () => import("../SimpleEditor")
@@ -15,18 +16,18 @@ export default function MixedEditor(
   {
     code,
     type,
-    theme,
     className,
     loadingHeight,
+    automaticLayout,
     onChange,
   }: MonacoEditorProps & {
-    loadingHeight: number
+    loadingHeight?: number
   }
 ) {
   const isMobile = !!navigator.maxTouchPoints;
 
   return (
-    <Suspense fallback={<LoadingRingBox height={loadingHeight} />}>
+    <Suspense fallback={loadingHeight ? <LoadingRingBox height={loadingHeight} /> : <LoadingRing />}>
       {isMobile ? (
         <SimpleEditor
           type={type}
@@ -37,8 +38,8 @@ export default function MixedEditor(
         <MonacoEditor
           type={type}
           code={code}
-          theme={theme}
           className={className}
+          automaticLayout={automaticLayout}
           onChange={onChange}
         />
       )}

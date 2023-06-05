@@ -1883,6 +1883,15 @@
   resolved "https://registry.yarnpkg.com/@next-bricks/shoelace/-/shoelace-0.3.3.tgz#e30fcb452f4e5a73cc1d443589d92de6e38e317b"
   integrity sha512-qwvm9p825YbEbzdIc9qRmADNnT9zOkAb4/6WgL8c7EfA8y0zaMWpVm1MlvlclqZ63tK2CMRARifibFJKkK7YFQ==
 
+"@next-core/brick-playground@^1.9.13":
+  version "1.9.13"
+  resolved "https://registry.yarnpkg.com/@next-core/brick-playground/-/brick-playground-1.9.13.tgz#408b75d2bae2917dbc199ac21a04edca79b2413d"
+  integrity sha512-1LZI6x/gYtU+1Jz/hPQrHI9iJ3802ufnOXWvi+I17Pl7TQIrHJh0jwCEHGXj9lmdK2QU7yoOXHM78MXwQ4u54w==
+  dependencies:
+    "@next-core/serve-helpers" "^1.0.8"
+    compression "^1.7.4"
+    express "^4.18.2"
+
 "@next-core/monaco-contributions@^0.2.0":
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/@next-core/monaco-contributions/-/monaco-contributions-0.2.0.tgz#ff0958b436923daa38ab59f3d3f7d99298e70a11"
@@ -1892,6 +1901,11 @@
   version "0.1.6"
   resolved "https://registry.yarnpkg.com/@next-core/preview/-/preview-0.1.6.tgz#7ded809c7b7095b0a5060a67a1ad151c53b2f3f8"
   integrity sha512-przRtGwbE7Xt19eQaHjKv7XODzgw2WemVW2Pm5AajjDlFPtn89USKpwTOE61wUOjKuJcuC0wVUukqhzmo6z5NQ==
+
+"@next-core/serve-helpers@^1.0.8":
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/@next-core/serve-helpers/-/serve-helpers-1.0.8.tgz#2ab8bd2fefceb371a92887d3273c83a0d8b8ab71"
+  integrity sha512-FVrHAAOh24AEbBiT2+QPFAHoDqHK1TiVdBL89dZ0mgT0vS0QfhyuU5/jRqB7Op3Accine6mH30fSdLYEbVLHqw==
 
 "@node-rs/jieba-android-arm-eabi@1.7.0":
   version "1.7.0"
@@ -3514,6 +3528,13 @@ copy-text-to-clipboard@^3.0.1:
   resolved "https://registry.yarnpkg.com/copy-text-to-clipboard/-/copy-text-to-clipboard-3.1.0.tgz#6bf40deef0a51ac6858efb0d76ded2c6d6a15059"
   integrity sha512-PFM6BnjLnOON/lB3ta/Jg7Ywsv+l9kQGD4TWDCSlRBGmqnnTM5MrDkhAFgw+8HZt0wW6Q2BBE4cmy9sq+s9Qng==
 
+copy-to-clipboard@^3.3.3:
+  version "3.3.3"
+  resolved "https://registry.yarnpkg.com/copy-to-clipboard/-/copy-to-clipboard-3.3.3.tgz#55ac43a1db8ae639a4bd99511c148cdd1b83a1b0"
+  integrity sha512-2KV8NhB5JqC3ky0r9PMCAZKbUHSwtEo4CwCs0KXgruG43gX5PMqDEBbVU4OUzw2MuAWUfsuFmWvEKG5QRfSnJA==
+  dependencies:
+    toggle-selection "^1.0.6"
+
 copy-webpack-plugin@^11.0.0:
   version "11.0.0"
   resolved "https://registry.yarnpkg.com/copy-webpack-plugin/-/copy-webpack-plugin-11.0.0.tgz#96d4dbdb5f73d02dd72d0528d1958721ab72e04a"
@@ -4348,7 +4369,7 @@ execa@^7.0.0:
     signal-exit "^3.0.7"
     strip-final-newline "^3.0.0"
 
-express@^4.17.3:
+express@^4.17.3, express@^4.18.2:
   version "4.18.2"
   resolved "https://registry.yarnpkg.com/express/-/express-4.18.2.tgz#3fabe08296e930c796c19e3c516979386ba9fd59"
   integrity sha512-5/PsL6iGPdfQ/lKM1UuielYgv3BUoJfz1aUwU9vHZ+J7gyvwdQXFEBIEIaxeGf0GIcreATNyBExtalisDbuMqQ==
@@ -8191,6 +8212,11 @@ to-regex-range@^5.0.1:
   integrity sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==
   dependencies:
     is-number "^7.0.0"
+
+toggle-selection@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/toggle-selection/-/toggle-selection-1.0.6.tgz#6e45b1263f2017fa0acc7d89d78b15b8bf77da32"
+  integrity sha512-BiZS+C1OS8g/q2RRbJmy59xpyghNBqrr6k5L/uKBGRsTfxmu3ffiRnd8mlGPUVayg8pvfi5urfnu8TU7DVOkLQ==
 
 toidentifier@1.0.1:
   version "1.0.1"

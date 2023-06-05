@@ -3,6 +3,7 @@ import React, {
   useLayoutEffect,
   useRef,
 } from "react";
+import { useColorMode } from "@docusaurus/theme-common";
 import * as monaco from "monaco-editor/esm/vs/editor/editor.api";
 import {
   EDITOR_SCROLLBAR_SIZE,
@@ -24,9 +25,9 @@ registerHtml();
 export interface MonacoEditorProps {
   code: string;
   type?: "html" | "yaml";
-  theme?: string;
   className?: string;
-  onChange?(value: string): void;
+  automaticLayout?: boolean;
+  onChange?(value: string, isFlush: boolean): void;
 }
 
 monaco.languages.typescript.javascriptDefaults.setCompilerOptions({
@@ -39,7 +40,7 @@ monaco.languages.typescript.typescriptDefaults.setCompilerOptions({
 });
 
 export default function MonacoEditor(
-  { code, type, className, theme, onChange }: MonacoEditorProps
+  { code, type, className, automaticLayout, onChange }: MonacoEditorProps
 ): JSX.Element {
   const containerRef = useRef<HTMLDivElement>();
   const editorRef = useRef<monaco.editor.IStandaloneCodeEditor>();
@@ -47,16 +48,31 @@ export default function MonacoEditor(
     width: 300,
     height: getContentHeightByCode(code),
   });
+  // `automaticLayout` should never change
+  const automaticLayoutRef = useRef(automaticLayout);
+  const { colorMode } = useColorMode();
 
   useEffect(() => {
-    if (theme) {
+    if (colorMode) {
       // Currently theme is configured globally.
       // See https://github.com/microsoft/monaco-editor/issues/338
-      monaco.editor.setTheme(theme);
+      monaco.editor.setTheme(colorMode === "dark" ? "vs-dark" : "vs");
     }
-  }, [theme]);
+  }, [colorMode]);
+
+  useEffect(() => {
+    if (editorRef.current) {
+      const currentModel = editorRef.current.getModel();
+      monaco.editor.setModelLanguage(currentModel, type ?? "yaml");
+      currentModel.setValue(code);
+    }
+  }, [code, type]);
 
   useLayoutEffect(() => {
+    if (automaticLayoutRef.current) {
+      return;
+    }
+
     size.current.width = containerRef.current.getBoundingClientRect().width;
     editorRef.current?.layout(size.current);
 
@@ -77,7 +93,7 @@ export default function MonacoEditor(
     return () => {
       observer.disconnect();
     };
-  }, []);
+  }, [automaticLayout]);
 
   useEffect(() => {
     if (editorRef.current) {
@@ -95,7 +111,7 @@ export default function MonacoEditor(
       scrollBeyondLastLine: false,
       tabSize: 2,
       insertSpaces: true,
-      // automaticLayout: true,
+      automaticLayout: automaticLayoutRef.current,
       fontSize: 13,
       lineHeight: EXAMPLE_CODE_LINE_HEIGHT,
       scrollbar: {
@@ -129,24 +145,26 @@ export default function MonacoEditor(
       }
     });
 
-    editorRef.current.onDidContentSizeChange((e) => {
-      if (e.contentHeightChanged) {
-        const newHeight = fixEditorHeightWithScrollBar(e.contentHeight);
-        if (newHeight !== size.current.height) {
-          size.current.height = newHeight;
-          editorRef.current.layout(size.current);
+    if (!automaticLayoutRef.current) {
+      editorRef.current.onDidContentSizeChange((e) => {
+        if (e.contentHeightChanged) {
+          const newHeight = fixEditorHeightWithScrollBar(e.contentHeight);
+          if (newHeight !== size.current.height) {
+            size.current.height = newHeight;
+            editorRef.current.layout(size.current);
+          }
         }
-      }
-    });
+      });
 
-    size.current.height = fixEditorHeightWithScrollBar(editorRef.current.getContentHeight());
-    editorRef.current.layout(size.current);
+      size.current.height = fixEditorHeightWithScrollBar(editorRef.current.getContentHeight());
+      editorRef.current.layout(size.current);
+    }
   }, [code, type]);
 
   useEffect(() => {
     const currentModel = editorRef.current.getModel();
-    const listener = currentModel.onDidChangeContent(() => {
-      onChange?.(currentModel.getValue());
+    const listener = currentModel.onDidChangeContent((e) => {
+      onChange?.(currentModel.getValue(), e.isFlush);
     });
     return () => {
       listener.dispose();

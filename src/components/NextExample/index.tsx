@@ -8,6 +8,7 @@ import clsx from "clsx";
 import useDeferredValue from "@site/src/hooks/useDeferredValue";
 import { EXAMPLE_IFRAME_MIN_HEIGHT } from "@site/src/constants";
 import getContentHeightByCode from "@site/src/utils/getContentHeightByCode";
+import { b64EncodeUnicode } from "@site/src/utils/b64Unicode";
 import ChevronUp from "./chevron-up.svg";
 import ChevronDown from "./chevron-down.svg";
 import styles from "./styles.module.css";
@@ -177,7 +178,6 @@ export default function NextExample({
                 <MixedEditor
                   type={type}
                   code={code}
-                  theme={colorMode === "dark" ? "vs-dark" : "vs"}
                   loadingHeight={editorInitialHeight}
                   onChange={setCurrentCode}
                 />
@@ -197,24 +197,17 @@ export default function NextExample({
             Source {type.toUpperCase()}
           </span>
         </button>
-        <Link className={styles.button} href={`http://easyops-cn.github.io/next-bricks/playground/?mode=${type}#${b64EncodeUnicode(JSON.stringify({
-          [type]: currentCode
-        }))}`}>
+        <Link
+          className={styles.button}
+          to={`/playground#${b64EncodeUnicode(JSON.stringify({
+            [type]: currentCode
+          }))}`}
+          target="_blank"
+        >
           Playground
           <IconExternalLink width={12} height={12} />
         </Link>
       </div>
     </div>
-  );
-}
-
-function b64EncodeUnicode(str: string) {
-  // first we use encodeURIComponent to get percent-encoded UTF-8,
-  // then we convert the percent encodings into raw bytes which
-  // can be fed into btoa.
-  return btoa(
-    encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function (match, p1) {
-      return String.fromCharCode(parseInt(p1, 16));
-    })
   );
 }

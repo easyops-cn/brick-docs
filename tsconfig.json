@@ -6,6 +6,7 @@
     "target": "ESNext",
     "module": "ESNext",
     "moduleResolution": "Node",
+    "resolveJsonModule": true,
     "strictNullChecks": false
   },
   "include": ["src"],

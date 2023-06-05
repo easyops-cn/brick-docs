@@ -130,6 +130,17 @@ const config = {
         },
         items: [
           {
+            to: "/",
+            label: "Docs",
+            activeBaseRegex: "^/(?:bricks/|$)",
+            position: 'left',
+          },
+          {
+            to: "playground",
+            label: "Playground",
+            position: 'left',
+          },
+          {
             type: 'search',
             position: 'left',
             className: 'header-search',
@@ -139,7 +150,6 @@ const config = {
             position: "right",
             label: "Brick Next",
           },
-          { href: "https://easyops-cn.github.io/next-bricks/playground/?example=basic%2Fgeneral-button%2Ftypes", label: "Playground", position: "right" },
           {
             href: "https://github.com/easyops-cn/next-bricks",
             position: "right",
