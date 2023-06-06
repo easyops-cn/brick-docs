@@ -7,7 +7,8 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+  build_bricks:
+    name: Build bricks
 
     runs-on: ubuntu-latest
 
@@ -18,7 +19,60 @@ jobs:
     steps:
     - uses: actions/checkout@v3
       with:
-        submodules: true
+        repository: easyops-cn/next-bricks
+        ref: refs/heads/master
+        token: ${{ secrets.GH_TOKEN_EVE }}
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        registry-url: 'https://registry.npmjs.org'
+
+    - name: Get yarn cache directory path
+      id: yarn-cache-dir-path
+      run: echo "::set-output name=dir::$(yarn cache dir)"
+
+    - name: Cache for yarn
+      uses: actions/cache@v3
+      with:
+        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+        key: bricks-node-cache-${{ runner.os }}-yarn-v3-${{ hashFiles('yarn.lock') }}
+        restore-keys: |
+          bricks-node-cache-${{ runner.os }}-yarn-v3-
+
+    - name: Install dependencies (Bricks)
+      run: yarn install --frozen-lockfile
+
+    - name: Build:manifest (Bricks)
+      run: npx lerna run build:manifest
+
+    - name: Build (Bricks)
+      run: npx lerna run build
+
+    - uses: actions/upload-artifact@v3
+      with:
+        name: brick-artifacts
+        path: |
+          bricks/*/dist
+          netlify.toml
+        retention-days: 1
+
+  build_docs:
+    name: Build docs
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - uses: actions/download-artifact@v3
+      with:
+        name: brick-artifacts
+        path: ci-bricks
 
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
@@ -26,14 +80,6 @@ jobs:
         node-version: ${{ matrix.node-version }}
         registry-url: 'https://registry.npmjs.org'
         cache: yarn
-
-    - name: Install dependencies (Bricks)
-      run: yarn install --frozen-lockfile
-      working-directory: ./bricks
-
-    - name: Build (Bricks)
-      run: npx lerna run build:manifest
-      working-directory: ./bricks
 
     # Fix `yarn install --frozen-lockfile` not working in monorepo.
     # https://github.com/yarnpkg/yarn/issues/5840#issuecomment-468782288

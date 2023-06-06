@@ -1868,21 +1868,6 @@
   resolved "https://registry.yarnpkg.com/@mdx-js/util/-/util-1.6.22.tgz#219dfd89ae5b97a8801f015323ffa4b62f45718b"
   integrity sha512-H1rQc1ZOHANWBvPcW+JpGwr+juXSxM8Q8YCkm3GhZd8REu1fHR3z99CErO1p9pkcfcxZnMdIZdIsXkOHY0NilA==
 
-"@next-bricks/basic@^0.6.2":
-  version "0.6.2"
-  resolved "https://registry.yarnpkg.com/@next-bricks/basic/-/basic-0.6.2.tgz#739936c032c6bce83950571447188b7295a25d16"
-  integrity sha512-G37Pua5l2oaVhkn9PZ8Taaw7wz3DMF/PR5OdiBPCCx/tXrmmNKYBCVKxCqZ2DGsTgve75kHXzXFrX2dTJsfKZg==
-
-"@next-bricks/icons@^0.1.9":
-  version "0.1.9"
-  resolved "https://registry.yarnpkg.com/@next-bricks/icons/-/icons-0.1.9.tgz#9959718ecdf061910676dd9f2181226bd8ac0d1c"
-  integrity sha512-sUbsGNwjoEihzAc464njWb0Rptj2TBjHqf+5nEIo6VSj3v472XpHlp6lrwgaPMPNpU0KiL7MnoO9nZFbQw439Q==
-
-"@next-bricks/shoelace@^0.3.3":
-  version "0.3.3"
-  resolved "https://registry.yarnpkg.com/@next-bricks/shoelace/-/shoelace-0.3.3.tgz#e30fcb452f4e5a73cc1d443589d92de6e38e317b"
-  integrity sha512-qwvm9p825YbEbzdIc9qRmADNnT9zOkAb4/6WgL8c7EfA8y0zaMWpVm1MlvlclqZ63tK2CMRARifibFJKkK7YFQ==
-
 "@next-core/brick-playground@^1.9.13":
   version "1.9.13"
   resolved "https://registry.yarnpkg.com/@next-core/brick-playground/-/brick-playground-1.9.13.tgz#408b75d2bae2917dbc199ac21a04edca79b2413d"

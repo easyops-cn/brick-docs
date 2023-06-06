@@ -5,22 +5,45 @@ const path = require("path");
 const CopyPlugin = require("copy-webpack-plugin");
 const { createHash } = require("crypto");
 const MonacoEditorWebpackPlugin = require("monaco-editor-webpack-plugin");
+const { existsSync, readdirSync, readFileSync } = require("fs");
+
+/** @type {string} */
+let bricksDir;
+const ciBricksDir = path.join(__dirname, "ci-bricks/bricks");
+
+if (existsSync(ciBricksDir)) {
+  bricksDir = ciBricksDir;
+} else {
+  bricksDir = path.join(__dirname, "bricks/bricks");
+}
 
 const baseUrl = "/";
-const brickPackages = [
-  "@next-bricks/shoelace",
-  "@next-bricks/basic",
-  "@next-bricks/icons",
-];
 
+/** @type {{brickPackages: any[]}} */
 const bootstrapJson = {
-  brickPackages: brickPackages
-    .map((pkg) => require(`${pkg}/dist/bricks.json`))
-    .map((pkg) => ({
-      ...pkg,
-      filePath: `${baseUrl}preview/${pkg.filePath}`,
-    })),
+  brickPackages: []
 };
+
+/** @type {string[]} */
+const brickPackagePaths = [];
+
+for (const dir of readdirSync(bricksDir, { withFileTypes: true })) {
+  if (dir.isDirectory()) {
+    const pkgPath = path.join(bricksDir, dir.name);
+    const manifestJsonPath = path.join(pkgPath, "dist/manifest.json");
+    const bricksJsonPath = path.join(pkgPath, "dist/bricks.json");
+    if (existsSync(manifestJsonPath) && existsSync(bricksJsonPath)) {
+      brickPackagePaths.push(pkgPath);
+      const content = readFileSync(bricksJsonPath, "utf-8");
+      const bricksJson = JSON.parse(content);
+      bootstrapJson.brickPackages.push({
+        ...bricksJson,
+        filePath: `${baseUrl}preview/${bricksJson.filePath}`,
+      })
+    }
+  }
+}
+
 const bootstrapJsonContent = JSON.stringify(bootstrapJson);
 const bootstrapJsonHash = getContentHash(bootstrapJsonContent);
 const bootstrapJsonPath = `bootstrap.${bootstrapJsonHash}.json`;
@@ -271,12 +294,9 @@ const config = {
                     return buf;
                   },
                 },
-                ...brickPackages.map((pkg) => ({
-                  from: path.join(
-                    require.resolve(`${pkg}/package.json`),
-                    "../dist"
-                  ),
-                  to: path.join("preview/bricks", pkg.split("/").pop(), "dist"),
+                ...brickPackagePaths.map((pkgPath) => ({
+                  from: path.join(pkgPath, "dist"),
+                  to: path.join("preview/bricks", path.basename(pkgPath), "dist"),
                   // Terser skip this file for minimization
                   info: { minimized: true },
                 })),
