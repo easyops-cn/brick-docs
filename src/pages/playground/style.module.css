@@ -1,0 +1,89 @@
+.playground {
+  --playground-border-color: var(--ifm-color-emphasis-300);
+  --playground-divider-color: var(--ifm-color-emphasis-500);
+
+  display: flex;
+  flex: 1;
+}
+
+.divider {
+  min-width: 0;
+  flex: 0 0 1px;
+  background-color: var(--playground-divider-color);
+}
+
+.column,
+.toolbarColumn,
+.editorBox,
+.previewBox {
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.toolbar {
+  padding: 0 var(--ifm-global-spacing);
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--ifm-color-emphasis-200);
+  border-bottom: 1px solid var(--playground-border-color);
+}
+
+.toolbarColumn {
+  display: flex;
+  justify-content: center;
+}
+
+.toolbarColumn:first-child {
+  justify-content: flex-start;
+}
+
+.toolbarColumn:last-child {
+  justify-content: flex-end;
+}
+
+.playground select {
+  height: 24px;
+}
+
+.playground :global(.button) {
+  --ifm-button-border-color: var(--ifm-color-emphasis-500);
+}
+
+.editorBox,
+.previewBox {
+  position: relative;
+}
+
+.editor,
+.previewBox,
+.preview {
+  height: 100%;
+}
+
+.preview {
+  visibility: hidden;
+}
+
+.preview.ready {
+  visibility: visible;
+}
+
+.preview > iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  border: none;
+}
+
+html[data-theme="dark"] .playground {
+  --playground-divider-color: var(--ifm-color-emphasis-400);
+}

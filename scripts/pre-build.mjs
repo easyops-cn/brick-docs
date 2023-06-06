@@ -2,9 +2,14 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { existsSync } from "node:fs";
 import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
+import getExamples from "@next-core/brick-playground/getExamples";
 import packages from "./brick-packages.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+const bricksRootDir = path.join(packages[0].path, "..");
+const examplesJson = JSON.stringify({ examples: await getExamples(bricksRootDir) });
+await writeFile(path.join(__dirname, "../src/examples.json"), examplesJson);
 
 const targetBricksDir = path.join(__dirname, "../docs/bricks");
 if (existsSync(targetBricksDir)) {
