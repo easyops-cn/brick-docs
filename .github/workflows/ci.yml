@@ -60,6 +60,7 @@ jobs:
 
   build_docs:
     name: Build docs
+    needs: build_bricks
     runs-on: ubuntu-latest
 
     strategy:
