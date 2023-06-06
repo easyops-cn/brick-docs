@@ -29,6 +29,14 @@ jobs:
         node-version: ${{ matrix.node-version }}
         registry-url: 'https://registry.npmjs.org'
 
+    - name: Cache nx cache
+      uses: actions/cache@v3
+      with:
+        path: .cache
+        key: ${{ runner.os }}-nx-${{ hashFiles('**/package.json') }}
+        restore-keys: |
+          ${{ runner.os }}-nx-
+
     - name: Get yarn cache directory path
       id: yarn-cache-dir-path
       run: echo "::set-output name=dir::$(yarn cache dir)"
@@ -48,13 +56,16 @@ jobs:
       run: npx lerna run build:manifest
 
     - name: Build (Bricks)
-      run: npx lerna run build
+      run: npx lerna run build --ignore @next-bricks/v2-adapter --ignore @next-bricks/devtools
 
     - uses: actions/upload-artifact@v3
       with:
         name: brick-artifacts
         path: |
           bricks/*/dist
+          !bricks/*/dist/**/*.map
+          !bricks/devtools/dist
+          !bricks/v2-adapter/dist
           netlify.toml
         retention-days: 1
 

@@ -30,9 +30,8 @@ const brickPackagePaths = [];
 for (const dir of readdirSync(bricksDir, { withFileTypes: true })) {
   if (dir.isDirectory()) {
     const pkgPath = path.join(bricksDir, dir.name);
-    const manifestJsonPath = path.join(pkgPath, "dist/manifest.json");
     const bricksJsonPath = path.join(pkgPath, "dist/bricks.json");
-    if (existsSync(manifestJsonPath) && existsSync(bricksJsonPath)) {
+    if (existsSync(bricksJsonPath)) {
       brickPackagePaths.push(pkgPath);
       const content = readFileSync(bricksJsonPath, "utf-8");
       const bricksJson = JSON.parse(content);
