@@ -63,9 +63,10 @@ jobs:
         name: brick-artifacts
         path: |
           bricks/*/dist
+          bricks/*/docs
           !bricks/*/dist/**/*.map
-          !bricks/devtools/dist
-          !bricks/v2-adapter/dist
+          !bricks/devtools
+          !bricks/v2-adapter
           netlify.toml
         retention-days: 1
 
