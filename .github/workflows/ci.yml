@@ -58,16 +58,14 @@ jobs:
     - name: Build (Bricks)
       run: npx lerna run build --ignore @next-bricks/v2-adapter --ignore @next-bricks/devtools
 
+    - name: Compress artifacts
+      run: |
+        tar --exclude='*.map' --exclude='bricks/devtools' --exclude='bricks/v2-adapter' -cvf bricks.tar bricks/*/dist bricks/*/docs netlify.toml
+
     - uses: actions/upload-artifact@v3
       with:
         name: brick-artifacts
-        path: |
-          bricks/*/dist
-          bricks/*/docs
-          !bricks/*/dist/**/*.map
-          !bricks/devtools
-          !bricks/v2-adapter
-          netlify.toml
+        path: bricks.tar
         retention-days: 1
 
   build_docs:
@@ -86,6 +84,10 @@ jobs:
       with:
         name: brick-artifacts
         path: ci-bricks
+
+    - name: Extract artifacts
+      run: tar -xvf bricks.tar
+      working-directory: ci-bricks
 
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
