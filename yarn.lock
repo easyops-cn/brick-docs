@@ -1873,10 +1873,10 @@
   resolved "https://registry.yarnpkg.com/@next-core/brick-manifest/-/brick-manifest-0.1.0.tgz#5d8a29fecd6f544f268931882937e95c5ff68766"
   integrity sha512-Ut6YMuXpEMeDKKnetShJ1gEX6I031ExzLbjl4JmT2qXVEbuuOK5Vou1Ze0jePXR1v96pUIhOhhSOAOWjQIIprg==
 
-"@next-core/doc-helpers@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@next-core/doc-helpers/-/doc-helpers-0.1.0.tgz#265d2ff31fd5cfa11104f0d4466d79b0b5f7ce1b"
-  integrity sha512-SvGHE2I+bWK1WKWkPKXoEuCrQDBhqIzP6qiwD20co8CnK0VVyblzVpvgTPbW7eWGZslmqPYDcDrGQj67Xl641Q==
+"@next-core/doc-helpers@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@next-core/doc-helpers/-/doc-helpers-0.1.1.tgz#72c6d75b0f6a7d15c1253734a79c71ecd17526c7"
+  integrity sha512-5GHJpJ26pMbmeiTx2aAnymW6FKNQTh4v+lU2RY8zAPYAgN5oWZMEzhwJsk13usQJ2tpsRSGtjQ2Rd8bx9pDpNA==
   dependencies:
     "@next-core/brick-manifest" "^0.1.0"
     fast-xml-parser "^4.2.4"
