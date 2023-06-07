@@ -82,7 +82,7 @@ html[data-theme="dark"] .example {
   --row-border-color: hsla(0, 0%, 100%, 0.1);
 }
 
-html[data-theme="dark"] .button {
+html[data-theme="dark"] .button:not(.active):not(:hover) {
   color: var(--ifm-color-emphasis-500);
 }
 
