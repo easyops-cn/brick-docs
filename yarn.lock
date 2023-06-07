@@ -1868,14 +1868,19 @@
   resolved "https://registry.yarnpkg.com/@mdx-js/util/-/util-1.6.22.tgz#219dfd89ae5b97a8801f015323ffa4b62f45718b"
   integrity sha512-H1rQc1ZOHANWBvPcW+JpGwr+juXSxM8Q8YCkm3GhZd8REu1fHR3z99CErO1p9pkcfcxZnMdIZdIsXkOHY0NilA==
 
-"@next-core/brick-playground@^1.9.13":
-  version "1.9.13"
-  resolved "https://registry.yarnpkg.com/@next-core/brick-playground/-/brick-playground-1.9.13.tgz#408b75d2bae2917dbc199ac21a04edca79b2413d"
-  integrity sha512-1LZI6x/gYtU+1Jz/hPQrHI9iJ3802ufnOXWvi+I17Pl7TQIrHJh0jwCEHGXj9lmdK2QU7yoOXHM78MXwQ4u54w==
+"@next-core/brick-manifest@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@next-core/brick-manifest/-/brick-manifest-0.1.0.tgz#5d8a29fecd6f544f268931882937e95c5ff68766"
+  integrity sha512-Ut6YMuXpEMeDKKnetShJ1gEX6I031ExzLbjl4JmT2qXVEbuuOK5Vou1Ze0jePXR1v96pUIhOhhSOAOWjQIIprg==
+
+"@next-core/doc-helpers@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@next-core/doc-helpers/-/doc-helpers-0.1.0.tgz#265d2ff31fd5cfa11104f0d4466d79b0b5f7ce1b"
+  integrity sha512-SvGHE2I+bWK1WKWkPKXoEuCrQDBhqIzP6qiwD20co8CnK0VVyblzVpvgTPbW7eWGZslmqPYDcDrGQj67Xl641Q==
   dependencies:
-    "@next-core/serve-helpers" "^1.0.8"
-    compression "^1.7.4"
-    express "^4.18.2"
+    "@next-core/brick-manifest" "^0.1.0"
+    fast-xml-parser "^4.2.4"
+    js-yaml "^3.14.1"
 
 "@next-core/monaco-contributions@^0.2.0":
   version "0.2.0"
@@ -1886,11 +1891,6 @@
   version "0.1.6"
   resolved "https://registry.yarnpkg.com/@next-core/preview/-/preview-0.1.6.tgz#7ded809c7b7095b0a5060a67a1ad151c53b2f3f8"
   integrity sha512-przRtGwbE7Xt19eQaHjKv7XODzgw2WemVW2Pm5AajjDlFPtn89USKpwTOE61wUOjKuJcuC0wVUukqhzmo6z5NQ==
-
-"@next-core/serve-helpers@^1.0.8":
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/@next-core/serve-helpers/-/serve-helpers-1.0.8.tgz#2ab8bd2fefceb371a92887d3273c83a0d8b8ab71"
-  integrity sha512-FVrHAAOh24AEbBiT2+QPFAHoDqHK1TiVdBL89dZ0mgT0vS0QfhyuU5/jRqB7Op3Accine6mH30fSdLYEbVLHqw==
 
 "@node-rs/jieba-android-arm-eabi@1.7.0":
   version "1.7.0"
@@ -4354,7 +4354,7 @@ execa@^7.0.0:
     signal-exit "^3.0.7"
     strip-final-newline "^3.0.0"
 
-express@^4.17.3, express@^4.18.2:
+express@^4.17.3:
   version "4.18.2"
   resolved "https://registry.yarnpkg.com/express/-/express-4.18.2.tgz#3fabe08296e930c796c19e3c516979386ba9fd59"
   integrity sha512-5/PsL6iGPdfQ/lKM1UuielYgv3BUoJfz1aUwU9vHZ+J7gyvwdQXFEBIEIaxeGf0GIcreATNyBExtalisDbuMqQ==
@@ -4435,6 +4435,13 @@ fast-url-parser@1.1.3:
   integrity sha512-5jOCVXADYNuRkKFzNJ0dCCewsZiYo0dz8QNYljkOpFC6r2U4OBmKtvm/Tsuh4w1YYdDqDb31a8TVhBJ2OJKdqQ==
   dependencies:
     punycode "^1.3.2"
+
+fast-xml-parser@^4.2.4:
+  version "4.2.4"
+  resolved "https://registry.yarnpkg.com/fast-xml-parser/-/fast-xml-parser-4.2.4.tgz#6e846ede1e56ad9e5ef07d8720809edf0ed07e9b"
+  integrity sha512-fbfMDvgBNIdDJLdLOwacjFAPYt67tr31H9ZhWSm45CDAxvd0I6WTlSOUo7K2P/K5sA5JgMKG64PI3DMcaFdWpQ==
+  dependencies:
+    strnum "^1.0.5"
 
 fastq@^1.6.0:
   version "1.15.0"
@@ -5648,7 +5655,7 @@ joi@^17.6.0:
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
   integrity sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==
 
-js-yaml@^3.13.1:
+js-yaml@^3.13.1, js-yaml@^3.14.1:
   version "3.14.1"
   resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.14.1.tgz#dae812fdb3825fa306609a8717383c50c36a0537"
   integrity sha512-okMH7OXXJ7YrN9Ok3/SXrnu4iX9yOk+25nqX4imS2npuvTYDmo/QEZoqwZkYaIDk3jVvBOTOIEgEhaLOynBS9g==
@@ -8065,6 +8072,11 @@ strip-json-comments@~2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-2.0.1.tgz#3c531942e908c2697c0ec344858c286c7ca0a60a"
   integrity sha512-4gB8na07fecVVkOI6Rs4e7T6NOTki5EmL7TUduTs6bu3EdnSycntVJ4re8kgZA+wx9IueI2Y11bfbgwtzuE0KQ==
+
+strnum@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/strnum/-/strnum-1.0.5.tgz#5c4e829fe15ad4ff0d20c3db5ac97b73c9b072db"
+  integrity sha512-J8bbNyKKXl5qYcR36TIO8W3mVGVHrmmxsd5PAItGkmyzwJvybiw2IVq5nqd0i4LSNSkB/sx9VHllbfFdr9k1JA==
 
 style-to-object@0.3.0, style-to-object@^0.3.0:
   version "0.3.0"

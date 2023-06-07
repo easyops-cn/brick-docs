@@ -1,8 +1,4 @@
-import React, {
-  useEffect,
-  useLayoutEffect,
-  useRef,
-} from "react";
+import React, { useEffect, useLayoutEffect, useRef } from "react";
 import { useColorMode } from "@docusaurus/theme-common";
 import * as monaco from "monaco-editor/esm/vs/editor/editor.api";
 import {
@@ -24,7 +20,7 @@ registerHtml();
 
 export interface MonacoEditorProps {
   code: string;
-  type?: "html" | "yaml";
+  type: "html" | "yaml";
   className?: string;
   automaticLayout?: boolean;
   onChange?(value: string, isFlush: boolean): void;
@@ -39,9 +35,13 @@ monaco.languages.typescript.typescriptDefaults.setCompilerOptions({
   lib: [],
 });
 
-export default function MonacoEditor(
-  { code, type, className, automaticLayout, onChange }: MonacoEditorProps
-): JSX.Element {
+export default function MonacoEditor({
+  code,
+  type,
+  className,
+  automaticLayout,
+  onChange,
+}: MonacoEditorProps): JSX.Element {
   const containerRef = useRef<HTMLDivElement>();
   const editorRef = useRef<monaco.editor.IStandaloneCodeEditor>();
   const size = useRef<monaco.editor.IDimension>({
@@ -63,7 +63,7 @@ export default function MonacoEditor(
   useEffect(() => {
     if (editorRef.current) {
       const currentModel = editorRef.current.getModel();
-      monaco.editor.setModelLanguage(currentModel, type ?? "yaml");
+      monaco.editor.setModelLanguage(currentModel, type);
       currentModel.setValue(code);
     }
   }, [code, type]);
@@ -79,7 +79,9 @@ export default function MonacoEditor(
     const observer = new ResizeObserver((entries) => {
       for (const entry of entries) {
         if (entry.target === containerRef.current) {
-          const newWidth = entry.contentBoxSize ? entry.contentBoxSize[0].inlineSize : entry.contentRect.width;
+          const newWidth = entry.contentBoxSize
+            ? entry.contentBoxSize[0].inlineSize
+            : entry.contentRect.width;
           if (newWidth !== size.current.width) {
             size.current.width = newWidth;
             editorRef.current?.layout(size.current);
@@ -99,10 +101,7 @@ export default function MonacoEditor(
     if (editorRef.current) {
       return;
     }
-    const model = monaco.editor.createModel(
-      code,
-      type ?? "yaml"
-    );
+    const model = monaco.editor.createModel(code, type ?? "yaml");
     editorRef.current = monaco.editor.create(containerRef.current, {
       model,
       minimap: {
@@ -156,7 +155,9 @@ export default function MonacoEditor(
         }
       });
 
-      size.current.height = fixEditorHeightWithScrollBar(editorRef.current.getContentHeight());
+      size.current.height = fixEditorHeightWithScrollBar(
+        editorRef.current.getContentHeight()
+      );
       editorRef.current.layout(size.current);
     }
   }, [code, type]);
@@ -178,12 +179,7 @@ export default function MonacoEditor(
     };
   }, []);
 
-  return (
-    <div
-      ref={containerRef}
-      className={className}
-    ></div>
-  );
+  return <div ref={containerRef} className={className}></div>;
 }
 
 function fixEditorHeightWithScrollBar(contentHeight: number): number {

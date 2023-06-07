@@ -2,13 +2,15 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { existsSync } from "node:fs";
 import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
-import getExamples from "@next-core/brick-playground/getExamples";
+import { getExamples } from "@next-core/doc-helpers";
 import packages from "./brick-packages.mjs";
+import { handleExamplesInMarkdown } from "./utils.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+const manifests = packages.map(({ manifest }) => manifest);
 const bricksRootDir = path.join(packages[0].path, "..");
-const examplesJson = JSON.stringify({ examples: await getExamples(bricksRootDir) });
+const examplesJson = JSON.stringify({ examples: await getExamples(bricksRootDir, manifests) });
 await writeFile(path.join(__dirname, "../src/examples.json"), examplesJson);
 
 const targetBricksDir = path.join(__dirname, "../docs/bricks");
@@ -35,7 +37,7 @@ for (const { path: pkgPath, manifest } of packages) {
   for (const brick of manifest.bricks) {
     const nameParts = brick.name.split(".");
     const lastName = nameParts.pop();
-    const targetFilePath = path.join(targetDir, `${lastName}.md`);
+    const targetFilePath = path.join(targetDir, `${lastName}.mdx`);
 
     const srcFilePath = path.join(srcDocsDir, `${brick.name}.md`);
     const srcFilePathAlt = path.join(srcDocsDir, `${lastName}.md`);
@@ -43,9 +45,9 @@ for (const { path: pkgPath, manifest } of packages) {
     /** @type {string} */
     let brickDoc;
     if (existsSync(srcFilePath)) {
-      brickDoc = await readFile(srcFilePath, "utf-8");
+      brickDoc = handleExamplesInMarkdown(await readFile(srcFilePath, "utf-8"), manifests);
     } else if (existsSync(srcFilePathAlt)) {
-      brickDoc = await readFile(srcFilePathAlt, "utf-8");
+      brickDoc = handleExamplesInMarkdown(await readFile(srcFilePathAlt, "utf-8"), manifests);
     } else {
       brickDoc = brick.description ?? "";
     }

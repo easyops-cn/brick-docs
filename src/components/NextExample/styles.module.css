@@ -66,6 +66,7 @@
   border-bottom-left-radius: var(--example-border-radius);
 }
 
+.button.active,
 .button:hover {
   color: var(--ifm-color-primary);
   text-decoration: none;
