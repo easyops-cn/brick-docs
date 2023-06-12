@@ -1888,9 +1888,9 @@
   integrity sha512-2e+xWsSQNGqFQ9EZD6tXtarYfxGGL9L87TT3m3bFQPHPhiCdW78jsKZcmcPGkmGCOD2pGZpSfGbk76zKCd/+4Q==
 
 "@next-core/preview@^0.1.6":
-  version "0.1.6"
-  resolved "https://registry.yarnpkg.com/@next-core/preview/-/preview-0.1.6.tgz#7ded809c7b7095b0a5060a67a1ad151c53b2f3f8"
-  integrity sha512-przRtGwbE7Xt19eQaHjKv7XODzgw2WemVW2Pm5AajjDlFPtn89USKpwTOE61wUOjKuJcuC0wVUukqhzmo6z5NQ==
+  version "0.1.12"
+  resolved "https://registry.yarnpkg.com/@next-core/preview/-/preview-0.1.12.tgz#9ba864694fcb9fe174bdb2ec03f74cffee9fd442"
+  integrity sha512-c3qZS+7N5DWA48n1wQaYqTpOTH6AwaLDk5bqhCojkZiY9dr+zHp/QcLMrMSMJ/xNBasr8WBGxMUwuoWzqJ8EwQ==
 
 "@node-rs/jieba-android-arm-eabi@1.7.0":
   version "1.7.0"
