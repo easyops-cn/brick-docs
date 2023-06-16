@@ -1,19 +1,9 @@
 import path from "node:path";
-import { fileURLToPath } from "node:url";
 import { existsSync } from "node:fs";
 import { readdir } from "node:fs/promises";
+import getBricksDir from "./getBricksDir.js";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
-/** @type {string} */
-let bricksDir;
-const ciBricksDir = path.join(__dirname, "../ci-bricks/bricks");
-
-if (existsSync(ciBricksDir)) {
-  bricksDir = ciBricksDir;
-} else {
-  bricksDir = path.join(__dirname, "../bricks/bricks");
-}
+const bricksDir = getBricksDir();
 
 const dirs = await readdir(bricksDir, { withFileTypes: true });
 

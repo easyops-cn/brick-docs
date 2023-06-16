@@ -6,22 +6,15 @@ const CopyPlugin = require("copy-webpack-plugin");
 const { createHash } = require("crypto");
 const MonacoEditorWebpackPlugin = require("monaco-editor-webpack-plugin");
 const { existsSync, readdirSync, readFileSync } = require("fs");
+const getBricksDir = require("./scripts/getBricksDir.js");
 
-/** @type {string} */
-let bricksDir;
-const ciBricksDir = path.join(__dirname, "ci-bricks/bricks");
-
-if (existsSync(ciBricksDir)) {
-  bricksDir = ciBricksDir;
-} else {
-  bricksDir = path.join(__dirname, "bricks/bricks");
-}
+const bricksDir = getBricksDir();
 
 const baseUrl = "/";
 
 /** @type {{brickPackages: any[]}} */
 const bootstrapJson = {
-  brickPackages: []
+  brickPackages: [],
 };
 
 /** @type {string[]} */
@@ -38,7 +31,7 @@ for (const dir of readdirSync(bricksDir, { withFileTypes: true })) {
       bootstrapJson.brickPackages.push({
         ...bricksJson,
         filePath: `${baseUrl}preview/${bricksJson.filePath}`,
-      })
+      });
     }
   }
 }
@@ -155,17 +148,17 @@ const config = {
             to: "/",
             label: "Docs",
             activeBaseRegex: "^/(?:bricks/|$)",
-            position: 'left',
+            position: "left",
           },
           {
             to: "playground",
             label: "Playground",
-            position: 'left',
+            position: "left",
           },
           {
-            type: 'search',
-            position: 'left',
-            className: 'header-search',
+            type: "search",
+            position: "left",
+            className: "header-search",
           },
           {
             href: "https://brick-next.js.org/",
@@ -183,7 +176,7 @@ const config = {
       docs: {
         sidebar: {
           autoCollapseCategories: true,
-        }
+        },
       },
       footer: {
         style: "dark",
@@ -288,14 +281,21 @@ const config = {
                       return buf
                         .toString()
                         .replace("bootstrap.hash.json", bootstrapJsonPath)
-                        .replace("</head>", `<style>body{--body-background:transparent}div#preview-root{padding:2em}</style></head>`);
+                        .replace(
+                          "</head>",
+                          `<style>body{--body-background:transparent}div#preview-root{padding:2em}</style></head>`
+                        );
                     }
                     return buf;
                   },
                 },
                 ...brickPackagePaths.map((pkgPath) => ({
                   from: path.join(pkgPath, "dist"),
-                  to: path.join("preview/bricks", path.basename(pkgPath), "dist"),
+                  to: path.join(
+                    "preview/bricks",
+                    path.basename(pkgPath),
+                    "dist"
+                  ),
                   // Terser skip this file for minimization
                   info: { minimized: true },
                 })),
@@ -303,7 +303,11 @@ const config = {
             }),
             new EmitBootstrapJsonPlugin(),
             new MonacoEditorWebpackPlugin({
-              languages: ["javascript", "typescript", "css" /* , 'html' , 'yaml' */],
+              languages: [
+                "javascript",
+                "typescript",
+                "css" /* , 'html' , 'yaml' */,
+              ],
               features: [
                 "!accessibilityHelp",
                 "!codelens",
