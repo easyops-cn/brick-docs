@@ -1873,7 +1873,7 @@
   resolved "https://registry.yarnpkg.com/@next-core/brick-manifest/-/brick-manifest-0.1.0.tgz#5d8a29fecd6f544f268931882937e95c5ff68766"
   integrity sha512-Ut6YMuXpEMeDKKnetShJ1gEX6I031ExzLbjl4JmT2qXVEbuuOK5Vou1Ze0jePXR1v96pUIhOhhSOAOWjQIIprg==
 
-"@next-core/doc-helpers@^0.1.1":
+"@next-core/doc-helpers@^0.1.2":
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/@next-core/doc-helpers/-/doc-helpers-0.1.2.tgz#867155379ecc3f22df15872aecd4c1f64f47512e"
   integrity sha512-lBgqLIWWWvp/HyVf9JQeM1VTzbYbv1ZQlT2j5+up5CUwpOb8wK7q54rkiJIAJM8IGQSOBZ+LQ7iOTEKyDDRZOg==
