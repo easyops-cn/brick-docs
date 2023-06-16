@@ -58,6 +58,8 @@ jobs:
     - name: Build (Bricks)
       run: npx lerna run build --ignore @next-bricks/v2-adapter --ignore @next-bricks/devtools
 
+    - run: shopt -s globstar
+
     - name: Compress artifacts
       run: >-
         tar

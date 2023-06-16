@@ -4,13 +4,14 @@ import { existsSync } from "node:fs";
 import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { getExamples } from "@next-core/doc-helpers";
 import packages from "./brick-packages.mjs";
+import getBricksDir from "./getBricksDir.js";
 import { handleExamplesInMarkdown } from "./utils.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+const bricksDir = getBricksDir();
 const manifests = packages.map(({ manifest }) => manifest);
-const bricksRootDir = path.join(packages[0].path, "..");
-const examplesJson = JSON.stringify({ examples: await getExamples(bricksRootDir, manifests) });
+const examplesJson = JSON.stringify({ examples: await getExamples(bricksDir, manifests) });
 await writeFile(path.join(__dirname, "../src/examples.json"), examplesJson);
 
 const targetBricksDir = path.join(__dirname, "../docs/bricks");
