@@ -1874,9 +1874,9 @@
   integrity sha512-Ut6YMuXpEMeDKKnetShJ1gEX6I031ExzLbjl4JmT2qXVEbuuOK5Vou1Ze0jePXR1v96pUIhOhhSOAOWjQIIprg==
 
 "@next-core/doc-helpers@^0.1.2":
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/@next-core/doc-helpers/-/doc-helpers-0.1.2.tgz#867155379ecc3f22df15872aecd4c1f64f47512e"
-  integrity sha512-lBgqLIWWWvp/HyVf9JQeM1VTzbYbv1ZQlT2j5+up5CUwpOb8wK7q54rkiJIAJM8IGQSOBZ+LQ7iOTEKyDDRZOg==
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/@next-core/doc-helpers/-/doc-helpers-0.1.3.tgz#540145f78185326b181560bdf71a43608418db8f"
+  integrity sha512-7sDJ+ejLGSilanhVwhHvSl3HwY+gc9nb3fKdfvz2tocSYEYP8O9ixKyQdXHEwzXeqoBt3Or6ixlED6g1NmwulA==
   dependencies:
     "@next-core/brick-manifest" "^0.1.0"
     fast-xml-parser "^4.2.4"
