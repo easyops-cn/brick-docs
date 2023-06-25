@@ -1,6 +1,10 @@
 .tagName {
-  margin-top: calc(0.5rem - var(--ifm-h1-vertical-rhythm-bottom) * var(--ifm-leading)) !important;
-  margin-bottom: calc(var(--ifm-h1-vertical-rhythm-bottom) * var(--ifm-leading));
+  margin-top: calc(
+    0.5rem - var(--ifm-h1-vertical-rhythm-bottom) * var(--ifm-leading)
+  ) !important;
+  margin-bottom: calc(
+    var(--ifm-h1-vertical-rhythm-bottom) * var(--ifm-leading)
+  );
 }
 
 .tagName code {
@@ -10,4 +14,8 @@
   background: none;
   font-size: 20px;
   color: var(--ifm-color-emphasis-600);
+}
+
+.tagName > :global(.badge) {
+  margin-left: 1em;
 }

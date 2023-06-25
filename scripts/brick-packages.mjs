@@ -16,7 +16,7 @@ await Promise.all(
       const manifestJsonPath = path.join(pkgPath, "dist/manifest.json");
       if (existsSync(manifestJsonPath)) {
         const manifest = (await import(manifestJsonPath, { assert: { type: "json" } })).default;
-        if (manifest.bricks.length > 0) {
+        if (manifest.bricks.length > 0 || (manifest.providers ?? []).length > 0) {
           packages.push({
             path: pkgPath,
             manifest
