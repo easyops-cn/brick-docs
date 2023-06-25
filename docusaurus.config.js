@@ -12,9 +12,14 @@ const bricksDir = getBricksDir();
 
 const baseUrl = "/";
 
-/** @type {{brickPackages: any[]}} */
+/** @type {{brickPackages: any[]; settings: any;}} */
 const bootstrapJson = {
   brickPackages: [],
+  settings: {
+    misc: {
+      weather_api_key: "9e08e5e99e0c4b4c89023605231804",
+    },
+  },
 };
 
 /** @type {string[]} */
