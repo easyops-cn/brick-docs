@@ -115,6 +115,22 @@ jobs:
 
     - run: yarn build
 
+    - name: Deploy to Netlify (pull request)
+      id: netlify-deploy
+      uses: nwtgck/actions-netlify@v2.0
+      with:
+        publish-dir: './build'
+        production-branch: master
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        deploy-message: "${{ github.event.pull_request.title }}"
+        alias: docs-preview-alt-${{ github.event.number }}
+        netlify-config-path: ./ci-bricks/netlify.toml
+      env:
+        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+      timeout-minutes: 2
+      if: github.event_name == 'pull_request'
+
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:

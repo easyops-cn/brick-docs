@@ -95,7 +95,7 @@ export default function MonacoEditor({
     return () => {
       observer.disconnect();
     };
-  }, [automaticLayout]);
+  }, []);
 
   useEffect(() => {
     if (editorRef.current) {
@@ -127,9 +127,6 @@ export default function MonacoEditor({
       mouseWheelScrollSensitivity: 0.5,
       renderLineHighlight: "none",
     });
-
-    // Todo(steve): auto resize by content
-    // https://github.com/microsoft/monaco-editor/issues/794#issuecomment-1438838291
 
     // Monaco editor will stop keyboard event propagation, thus the
     // search-bar shortcut won't work, so we manually dispatch an event.
