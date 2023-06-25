@@ -59,9 +59,12 @@ export const GeneralType = (typeAnnotation: TypeAnnotation) => {
     case "qualifiedName": {
       const getString = (str: unknown) =>
         typeof str === "string" ? str : GeneralType(str as TypeAnnotation);
-      return `${getString(typeAnnotation.left)}.${getString(
-        typeAnnotation.right
-      )}`;
+
+      return (
+        <>
+          {getString(typeAnnotation.left)}.{getString(typeAnnotation.right)}
+        </>
+      );
     }
     case "propertySignature":
       return (
