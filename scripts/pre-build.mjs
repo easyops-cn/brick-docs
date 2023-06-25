@@ -63,6 +63,7 @@ import BrickDocProperties from "@site/src/components/BrickDocProperties";
 import BrickDocSlots from "@site/src/components/BrickDocSlots";
 import BrickDocEvents from "@site/src/components/BrickDocEvents";
 import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
 
 <BrickTagName name=${JSON.stringify(brick.name)} />
 
@@ -103,6 +104,16 @@ ${
 <BrickDocMethods methods={${JSON.stringify(brick.methods)}} />`
     : ""
 }
+
+${
+  brick.types && brick.types.length > 0
+  ?
+`## Types
+
+<BrickDocTypes types={${JSON.stringify(brick.types)}} />`
+  : ""
+}
+
 `;
     await writeFile(targetFilePath, content);
   }

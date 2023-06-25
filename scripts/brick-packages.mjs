@@ -14,12 +14,28 @@ await Promise.all(
     if (dir.isDirectory()) {
       const pkgPath = path.join(bricksDir, dir.name);
       const manifestJsonPath = path.join(pkgPath, "dist/manifest.json");
+      const typesJsonPath = path.join(pkgPath, "dist/types.json");
+      let types = {};
+      if (existsSync(typesJsonPath)) {
+        types = (await import(typesJsonPath, { assert: { type: "json" } })).default;
+      }
       if (existsSync(manifestJsonPath)) {
         const manifest = (await import(manifestJsonPath, { assert: { type: "json" } })).default;
         if (manifest.bricks.length > 0) {
           packages.push({
             path: pkgPath,
-            manifest
+            manifest: {
+              ...manifest,
+              bricks: manifest.bricks.map(brick => {
+                if (types[brick.name]) {
+                  return {
+                    ...brick,
+                    types: types[brick.name],
+                  }
+                }
+                return brick;
+              })
+            }
           });
         }
       }
