@@ -1,7 +1,7 @@
 import React from "react";
-import { TypeAnnotation, Types } from "../interface";
+import { Annotation } from "@next-core/brick-manifest";
 
-export const GeneralType = (typeAnnotation: TypeAnnotation) => {
+export const GeneralType = (typeAnnotation: Annotation) => {
   if (!typeAnnotation) return;
   const { type, description, required } = typeAnnotation;
 
@@ -58,7 +58,7 @@ export const GeneralType = (typeAnnotation: TypeAnnotation) => {
       );
     case "qualifiedName": {
       const getString = (str: unknown) =>
-        typeof str === "string" ? str : GeneralType(str as TypeAnnotation);
+        typeof str === "string" ? str : GeneralType(str as Annotation);
 
       return (
         <>
@@ -71,10 +71,10 @@ export const GeneralType = (typeAnnotation: TypeAnnotation) => {
         <>
           {typeAnnotation.name}:
           <GeneralType {...typeAnnotation.property} />
+          {","}
         </>
       );
     case "indexSignature": {
-      console.log("indexSignature", typeAnnotation);
       return (
         <>
           {typeAnnotation.parameters ? (
@@ -84,6 +84,7 @@ export const GeneralType = (typeAnnotation: TypeAnnotation) => {
             </>
           ) : null}
           <GeneralType {...typeAnnotation.property} />
+          {","}
         </>
       );
     }
@@ -109,7 +110,7 @@ export const GeneralType = (typeAnnotation: TypeAnnotation) => {
         </span>
       );
     case "union":
-      return typeAnnotation.types.map((item, index, array) => (
+      return typeAnnotation.types.filter(Boolean).map((item, index, array) => (
         <React.Fragment key={index}>
           <GeneralType {...item} />
           {index < array.length - 1 ? " | " : null}
@@ -149,7 +150,3 @@ export const GeneralType = (typeAnnotation: TypeAnnotation) => {
       );
   }
 };
-
-export function parseTypes(types: Types[]) {
-  return types.map(GeneralType);
-}

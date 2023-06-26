@@ -1,5 +1,5 @@
 import React from "react";
-import { Types } from "../interface";
+import { Types } from "@next-core/brick-manifest";
 import BrickDocInterface from "@site/src/components/BrickDocInterface";
 import BrickDocTypeAlias from "@site/src/components/BrickDocTypeAlias";
 import BrickDocEnums from "@site/src/components/BrickDocEnums";
@@ -15,7 +15,6 @@ export default function BrickDocTypes({
 }: {
   types: Types[];
 }): JSX.Element {
-  console.log(types);
   const renderType = (typeAnnotation: Types) => {
     const { type } = typeAnnotation;
     switch (type) {

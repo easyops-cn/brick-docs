@@ -1,11 +1,16 @@
 import React from "react";
-import type { PropertyManifest } from "@next-core/brick-manifest";
+import type { Annotation, PropertyManifest } from "@next-core/brick-manifest";
 import MaybeEmptyCode from "@site/src/components/MaybeEmptyCode";
+import { GeneralType } from "../BrickDocTypes/generalType";
+
+interface Property extends PropertyManifest {
+  types: Annotation;
+}
 
 export default function BrickDocProperties({
-  properties
+  properties,
 }: {
-  properties: PropertyManifest[]
+  properties: Property[];
 }): JSX.Element {
   return (
     <table>
@@ -18,17 +23,25 @@ export default function BrickDocProperties({
         </tr>
       </thead>
       <tbody>
-        {
-          properties.map(prop => (
-            <tr key={prop.name}>
-              <td><code>{prop.name}</code></td>
-              <td>{prop.description}</td>
-              <td><MaybeEmptyCode>{prop.type}</MaybeEmptyCode></td>
-              <td><MaybeEmptyCode>{prop.default}</MaybeEmptyCode></td>
-            </tr>
-          ))
-        }
+        {properties.map((prop) => (
+          <tr key={prop.name}>
+            <td>
+              <code>{prop.name}</code>
+            </td>
+            <td>{prop.description}</td>
+            <td>
+              {prop.types ? (
+                GeneralType(prop.types) || prop.type
+              ) : (
+                <MaybeEmptyCode>{prop.type}</MaybeEmptyCode>
+              )}{" "}
+            </td>
+            <td>
+              <MaybeEmptyCode>{prop.default}</MaybeEmptyCode>
+            </td>
+          </tr>
+        ))}
       </tbody>
     </table>
-  )
+  );
 }
