@@ -117,4 +117,36 @@ ${
 `;
     await writeFile(targetFilePath, content);
   }
+
+  for (const provider of manifest.providers ?? []) {
+    const nameParts = provider.name.split(".");
+    const lastName = nameParts.pop();
+    const targetFilePath = path.join(targetDir, `${lastName}.mdx`);
+
+    const srcFilePath = path.join(srcDocsDir, `${provider.name}.md`);
+    const srcFilePathAlt = path.join(srcDocsDir, `${lastName}.md`);
+
+    /** @type {string} */
+    let brickDoc;
+    if (existsSync(srcFilePath)) {
+      brickDoc = handleExamplesInMarkdown(await readFile(srcFilePath, "utf-8"), manifests);
+    } else if (existsSync(srcFilePathAlt)) {
+      brickDoc = handleExamplesInMarkdown(await readFile(srcFilePathAlt, "utf-8"), manifests);
+    } else {
+      continue;
+    }
+
+    const content =
+`---
+description: ${JSON.stringify(`<${provider.name}>`)}
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+
+<BrickTagName name=${JSON.stringify(provider.name)} isProvider />
+
+${brickDoc}
+`;
+    await writeFile(targetFilePath, content);
+  }
 }
