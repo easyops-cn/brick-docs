@@ -1,5 +1,12 @@
 import React from "react";
-import { Annotation } from "@next-core/brick-manifest";
+import { Annotation, Types } from "@next-core/brick-manifest";
+
+let types: Types[] = [];
+
+export function initTypes(params: Types[]) {
+  console.log(params);
+  types = params;
+}
 
 export const GeneralType = (typeAnnotation: Annotation) => {
   if (!typeAnnotation) return;
@@ -32,12 +39,15 @@ export const GeneralType = (typeAnnotation: Annotation) => {
     case "reference":
       return (
         <>
-          {typeAnnotation.typeName ? (
+          {typeAnnotation.typeName &&
+          types.find((item) => item.name === typeAnnotation.typeName) ? (
             <a href={`#${typeAnnotation.typeName}`}>
               {typeAnnotation.typeName}
             </a>
-          ) : (
+          ) : typeAnnotation.qualified ? (
             <GeneralType {...typeAnnotation.qualified} />
+          ) : (
+            <span>{typeAnnotation.typeName}</span>
           )}
           {typeAnnotation.typeParameters &&
           typeAnnotation.typeParameters.length ? (
@@ -57,12 +67,12 @@ export const GeneralType = (typeAnnotation: Annotation) => {
         </>
       );
     case "qualifiedName": {
-      const getString = (str: unknown) =>
+      const getName = (str: unknown) =>
         typeof str === "string" ? str : GeneralType(str as Annotation);
 
       return (
         <>
-          {getString(typeAnnotation.left)}.{getString(typeAnnotation.right)}
+          {getName(typeAnnotation.left)}.{getName(typeAnnotation.right)}
         </>
       );
     }

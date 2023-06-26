@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { TypeAliasDeclaration } from "../interface";
+import { TypeAliasDeclaration } from "@next-core/brick-manifest";
 import { GeneralType } from "../BrickDocTypes/generalType";
 import styles from "./style.module.css";
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { EnumDeclaration } from "../interface";
+import { EnumDeclaration } from "@next-core/brick-manifest";
 import { GeneralType } from "../BrickDocTypes/generalType";
 import styles from "./style.module.css";
 

@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
-import { InterfaceDeclaration } from "../interface";
+import { InterfaceDeclaration } from "@next-core/brick-manifest";
 import { GeneralType } from "../BrickDocTypes/generalType";
+import MaybeEmptyCode from "../MaybeEmptyCode";
 
 export default function BrickDocInterface({
   interfaceDeclaration,
@@ -56,7 +57,9 @@ export default function BrickDocInterface({
               <td>
                 <code>{prop.name}</code>
               </td>
-              <td>{prop.type}</td>
+              <td>
+                <MaybeEmptyCode>{prop.type}</MaybeEmptyCode>
+              </td>
               <td>{prop.required}</td>
               <td>{prop.description}</td>
             </tr>

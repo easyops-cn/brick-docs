@@ -30,11 +30,9 @@ export default function BrickDocProperties({
             </td>
             <td>{prop.description}</td>
             <td>
-              {prop.types ? (
-                GeneralType(prop.types) || prop.type
-              ) : (
-                <MaybeEmptyCode>{prop.type}</MaybeEmptyCode>
-              )}{" "}
+              <MaybeEmptyCode>
+                {prop.types ? GeneralType(prop.types) : prop.type}
+              </MaybeEmptyCode>{" "}
             </td>
             <td>
               <MaybeEmptyCode>{prop.default}</MaybeEmptyCode>
