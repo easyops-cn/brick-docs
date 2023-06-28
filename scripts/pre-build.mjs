@@ -21,7 +21,7 @@ if (existsSync(targetBricksDir)) {
 await mkdir(targetBricksDir);
 await writeFile(path.join(targetBricksDir, ".gitignore"), "*");
 
-for (const { path: pkgPath, manifest } of packages) {
+for (const { path: pkgPath, manifest, types } of packages) {
   const srcDocsDir = path.join((`${pkgPath}/package.json`), "../docs");
   const targetDir = path.join(targetBricksDir, manifest.name);
   await mkdir(targetDir);
@@ -52,6 +52,7 @@ for (const { path: pkgPath, manifest } of packages) {
     } else {
       brickDoc = brick.description ?? "";
     }
+    const typeRefs = brick.types?.map((item) => item.name);
 
     const content =
 `---
@@ -64,14 +65,7 @@ import BrickDocSlots from "@site/src/components/BrickDocSlots";
 import BrickDocEvents from "@site/src/components/BrickDocEvents";
 import BrickDocMethods from "@site/src/components/BrickDocMethods";
 import BrickDocTypes from "@site/src/components/BrickDocTypes";
-import BrickDocInit from "@site/src/components/BrickDocInit";
-
-${
-  brick.types && brick.types.length > 0
-  ?
-`<BrickDocInit types={${JSON.stringify(brick.types)}} />`
-  : ""
-}
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
 
 <BrickTagName name=${JSON.stringify(brick.name)} />
 
@@ -82,7 +76,9 @@ ${
     ?
 `## Properties
 
-<BrickDocProperties properties={${JSON.stringify(brick.properties)}} />`
+<TypeReferencesContext.Provider value={${JSON.stringify(typeRefs)}}>
+  <BrickDocProperties properties={${JSON.stringify(brick.properties)}} />
+</TypeReferencesContext.Provider>`
     : ""
 }
 
@@ -100,7 +96,9 @@ ${
     ?
 `## Events
 
-<BrickDocEvents events={${JSON.stringify(brick.events)}} />`
+<TypeReferencesContext.Provider value={${JSON.stringify(typeRefs)}}>
+  <BrickDocEvents events={${JSON.stringify(brick.events)}} />
+</TypeReferencesContext.Provider>`
     : ""
 }
 
@@ -109,14 +107,16 @@ ${
     ?
 `## Methods
 
-<BrickDocMethods methods={${JSON.stringify(brick.methods)}} />`
+<TypeReferencesContext.Provider value={${JSON.stringify(typeRefs)}}>
+  <BrickDocMethods methods={${JSON.stringify(brick.methods)}} />
+</TypeReferencesContext.Provider>`
     : ""
 }
 
 ${
   brick.types && brick.types.length > 0
   ?
-`## Types
+`## Type references
 
 <BrickDocTypes types={${JSON.stringify(brick.types)}} />`
   : ""
@@ -144,16 +144,66 @@ ${
       continue;
     }
 
+    const providerTypes = Object.hasOwnProperty.call(types, provider.name) ? types[provider.name] : null;
+    let definitionDoc = "";
+    if (providerTypes) {
+      const typeRefs = providerTypes.types?.map((item) => item.name);
+      definitionDoc = `## Definition
+
+${
+  providerTypes.typeParameters ?
+`<pre>
+  <code>
+    <TypeReferencesContext.Provider value={${JSON.stringify(typeRefs)}}>
+      <GeneralType annotation={${JSON.stringify(providerTypes.typeParameters)}} />
+    </TypeReferencesContext.Provider>
+  </code>
+</pre>` : ""
+}
+
+### Parameters
+
+<TypeReferencesContext.Provider value={${JSON.stringify(typeRefs)}}>
+  <ProviderDocParams params={${JSON.stringify(providerTypes.params)}} />
+</TypeReferencesContext.Provider>
+
+### Returns
+
+<p>
+  <MaybeEmptyCode>
+    <TypeReferencesContext.Provider value={${JSON.stringify(typeRefs)}}>
+      <GeneralType annotation={${JSON.stringify(providerTypes.returns.annotation)}} />
+    </TypeReferencesContext.Provider>
+  </MaybeEmptyCode>
+</p>
+
+${providerTypes.returns.description ?? ""}
+
+${providerTypes.types?.length > 0
+  ?
+`## Type references
+
+<BrickDocTypes types={${JSON.stringify(providerTypes.types)}} />`
+: ""}
+`;
+    }
+
     const content =
 `---
 description: ${JSON.stringify(`<${provider.name}>`)}
 ---
 
 import BrickTagName from "@site/src/components/BrickTagName";
+import GeneralType, { TypeReferencesContext } from "@site/src/components/GeneralType";
+import MaybeEmptyCode from "@site/src/components/MaybeEmptyCode";
+import ProviderDocParams from "@site/src/components/ProviderDocParams";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
 
 <BrickTagName name=${JSON.stringify(provider.name)} isProvider />
 
 ${brickDoc}
+
+${definitionDoc}
 `;
     await writeFile(targetFilePath, content);
   }

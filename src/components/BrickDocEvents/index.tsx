@@ -1,18 +1,18 @@
 import React from "react";
 import type { Annotation, EventManifest } from "@next-core/brick-manifest";
 import MaybeEmptyCode from "@site/src/components/MaybeEmptyCode";
-import { GeneralType } from "../BrickDocTypes/generalType";
+import GeneralType from "../GeneralType";
 
-interface Event {
-  detail: {
-    types: Annotation;
+interface Event extends EventManifest {
+  detail?: EventManifest["detail"] & {
+    annotation?: Annotation;
   };
 }
 
 export default function BrickDocEvents({
   events,
 }: {
-  events: EventManifest[];
+  events: Event[];
 }): JSX.Element {
   return (
     <table>
@@ -31,16 +31,14 @@ export default function BrickDocEvents({
             </td>
             <td>{event.description}</td>
             <td>
-              {(event as unknown as Event).detail?.types ? (
-                <MaybeEmptyCode>
-                  {GeneralType((event as unknown as Event).detail.types)}
-                </MaybeEmptyCode>
-              ) : (
-                <MaybeEmptyCode>{event.detail?.type}</MaybeEmptyCode>
-              )}
-              {event.detail?.description
-                ? ` - ${event.detail?.description}`
-                : ""}
+              <MaybeEmptyCode>
+                {event.detail?.annotation ? (
+                  <GeneralType annotation={event.detail.annotation} />
+                ) : (
+                  event.detail?.type
+                )}
+              </MaybeEmptyCode>
+              {event.detail?.description && ` - ${event.detail.description}`}
             </td>
           </tr>
         ))}

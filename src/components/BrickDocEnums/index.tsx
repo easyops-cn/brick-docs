@@ -1,28 +1,33 @@
 import React from "react";
-import { EnumDeclaration } from "@next-core/brick-manifest";
-import { GeneralType } from "../BrickDocTypes/generalType";
+import Heading from "@theme/Heading";
+import { DeclarationEnum } from "@next-core/brick-manifest";
+import clsx from "clsx";
+import GeneralType from "../GeneralType";
 import styles from "./style.module.css";
 
-export default function BrickDocTypeAlias({
+export default function BrickDocEnums({
   enumDeclaration,
 }: {
-  enumDeclaration: EnumDeclaration;
+  enumDeclaration: DeclarationEnum;
 }): JSX.Element {
   return (
-    <div>
-      <h3 id={enumDeclaration.name}>
+    <>
+      <Heading as="h3" id={`ref-${enumDeclaration.name}`}>
         {enumDeclaration.name}
-        <span className={styles.tag}>enum</span>
-      </h3>
-      <div className={styles.enumWrapper}>
-        {enumDeclaration.members.map((item, index) => (
-          <div key={index}>
-            {GeneralType(item.name)}
-            {" = "}
-            {GeneralType(item.value)}
-          </div>
-        ))}
-      </div>
-    </div>
+        <span className={clsx(styles.tag, "badge badge--info")}>enum</span>
+      </Heading>
+      <pre>
+        <code>
+          {enumDeclaration.members.map((item, index) => (
+            <React.Fragment key={index}>
+              <GeneralType annotation={item.id} />
+              {item.initializer && " = "}
+              <GeneralType annotation={item.initializer} />
+              {",\n"}
+            </React.Fragment>
+          ))}
+        </code>
+      </pre>
+    </>
   );
 }

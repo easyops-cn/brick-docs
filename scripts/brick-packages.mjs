@@ -27,7 +27,7 @@ await Promise.all(
             manifest: {
               ...manifest,
               bricks: manifest.bricks.map(brick => {
-                if (types[brick.name]) {
+                if (Object.hasOwnProperty.call(types, brick.name)) {
                   const { properties = [], events = [], methods = [] } = brick;
                   const { properties: typeProperties = [], events: typeEvents = [], methods: typeMethods = [], types: typeTypes = [], } = types[brick.name]
                   return {
@@ -37,7 +37,7 @@ await Promise.all(
                       if (matchProperty) {
                         return {
                           ...field,
-                          types: matchProperty.types,
+                          ...matchProperty,
                         }
                       }
                       return field
@@ -49,7 +49,7 @@ await Promise.all(
                           ...field,
                           detail: {
                             ...field.detail,
-                            types: matchEvent.types,
+                            ...matchEvent.detail,
                           }
                         }
                       }
@@ -60,9 +60,13 @@ await Promise.all(
                       if (matchMethod) {
                         return {
                           ...field,
-                          return: {
-                            ...field.return,
-                            types: matchMethod.types,
+                          params: field.params.map((param, index) => ({
+                            ...param,
+                            ...matchMethod.params?.[index],
+                          })),
+                          returns: {
+                            ...field.returns,
+                            ...matchMethod.returns,
                           }
                         }
                       }
@@ -73,7 +77,8 @@ await Promise.all(
                 }
                 return brick;
               })
-            }
+            },
+            types,
           });
         }
       }

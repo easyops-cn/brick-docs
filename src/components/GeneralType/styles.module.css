@@ -1,0 +1,7 @@
+.unsupported {
+  color: var(--ifm-color-danger);
+}
+
+.deprecated {
+  text-decoration: line-through;
+}

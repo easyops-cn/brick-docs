@@ -1,10 +1,10 @@
 import React from "react";
 import type { Annotation, PropertyManifest } from "@next-core/brick-manifest";
 import MaybeEmptyCode from "@site/src/components/MaybeEmptyCode";
-import { GeneralType } from "../BrickDocTypes/generalType";
+import GeneralType from "../GeneralType";
 
 interface Property extends PropertyManifest {
-  types: Annotation;
+  annotation: Annotation;
 }
 
 export default function BrickDocProperties({
@@ -31,7 +31,7 @@ export default function BrickDocProperties({
             <td>{prop.description}</td>
             <td>
               <MaybeEmptyCode>
-                {prop.types ? GeneralType(prop.types) : prop.type}
+                <GeneralType annotation={prop.annotation} />
               </MaybeEmptyCode>{" "}
             </td>
             <td>

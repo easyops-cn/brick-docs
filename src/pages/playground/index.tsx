@@ -14,11 +14,13 @@ import clsx from "clsx";
 import copy from "copy-to-clipboard";
 import LoadingRing from "@site/src/components/LoadingRing";
 import useDeferredValue from "@site/src/hooks/useDeferredValue";
-import { examples } from "@site/src/examples.json";
+import examplesJson from "@site/src/examples.json";
 import usePlaygroundQuery from "@site/src/hooks/usePlaygroundQuery";
 import { b64DecodeUnicode, b64EncodeUnicode } from "@site/src/utils/b64Unicode";
 import { decorateAltCode } from "@site/src/utils/decorateAltCode";
 import styles from "./style.module.css";
+
+const { examples } = examplesJson;
 
 const DEFAULT_SOURCES = {
   html: '<basic.general-button type="primary">\n  Hello world\n</basic.general-button>',

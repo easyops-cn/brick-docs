@@ -1,34 +1,28 @@
-import React, { useMemo } from "react";
-import { TypeAliasDeclaration } from "@next-core/brick-manifest";
-import { GeneralType } from "../BrickDocTypes/generalType";
-import styles from "./style.module.css";
+import React from "react";
+import Heading from "@theme/Heading";
+import { DeclarationTypeAlias } from "@next-core/brick-manifest";
+import GeneralType from "../GeneralType";
 
 export default function BrickDocTypeAlias({
   typeAliasDeclaration,
 }: {
-  typeAliasDeclaration: TypeAliasDeclaration;
+  typeAliasDeclaration: DeclarationTypeAlias;
 }): JSX.Element {
-  const body = useMemo(() => {
-    if (Array.isArray(typeAliasDeclaration.annotation)) {
-      return typeAliasDeclaration.annotation.map(GeneralType);
-    } else {
-      return GeneralType(typeAliasDeclaration.annotation);
-    }
-  }, [typeAliasDeclaration]);
-
   return (
-    <div>
-      <h3 id={typeAliasDeclaration.name}>
+    <>
+      <Heading as="h3" id={`ref-${typeAliasDeclaration.name}`}>
         {typeAliasDeclaration.name}
-        {typeAliasDeclaration.typeParameters ? (
-          <>
-            {"<"}
-            {GeneralType(typeAliasDeclaration.typeParameters)}
-            {">"}
-          </>
-        ) : null}
-      </h3>
-      <div className={styles.typeAliasWrapper}>{body}</div>
-    </div>
+      </Heading>
+      {typeAliasDeclaration.description && (
+        <p>{typeAliasDeclaration.description}</p>
+      )}
+      <pre>
+        <code>
+          <GeneralType annotation={typeAliasDeclaration.typeParameters} />
+          {typeAliasDeclaration.typeParameters && " "}
+          <GeneralType annotation={typeAliasDeclaration.annotation} />
+        </code>
+      </pre>
+    </>
   );
 }
