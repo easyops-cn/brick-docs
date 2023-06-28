@@ -1873,12 +1873,17 @@
   resolved "https://registry.yarnpkg.com/@next-core/brick-manifest/-/brick-manifest-0.3.0.tgz#e111bed4040e80865e373cbd4eb4024e5670a3a4"
   integrity sha512-CuNT50Z+4bMQKZ9e4HyDA+qebOeeAHwuldubx6G9WcKQDdiO05TbooBdCnEeyHMhz5/aycxjCpwuc+HsQJcZDQ==
 
+"@next-core/brick-manifest@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@next-core/brick-manifest/-/brick-manifest-0.4.0.tgz#909c03ca1e47583617553f9a09f2bb9c37777be8"
+  integrity sha512-6+7LYrKdp+asOjlzAb6p2ky8VcX0wzmzKKDmPdWLOSCX2EOcuohRdD7L2f5IUjZLBcyyUBkm6J8z0WfEq8zqQg==
+
 "@next-core/doc-helpers@^0.1.5":
-  version "0.1.5"
-  resolved "https://registry.yarnpkg.com/@next-core/doc-helpers/-/doc-helpers-0.1.5.tgz#53e9d76b331e3b29e7c69483da9bab3b4ae5c0f5"
-  integrity sha512-r5LyrKOYpLkx4dDr5yEi3W/s1il877QbaWhltTtOUkvGrw2oBI2WtfpcBfWb1PA2aRs1tA3Y0N2GgG/gIxd3wQ==
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/@next-core/doc-helpers/-/doc-helpers-0.1.6.tgz#16b4f6e02ce50b6fa5d1f0da525922226ffecff8"
+  integrity sha512-DSmtgJfI2DND7hx8IjNwC5xtBMTrkkM9d8CfpBWG5/JLY/doflSFpsCiP5s85i8CFN2Yd/SStFfrM2ak3mI1pQ==
   dependencies:
-    "@next-core/brick-manifest" "^0.3.0"
+    "@next-core/brick-manifest" "^0.4.0"
     fast-xml-parser "^4.2.4"
     js-yaml "^3.14.1"
 
@@ -4437,9 +4442,9 @@ fast-url-parser@1.1.3:
     punycode "^1.3.2"
 
 fast-xml-parser@^4.2.4:
-  version "4.2.4"
-  resolved "https://registry.yarnpkg.com/fast-xml-parser/-/fast-xml-parser-4.2.4.tgz#6e846ede1e56ad9e5ef07d8720809edf0ed07e9b"
-  integrity sha512-fbfMDvgBNIdDJLdLOwacjFAPYt67tr31H9ZhWSm45CDAxvd0I6WTlSOUo7K2P/K5sA5JgMKG64PI3DMcaFdWpQ==
+  version "4.2.5"
+  resolved "https://registry.yarnpkg.com/fast-xml-parser/-/fast-xml-parser-4.2.5.tgz#a6747a09296a6cb34f2ae634019bf1738f3b421f"
+  integrity sha512-B9/wizE4WngqQftFPmdaMYlXoJlJOYxGQOanC77fq9k8+Z0v5dDSVh+3glErdIROP//s/jgb7ZuxKfB8nVyo0g==
   dependencies:
     strnum "^1.0.5"
 
