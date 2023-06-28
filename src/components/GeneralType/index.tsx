@@ -150,7 +150,8 @@ export default function GeneralType({
     case "array":
       return (
         <>
-          <GeneralType annotation={annotation.elementType}></GeneralType>[]
+          <GeneralType annotation={annotation.elementType} />
+          []
         </>
       );
 
@@ -229,6 +230,33 @@ export default function GeneralType({
           <GeneralType annotation={annotation.argument} />
           {annotation.annotation && ": "}
           <GeneralType annotation={annotation.annotation} />
+        </>
+      );
+
+    case "parenthesizedType":
+      return (
+        <>
+          (<GeneralType annotation={annotation.annotation} />)
+        </>
+      );
+
+    case "conditionalType":
+      return (
+        <>
+          <GeneralType annotation={annotation.checkType} />
+          {" extends "}
+          <GeneralType annotation={annotation.extendsType} />
+          {" ? "}
+          <GeneralType annotation={annotation.trueType} />
+          {" : "}
+          <GeneralType annotation={annotation.falseType} />
+        </>
+      );
+
+    case "inferType":
+      return (
+        <>
+          infer <GeneralType annotation={annotation.typeParameter} />
         </>
       );
 
