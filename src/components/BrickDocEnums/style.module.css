@@ -1,22 +1,5 @@
-.enumWrapper {
-  padding: 10px;
-  margin-bottom: 32px;
-  background-color: var(--ifm-code-background);
-  border: 0.1rem solid rgba(0, 0, 0, 0.1);
-  border-radius: var(--ifm-code-border-radius);
-  font-family: var(--ifm-font-family-monospace);
-  font-size: var(--ifm-code-font-size);
-  vertical-align: middle;
-}
-
 .tag {
   font-size: 12px;
-  display: inline-block;
-  vertical-align: top;
-  margin-left: 8px;
-  background: #2cd2d2;
-  color: #fff;
-  padding: 2px;
-  border-radius: 8px;
-  line-height: 12px;
+  margin-left: 1em;
+  vertical-align: middle;
 }

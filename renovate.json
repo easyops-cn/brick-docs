@@ -1,6 +1,25 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:base"
-  ]
+  "extends": ["config:base"],
+  "prHourlyLimit": 2,
+  "rangeStrategy": "bump",
+  "semanticCommits": "enabled",
+  "commitMessagePrefix": "chore(deps):",
+  "ignorePresets": [":ignoreModulesAndTests"],
+  "packageRules": [
+    {
+      "matchPackagePatterns": ["^@next-core/"],
+      "groupName": "next-core packages"
+    },
+    {
+      "groupName": "type packages",
+      "matchPackagePatterns": ["^@types/"]
+    },
+    {
+      "matchPackagePatterns": ["^@types/"],
+      "matchUpdateTypes": ["major"],
+      "enabled": false
+    }
+  ],
+  "postUpdateOptions": ["yarnDedupeHighest"]
 }

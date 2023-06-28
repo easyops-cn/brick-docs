@@ -1,47 +1,34 @@
-import React, { useMemo } from "react";
-import { InterfaceDeclaration } from "@next-core/brick-manifest";
-import { GeneralType } from "../BrickDocTypes/generalType";
+import React from "react";
+import Heading from "@theme/Heading";
+import { DeclarationInterface } from "@next-core/brick-manifest";
+import GeneralType, { GeneralTypeList } from "../GeneralType";
 import MaybeEmptyCode from "../MaybeEmptyCode";
 
 export default function BrickDocInterface({
   interfaceDeclaration,
 }: {
-  interfaceDeclaration: InterfaceDeclaration;
+  interfaceDeclaration: DeclarationInterface;
 }): JSX.Element {
-  const body = useMemo(() => {
-    return interfaceDeclaration.annotation.map((item) => {
-      if (item.type === "propertySignature") {
-        const { name, property, required, description } = item;
-        return {
-          name: name,
-          type: GeneralType(property),
-          required,
-          description,
-        };
-      } else if (item.type === "indexSignature") {
-        const { parameters, property, required, description } = item;
-        return {
-          name: GeneralType(parameters),
-          type: GeneralType(property),
-          required,
-          description,
-        };
-      }
-    });
-  }, [interfaceDeclaration]);
-
   return (
     <>
-      <h3 id={interfaceDeclaration.name}>
+      <Heading as="h3" id={`ref-${interfaceDeclaration.name}`}>
         {interfaceDeclaration.name}
-        {interfaceDeclaration.typeParameters ? (
-          <>
-            {"<"}
-            {GeneralType(interfaceDeclaration.typeParameters)}
-            {">"}
-          </>
-        ) : null}
-      </h3>
+      </Heading>
+      {(interfaceDeclaration.extends?.length ||
+        interfaceDeclaration.typeParameters) && (
+        <pre>
+          <code>
+            <GeneralType annotation={interfaceDeclaration.typeParameters} />
+            {interfaceDeclaration.extends?.length && (
+              <>
+                {interfaceDeclaration.typeParameters && " "}
+                {"extends "}
+                <GeneralTypeList list={interfaceDeclaration.extends} />
+              </>
+            )}
+          </code>
+        </pre>
+      )}
       <table>
         <thead>
           <tr>
@@ -52,16 +39,26 @@ export default function BrickDocInterface({
           </tr>
         </thead>
         <tbody>
-          {body.map((prop) => (
-            <tr key={prop.name}>
+          {interfaceDeclaration.body.map((item, index) => (
+            <tr key={index}>
               <td>
-                <code>{prop.name}</code>
+                <MaybeEmptyCode>
+                  <GeneralType
+                    annotation={item}
+                    signaturePart="name"
+                    ignoreOptional
+                  />
+                </MaybeEmptyCode>
               </td>
               <td>
-                <MaybeEmptyCode>{prop.type}</MaybeEmptyCode>
+                <MaybeEmptyCode>
+                  <GeneralType annotation={item} signaturePart="type" />
+                </MaybeEmptyCode>
               </td>
-              <td>{prop.required}</td>
-              <td>{prop.description}</td>
+              <td>
+                {item.type === "indexSignature" || item.optional ? "" : "✔️"}
+              </td>
+              <td>{item.description}</td>
             </tr>
           ))}
         </tbody>
