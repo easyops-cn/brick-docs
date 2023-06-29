@@ -9,6 +9,8 @@ import React, {
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import { useColorMode } from "@docusaurus/theme-common";
 import BrowserOnly from "@docusaurus/BrowserOnly";
+import useIsBrowser from "@docusaurus/useIsBrowser";
+import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
 import Link from "@docusaurus/Link";
 import IconExternalLink from "@theme/Icon/ExternalLink";
 import clsx from "clsx";
@@ -83,7 +85,10 @@ export default function NextExample({
   );
   const [currentCode, setCurrentCode] = useState(defaultCode);
   const [sourceShown, setSourceShown] = useState(false);
-  const [wait, setWait] = useState(!isTheFirstFrame());
+  const isBrowser = useIsBrowser();
+  const [wait, setWait] = useState(
+    !(ExecutionEnvironment.canUseDOM && isTheFirstFrame())
+  );
   const editorInitialHeight = useMemo(
     () => getContentHeightByCode(defaultCode),
     [defaultCode]
@@ -170,26 +175,27 @@ export default function NextExample({
   return (
     <div className={styles.example} ref={containerRef}>
       <div className={styles.previewBox}>
-        {wait || (
-          <div
-            className={clsx(styles.preview, {
-              [styles.ready]: ready,
-            })}
-          >
-            <iframe
-              ref={iframeRef}
-              src={previewSrc}
-              loading="lazy"
-              onLoad={handleIframeLoad}
-              style={{ height: deferredIframeHeight }}
-            />
-          </div>
-        )}
-        {wait ? (
-          <LoadingRingBox height={EXAMPLE_IFRAME_MIN_HEIGHT} />
-        ) : (
-          !ready && <LoadingRing />
-        )}
+        {isBrowser &&
+          (wait ? (
+            <LoadingRingBox height={EXAMPLE_IFRAME_MIN_HEIGHT} />
+          ) : (
+            <>
+              <div
+                className={clsx(styles.preview, {
+                  [styles.ready]: ready,
+                })}
+              >
+                <iframe
+                  ref={iframeRef}
+                  src={previewSrc}
+                  loading="lazy"
+                  onLoad={handleIframeLoad}
+                  style={{ height: deferredIframeHeight }}
+                />
+              </div>
+              {!ready && <LoadingRing />}
+            </>
+          ))}
       </div>
       <div
         className={clsx(styles.editorBox, {
