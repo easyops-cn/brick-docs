@@ -67,7 +67,7 @@ import BrickDocMethods from "@site/src/components/BrickDocMethods";
 import BrickDocTypes from "@site/src/components/BrickDocTypes";
 import { TypeReferencesContext } from "@site/src/components/GeneralType";
 
-<BrickTagName name=${JSON.stringify(brick.name)} />
+<BrickTagName name=${JSON.stringify(brick.name)} alias={${JSON.stringify(brick.alias ?? null)}} />
 
 ${brickDoc}
 
