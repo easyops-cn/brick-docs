@@ -1,4 +1,4 @@
-.tagName {
+.tagNameAndAlias {
   margin-top: calc(
     0.5rem - var(--ifm-h1-vertical-rhythm-bottom) * var(--ifm-leading)
   ) !important;
@@ -7,15 +7,22 @@
   );
 }
 
-.tagName code {
+.tagNameAndAlias code {
   border: 0;
   border-radius: 0;
   padding: 0;
   background: none;
   font-size: 20px;
   color: var(--ifm-color-emphasis-600);
+  vertical-align: top;
 }
 
+.alias,
+.alias code {
+  font-size: 16px;
+}
+
+.alias > code + code,
 .tagName > :global(.badge) {
   margin-left: 1em;
 }
