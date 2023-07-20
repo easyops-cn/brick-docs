@@ -56,12 +56,12 @@ jobs:
       run: npx lerna run build:manifest
 
     - name: Build (Bricks)
-      run: npx lerna run build --ignore @next-bricks/v2-adapter --ignore @next-bricks/devtools
+      run: npx lerna run build --ignore @next-bricks/v2-adapter
 
     - name: Compress artifacts
       run: |
         shopt -s globstar
-        tar --exclude='*.map' --exclude='bricks/devtools' --exclude='bricks/v2-adapter' -cvf bricks.tar bricks/*/dist bricks/*/docs bricks/*/src/**/example.yaml bricks/*/src/**/example.html netlify.toml
+        tar --exclude='*.map' --exclude='bricks/v2-adapter' -cvf bricks.tar bricks/*/dist bricks/*/docs bricks/*/src/**/example.yaml bricks/*/src/**/example.html netlify.toml
 
     - uses: actions/upload-artifact@v3
       with:
