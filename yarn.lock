@@ -1882,15 +1882,15 @@
     fast-xml-parser "^4.2.4"
     js-yaml "^3.14.1"
 
-"@next-core/monaco-contributions@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@next-core/monaco-contributions/-/monaco-contributions-0.2.0.tgz#ff0958b436923daa38ab59f3d3f7d99298e70a11"
-  integrity sha512-2e+xWsSQNGqFQ9EZD6tXtarYfxGGL9L87TT3m3bFQPHPhiCdW78jsKZcmcPGkmGCOD2pGZpSfGbk76zKCd/+4Q==
+"@next-core/monaco-contributions@^0.3.1":
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/@next-core/monaco-contributions/-/monaco-contributions-0.3.1.tgz#cb6fc43aa2dcc8f9afd85827af079bc5394a31b1"
+  integrity sha512-ph7+AhO/Lw22husSyPwtyFRIrdMdR0F5ItINmkM3wlpjwgV68zJ15nOIFfJxVM+B1IFR3Gt76lWIkFbUDP33vg==
 
-"@next-core/preview@^0.1.23":
-  version "0.1.23"
-  resolved "https://registry.yarnpkg.com/@next-core/preview/-/preview-0.1.23.tgz#90dc71eba15459e7664a82933500c394a68e3844"
-  integrity sha512-Lg945F5KHXxyA+H4qVGjmZAP2LCWncPOAleQm4IoPC2vEEp57DkWnKigS/yAXil1Z4NRHEUjkrlfWjawe1VD9w==
+"@next-core/preview@^0.1.30":
+  version "0.1.30"
+  resolved "https://registry.yarnpkg.com/@next-core/preview/-/preview-0.1.30.tgz#577bbd6b23aaf6cec5af3622a301443b86f12df9"
+  integrity sha512-YQphTGrBCvWu4DFJfS7WCDE7oCFABYqRySl8K/f3mARGoIgeydHUHJNM3gQO+PS/WUOrhqUy8F5HgL6/QTl7sw==
 
 "@node-rs/jieba-android-arm-eabi@1.7.0":
   version "1.7.0"
