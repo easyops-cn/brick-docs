@@ -7,7 +7,7 @@ export function decorateAltCode(
     altMode === mode
       ? ""
       : altMode === "yaml"
-      ? "# Note: this example is original written in HTML and auto-transpiled to YAML\n"
-      : "<!-- Note: this example is original written in YAML and auto-transpiled to HTML -->\n"
+      ? "# NOTE: this example is originally written in HTML and auto-transpiled to YAML\n"
+      : "<!-- NOTE: this example is originally written in YAML and auto-transpiled to HTML -->\n"
   }${code}`;
 }

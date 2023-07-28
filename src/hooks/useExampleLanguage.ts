@@ -9,7 +9,7 @@ export default function useExampleLanguage() {
 
   useEffect(() => {
     setLanguage(
-      localStorage.getItem(STORAGE_KEY_LANGUAGE) === "yaml" ? "yaml" : "html"
+      localStorage.getItem(STORAGE_KEY_LANGUAGE) === "html" ? "html" : "yaml"
     );
   }, []);
 
