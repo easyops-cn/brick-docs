@@ -1873,24 +1873,25 @@
   resolved "https://registry.yarnpkg.com/@next-core/brick-manifest/-/brick-manifest-0.5.0.tgz#563a963fa22d2e91468d666f08f753b36f3e0ba3"
   integrity sha512-D9aFMKg2ZRNGoaMowv0JeFVCCTOQqf4gAxPtdKi31Cag7pzWFWpVNuS781VxTTnHmf25XjWZomtNIh71J93m2Q==
 
-"@next-core/doc-helpers@^0.1.8":
-  version "0.1.8"
-  resolved "https://registry.yarnpkg.com/@next-core/doc-helpers/-/doc-helpers-0.1.8.tgz#b53c8bfdf73b206ceb1a0ae9622680b36253e52c"
-  integrity sha512-7Qo3WXlaRYdKNxR7Qhy3NXy1raKhAg22+xyZ084htrrGzL67YrcTEDZ/B94BsDyzNd6iPs+6tlP/6rgkkUpzbA==
+"@next-core/doc-helpers@^0.1.9":
+  version "0.1.9"
+  resolved "https://registry.yarnpkg.com/@next-core/doc-helpers/-/doc-helpers-0.1.9.tgz#12b3847c0c35617e3f393bfd45c7dcc15bb9fc5f"
+  integrity sha512-35R0IZCMzX1H2UayZ7UZTmRll6O9E8KqmmKo0aYExElDV/OAhYMQ1Ir0qckvWrD7GRIxSqdmLUeEtGSU7HMeIw==
   dependencies:
     "@next-core/brick-manifest" "^0.5.0"
     fast-xml-parser "^4.2.4"
     js-yaml "^3.14.1"
+    prettier "^2.8.8"
 
 "@next-core/monaco-contributions@^0.3.1":
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/@next-core/monaco-contributions/-/monaco-contributions-0.3.1.tgz#cb6fc43aa2dcc8f9afd85827af079bc5394a31b1"
   integrity sha512-ph7+AhO/Lw22husSyPwtyFRIrdMdR0F5ItINmkM3wlpjwgV68zJ15nOIFfJxVM+B1IFR3Gt76lWIkFbUDP33vg==
 
-"@next-core/preview@^0.1.30":
-  version "0.1.30"
-  resolved "https://registry.yarnpkg.com/@next-core/preview/-/preview-0.1.30.tgz#577bbd6b23aaf6cec5af3622a301443b86f12df9"
-  integrity sha512-YQphTGrBCvWu4DFJfS7WCDE7oCFABYqRySl8K/f3mARGoIgeydHUHJNM3gQO+PS/WUOrhqUy8F5HgL6/QTl7sw==
+"@next-core/preview@^0.1.34":
+  version "0.1.34"
+  resolved "https://registry.yarnpkg.com/@next-core/preview/-/preview-0.1.34.tgz#fd24a3f45b2f1efd8cf5ceea81c52e583239f86a"
+  integrity sha512-u/n9OpbUjXvELxVJfnCzFo/iqNCgvUUkfqefaYGRdfXzexyrvzjMsO4ezRnbmLxikD2TRpt8eV48q0boyfjq1g==
 
 "@node-rs/jieba-android-arm-eabi@1.7.0":
   version "1.7.0"
@@ -6928,7 +6929,7 @@ prepend-http@^2.0.0:
   resolved "https://registry.yarnpkg.com/prepend-http/-/prepend-http-2.0.0.tgz#e92434bfa5ea8c19f41cdfd401d741a3c819d897"
   integrity sha512-ravE6m9Atw9Z/jjttRUZ+clIXogdghyZAuWJ3qEzjT+jI/dL1ifAqhZeC5VHzQp1MSt1+jxKkFNemj/iO7tVUA==
 
-prettier@^2.8.7:
+prettier@^2.8.7, prettier@^2.8.8:
   version "2.8.8"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.8.8.tgz#e8c5d7e98a4305ffe3de2e1fc4aca1a71c28b1da"
   integrity sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==
