@@ -1,41 +1,19 @@
-# Website
+# Bricks V3 Website
 
-This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
+https://bricks.js.org/
 
-### Installation
+## Setup
 
-```
-$ yarn
-```
+Setup for bricks first, choose one:
 
-### Local Development
+- Have the `next-bricks` repository with in the same parent folder as this project.
+- Or, create a `dev.config.js`:
+  ```js
+  module.exports = {
+    bricksDir: "/YOUR/ABSOLUTE/PATH/TO/next-bricks/bricks",
+  };
+  ```
 
-```
-$ yarn start
-```
+## Development
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
-
-### Build
-
-```
-$ yarn build
-```
-
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
-
-### Deployment
-
-Using SSH:
-
-```
-$ USE_SSH=true yarn deploy
-```
-
-Not using SSH:
-
-```
-$ GIT_USER=<Your GitHub username> yarn deploy
-```
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+First run build script for your brick packages, then run `yarn start` of this project.
