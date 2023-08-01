@@ -64,6 +64,7 @@ import BrickDocProperties from "@site/src/components/BrickDocProperties";
 import BrickDocSlots from "@site/src/components/BrickDocSlots";
 import BrickDocEvents from "@site/src/components/BrickDocEvents";
 import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
 import BrickDocTypes from "@site/src/components/BrickDocTypes";
 import { TypeReferencesContext } from "@site/src/components/GeneralType";
 
@@ -110,6 +111,16 @@ ${
 <TypeReferencesContext.Provider value={${JSON.stringify(typeRefs)}}>
   <BrickDocMethods methods={${JSON.stringify(brick.methods)}} />
 </TypeReferencesContext.Provider>`
+    : ""
+}
+
+${
+  brick.parts && brick.parts.length > 0
+    ?
+`## Parts
+
+<BrickDocParts parts={${JSON.stringify(brick.parts)}} />
+`
     : ""
 }
 
