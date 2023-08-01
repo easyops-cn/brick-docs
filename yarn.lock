@@ -1868,17 +1868,17 @@
   resolved "https://registry.yarnpkg.com/@mdx-js/util/-/util-1.6.22.tgz#219dfd89ae5b97a8801f015323ffa4b62f45718b"
   integrity sha512-H1rQc1ZOHANWBvPcW+JpGwr+juXSxM8Q8YCkm3GhZd8REu1fHR3z99CErO1p9pkcfcxZnMdIZdIsXkOHY0NilA==
 
-"@next-core/brick-manifest@^0.5.0":
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/@next-core/brick-manifest/-/brick-manifest-0.5.0.tgz#563a963fa22d2e91468d666f08f753b36f3e0ba3"
-  integrity sha512-D9aFMKg2ZRNGoaMowv0JeFVCCTOQqf4gAxPtdKi31Cag7pzWFWpVNuS781VxTTnHmf25XjWZomtNIh71J93m2Q==
+"@next-core/brick-manifest@^0.5.1":
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/@next-core/brick-manifest/-/brick-manifest-0.5.1.tgz#446973b6c80b80eae3fe04c766cce8363c1e4210"
+  integrity sha512-+RxfczyqIUJ+FRrOAXdvjP/zxrk1QsPp/uCky12IrOA6dFtmU9LgmWNkl6rCEDjg2d2IH6dSa5isSzxlsj6K9g==
 
-"@next-core/doc-helpers@^0.1.9":
-  version "0.1.9"
-  resolved "https://registry.yarnpkg.com/@next-core/doc-helpers/-/doc-helpers-0.1.9.tgz#12b3847c0c35617e3f393bfd45c7dcc15bb9fc5f"
-  integrity sha512-35R0IZCMzX1H2UayZ7UZTmRll6O9E8KqmmKo0aYExElDV/OAhYMQ1Ir0qckvWrD7GRIxSqdmLUeEtGSU7HMeIw==
+"@next-core/doc-helpers@^0.1.10":
+  version "0.1.10"
+  resolved "https://registry.yarnpkg.com/@next-core/doc-helpers/-/doc-helpers-0.1.10.tgz#1023507add0bbba187f102718b7b9dbe7c4f71a7"
+  integrity sha512-ab24Z7REa2qM+Sk9UQ4jFJ03asjHpl6L3cUDnWoZ7r0EocxX5sGdxyXKYfn+NZfOZV7V4fF1xFCZw0zEhtw0EQ==
   dependencies:
-    "@next-core/brick-manifest" "^0.5.0"
+    "@next-core/brick-manifest" "^0.5.1"
     fast-xml-parser "^4.2.4"
     js-yaml "^3.14.1"
     prettier "^2.8.8"
@@ -1888,10 +1888,10 @@
   resolved "https://registry.yarnpkg.com/@next-core/monaco-contributions/-/monaco-contributions-0.3.1.tgz#cb6fc43aa2dcc8f9afd85827af079bc5394a31b1"
   integrity sha512-ph7+AhO/Lw22husSyPwtyFRIrdMdR0F5ItINmkM3wlpjwgV68zJ15nOIFfJxVM+B1IFR3Gt76lWIkFbUDP33vg==
 
-"@next-core/preview@^0.1.34":
-  version "0.1.34"
-  resolved "https://registry.yarnpkg.com/@next-core/preview/-/preview-0.1.34.tgz#fd24a3f45b2f1efd8cf5ceea81c52e583239f86a"
-  integrity sha512-u/n9OpbUjXvELxVJfnCzFo/iqNCgvUUkfqefaYGRdfXzexyrvzjMsO4ezRnbmLxikD2TRpt8eV48q0boyfjq1g==
+"@next-core/preview@^0.1.35":
+  version "0.1.36"
+  resolved "https://registry.yarnpkg.com/@next-core/preview/-/preview-0.1.36.tgz#c74c7387e2a939209075c021d830b49298879f8f"
+  integrity sha512-CBeuxVvgysTvzBLLIVQV7VIWr6VmzRV2bTR9O+5J1N121/qftekIXN4A21s+G/YJ2zNCbxllfvMJUl7r5XkrAg==
 
 "@node-rs/jieba-android-arm-eabi@1.7.0":
   version "1.7.0"
