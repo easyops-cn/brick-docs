@@ -202,7 +202,7 @@ export default function NextExample({
           [styles.sourceShown]: sourceShown,
         })}
       >
-        {wait ? (
+        {wait || !ready ? (
           <LoadingRingBox height={editorInitialHeight} />
         ) : (
           <BrowserOnly
