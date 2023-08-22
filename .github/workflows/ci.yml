@@ -33,9 +33,9 @@ jobs:
       uses: actions/cache@v3
       with:
         path: .cache
-        key: ${{ runner.os }}-nx-${{ hashFiles('**/package.json') }}
+        key: ${{ runner.os }}-nx-${{ hashFiles('yarn.lock', 'package.json') }}-${{ hashFiles('**/package.json') }}
         restore-keys: |
-          ${{ runner.os }}-nx-
+          ${{ runner.os }}-nx-${{ hashFiles('yarn.lock', 'package.json') }}-
 
     - name: Get yarn cache directory path
       id: yarn-cache-dir-path
