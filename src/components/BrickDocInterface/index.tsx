@@ -55,8 +55,8 @@ export default function BrickDocInterface({
                   <GeneralType annotation={item} signaturePart="type" />
                 </MaybeEmptyCode>
               </td>
-              <td>
-                {item.type === "indexSignature" || item.optional ? "" : "✔️"}
+              <td style={{ textAlign: "center" }}>
+                {item.type === "indexSignature" || item.optional ? "" : "✅"}
               </td>
               <td>{item.description}</td>
             </tr>
