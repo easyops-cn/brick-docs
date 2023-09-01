@@ -20,6 +20,7 @@ export default function BrickDocProperties({
           <th>Description</th>
           <th>Type</th>
           <th>Default</th>
+          <th>Required</th>
         </tr>
       </thead>
       <tbody>
@@ -37,6 +38,7 @@ export default function BrickDocProperties({
             <td>
               <MaybeEmptyCode>{prop.default}</MaybeEmptyCode>
             </td>
+            <td style={{ textAlign: "center" }}>{prop.required && "✅"}</td>
           </tr>
         ))}
       </tbody>
