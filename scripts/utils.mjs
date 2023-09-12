@@ -8,7 +8,7 @@ const HTML_DELIMITER_END = "-- HTML DELIMITER end (1nbbm8) -->";
  * @param {string} markdown
  * @param {any[]} manifests
  */
-export function handleExamplesInMarkdown(markdown, manifests) {
+export async function handleExamplesInMarkdown(markdown, manifests) {
   const examples = extractExamplesInMarkdown(markdown, "");
   let cursor = 0;
   const chunks = [];
@@ -18,7 +18,7 @@ export function handleExamplesInMarkdown(markdown, manifests) {
       markdown.substring(cursor, nextCursor)
     );
     if (example.mode === "yaml") {
-      const html = yamlToHtml(example.code, manifests);
+      const html = await yamlToHtml(example.code, manifests);
       chunks.push(
         `${YAML_DELIMITER}\n`,
         html.split("\n").map(
