@@ -8,17 +8,12 @@
   "ignorePresets": [":ignoreModulesAndTests"],
   "packageRules": [
     {
+      "excludePackagePatterns": ["^@next-core/"],
+      "enabled": false
+    },
+    {
       "matchPackagePatterns": ["^@next-core/"],
       "groupName": "next-core packages"
-    },
-    {
-      "groupName": "type packages",
-      "matchPackagePatterns": ["^@types/"]
-    },
-    {
-      "matchPackagePatterns": ["^@types/"],
-      "matchUpdateTypes": ["major"],
-      "enabled": false
     }
   ],
   "postUpdateOptions": ["yarnDedupeHighest"]
