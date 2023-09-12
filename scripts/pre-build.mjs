@@ -46,9 +46,9 @@ for (const { path: pkgPath, manifest, types } of packages) {
     /** @type {string} */
     let brickDoc;
     if (existsSync(srcFilePath)) {
-      brickDoc = handleExamplesInMarkdown(await readFile(srcFilePath, "utf-8"), manifests);
+      brickDoc = await handleExamplesInMarkdown(await readFile(srcFilePath, "utf-8"), manifests);
     } else if (existsSync(srcFilePathAlt)) {
-      brickDoc = handleExamplesInMarkdown(await readFile(srcFilePathAlt, "utf-8"), manifests);
+      brickDoc = await handleExamplesInMarkdown(await readFile(srcFilePathAlt, "utf-8"), manifests);
     } else {
       brickDoc = brick.description ?? "";
     }
@@ -148,9 +148,9 @@ ${
     /** @type {string} */
     let brickDoc;
     if (existsSync(srcFilePath)) {
-      brickDoc = handleExamplesInMarkdown(await readFile(srcFilePath, "utf-8"), manifests);
+      brickDoc = await handleExamplesInMarkdown(await readFile(srcFilePath, "utf-8"), manifests);
     } else if (existsSync(srcFilePathAlt)) {
-      brickDoc = handleExamplesInMarkdown(await readFile(srcFilePathAlt, "utf-8"), manifests);
+      brickDoc = await handleExamplesInMarkdown(await readFile(srcFilePathAlt, "utf-8"), manifests);
     } else {
       continue;
     }
