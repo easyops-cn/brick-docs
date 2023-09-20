@@ -1873,10 +1873,10 @@
   resolved "https://registry.yarnpkg.com/@next-core/brick-manifest/-/brick-manifest-0.5.1.tgz#446973b6c80b80eae3fe04c766cce8363c1e4210"
   integrity sha512-+RxfczyqIUJ+FRrOAXdvjP/zxrk1QsPp/uCky12IrOA6dFtmU9LgmWNkl6rCEDjg2d2IH6dSa5isSzxlsj6K9g==
 
-"@next-core/doc-helpers@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@next-core/doc-helpers/-/doc-helpers-0.2.0.tgz#cb58c0f77248774f461048ccf1f3ba7377fdbac4"
-  integrity sha512-oqUzSnn/ZpqRBH29XDXBhMtC5mXPSzFBZilYM/gE9ZU2n+pg+KMZETFD8Pq/6JlOZMbCItNT8Rt9natItBkSow==
+"@next-core/doc-helpers@^0.2.2":
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/@next-core/doc-helpers/-/doc-helpers-0.2.2.tgz#011a6b0097b115b213cae18feccdcec49a02b451"
+  integrity sha512-+1830c93qkl9qsmRvQsoLFAgq30bPjdL6LdqkcpBvkuo3G8J0hKu0gm2MrTZhvwijCU3zwFDMRsxWbVILRjV4A==
   dependencies:
     "@next-core/brick-manifest" "^0.5.1"
     fast-xml-parser "^4.2.7"
@@ -1888,10 +1888,10 @@
   resolved "https://registry.yarnpkg.com/@next-core/monaco-contributions/-/monaco-contributions-0.3.2.tgz#dfa60030a1e154f7ce857ddf0a9a9756b5c6b305"
   integrity sha512-+L8KkGBgvEMXl0NY3JjCghETgGg/s2clGB0xVZB5hrG4WLU87T0Vn8kyrxgtvHnR0nuZSGnYvPkctA3sJKyIRA==
 
-"@next-core/preview@^0.2.4":
-  version "0.2.4"
-  resolved "https://registry.yarnpkg.com/@next-core/preview/-/preview-0.2.4.tgz#ec20a6e21c8727d91b3e729545d2a62702fdefa1"
-  integrity sha512-nPdTBujB/y99ICpgG4pnFu005NPwld/OAfuNsI1nsZ4xrwtMkd7xzFlkiJ9HHhLRyW/EGCL8HFQckB3pJm1Rxw==
+"@next-core/preview@^0.2.9":
+  version "0.2.9"
+  resolved "https://registry.yarnpkg.com/@next-core/preview/-/preview-0.2.9.tgz#a49f5a7582aaa7925c2ea28b528ae4810ac97289"
+  integrity sha512-vQduukQPP6GDxDsAdFdo4TDZ2LG/MizG2qf9htdx4LO57ciQXPhm+fTj8vkdWuUwUwZvHT/4gw4DS346EqFVPg==
 
 "@node-rs/jieba-android-arm-eabi@1.7.0":
   version "1.7.0"
