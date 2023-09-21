@@ -17,8 +17,8 @@ import clsx from "clsx";
 import useDeferredValue from "@site/src/hooks/useDeferredValue";
 import { EXAMPLE_IFRAME_MIN_HEIGHT } from "@site/src/constants";
 import getContentHeightByCode from "@site/src/utils/getContentHeightByCode";
-import { b64EncodeUnicode } from "@site/src/utils/b64Unicode";
 import useExampleLanguage from "@site/src/hooks/useExampleLanguage";
+import { GZIP_HASH_PREFIX, compress } from "@site/src/utils/gzip";
 import ChevronUp from "./chevron-up.svg";
 import ChevronDown from "./chevron-down.svg";
 import styles from "./styles.module.css";
@@ -172,6 +172,30 @@ export default function NextExample({
     setSourceShown((prev) => !prev);
   }, []);
 
+  const [playgroundUrl, setPlaygroundUrl] = useState("/playground");
+
+  useEffect(() => {
+    let ignore = false;
+    async function updatePlaygroundUrl() {
+      try {
+        const url = `/playground${GZIP_HASH_PREFIX}${await compress(
+          JSON.stringify({
+            [language]: currentCode,
+          })
+        )}`;
+        if (!ignore) {
+          setPlaygroundUrl(url);
+        }
+      } catch (e) {
+        console.error("Compress shared example failed:", e);
+      }
+    }
+    updatePlaygroundUrl();
+    return () => {
+      ignore = true;
+    };
+  }, [currentCode, language]);
+
   return (
     <div className={styles.example} ref={containerRef}>
       <div className={styles.previewBox}>
@@ -256,15 +280,7 @@ export default function NextExample({
         >
           YAML
         </button>
-        <Link
-          className={styles.button}
-          to={`/playground#${b64EncodeUnicode(
-            JSON.stringify({
-              [language]: currentCode,
-            })
-          )}`}
-          target="_blank"
-        >
+        <Link className={styles.button} to={playgroundUrl} target="_blank">
           Playground
           <IconExternalLink width={12} height={12} />
         </Link>

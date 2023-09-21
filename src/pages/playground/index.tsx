@@ -16,8 +16,9 @@ import LoadingRing from "@site/src/components/LoadingRing";
 import useDeferredValue from "@site/src/hooks/useDeferredValue";
 import examplesJson from "@site/src/examples.json";
 import usePlaygroundQuery from "@site/src/hooks/usePlaygroundQuery";
-import { b64DecodeUnicode, b64EncodeUnicode } from "@site/src/utils/b64Unicode";
+import { b64DecodeUnicode } from "@site/src/utils/b64Unicode";
 import { decorateAltCode } from "@site/src/utils/decorateAltCode";
+import { GZIP_HASH_PREFIX, compress, decompress } from "@site/src/utils/gzip";
 import styles from "./style.module.css";
 
 const { examples } = examplesJson;
@@ -34,10 +35,33 @@ const STORAGE_KEY_CODES = {
 };
 const SHARE_TEXT = "Share";
 
+let decompressedExampleString: string;
+
 export default function PlaygroundPage(): JSX.Element {
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    async function task() {
+      if (
+        ExecutionEnvironment.canUseDOM &&
+        location.hash.startsWith(GZIP_HASH_PREFIX)
+      ) {
+        try {
+          decompressedExampleString = await decompress(
+            location.hash.substring(GZIP_HASH_PREFIX.length)
+          );
+        } catch (e) {
+          console.error("Decompress shared example failed:", e);
+        }
+      }
+      setReady(true);
+    }
+    task();
+  }, []);
+
   return (
     <Layout title="Playground" description="Brick playground" noFooter>
-      <Playground />
+      {ready && <Playground />}
     </Layout>
   );
 }
@@ -176,19 +200,24 @@ function Playground(): JSX.Element {
     [isLocal, mode]
   );
 
-  const handleShare = useCallback(() => {
-    history.replaceState(
-      null,
-      "",
-      `#${b64EncodeUnicode(
-        JSON.stringify({
-          [mode]: currentCode,
-          gap: hasGap,
-        })
-      )}`
-    );
-    const result = copy(location.href);
-    setShareText(result ? "URL copied" : "Failed to copy URL");
+  const handleShare = useCallback(async () => {
+    let ok = false;
+    try {
+      history.replaceState(
+        null,
+        "",
+        `${GZIP_HASH_PREFIX}${await compress(
+          JSON.stringify({
+            [mode]: currentCode,
+            gap: hasGap,
+          })
+        )}`
+      );
+      ok = copy(location.href);
+    } catch (e) {
+      console.error("Compress shared example failed:", e);
+    }
+    setShareText(ok ? "URL copied" : "Failed to copy URL");
     setTimeout(() => {
       setShareText(SHARE_TEXT);
     }, 2000);
@@ -357,7 +386,10 @@ function useInitialExample(): InitialExample {
       if (hash) {
         let sharedExample: InitialExample;
         try {
-          sharedExample = JSON.parse(b64DecodeUnicode(location.hash.slice(1)));
+          sharedExample = JSON.parse(
+            decompressedExampleString ??
+              b64DecodeUnicode(location.hash.slice(1))
+          );
         } catch (error) {
           // eslint-disable-next-line no-console
           console.error("Parse pasted sources failed:", error);
