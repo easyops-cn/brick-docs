@@ -1888,10 +1888,10 @@
   resolved "https://registry.yarnpkg.com/@next-core/monaco-contributions/-/monaco-contributions-0.3.3.tgz#fc0d1a61e82843f56f72d7feb96706fd4aafefaa"
   integrity sha512-VwRupqC935r81dd02G8gIyaQYdu+KYPmXNzNR8jAmgNMOErNWbjRqDPSIty0t1RhWC0HuvPfBRd8guOrwoJIDg==
 
-"@next-core/preview@^0.2.18":
-  version "0.2.18"
-  resolved "https://registry.yarnpkg.com/@next-core/preview/-/preview-0.2.18.tgz#5543126a9298cbd06b610ac5dd166110714900ed"
-  integrity sha512-9KbVsuJCxylYzfAnPRGeEpEmuKjTLzeHZuly3mokRe/9znI34kdZAZXAbiJ284GtKQxYHFKT9e3Sy7D9UZXpwQ==
+"@next-core/preview@^0.2.24":
+  version "0.2.24"
+  resolved "https://registry.yarnpkg.com/@next-core/preview/-/preview-0.2.24.tgz#210c41f11b7eaad86924c4255f1ec3a48cde8012"
+  integrity sha512-ve1ezhuU82OI5duQ1Jvs2H/XQ/NzcVos7GFiSfq6UwU86TB5/YFOUJXPm2Lh/GHwTzrt44rPqI0zifbhkaYF4g==
 
 "@node-rs/jieba-android-arm-eabi@1.7.0":
   version "1.7.0"
