@@ -9,6 +9,7 @@ const HTML_DELIMITER_END = "-- HTML DELIMITER end (1nbbm8) -->";
 
 interface CodeBlockProps {
   preview?: boolean;
+  minHeight?: string;
   children: string;
   className: string;
   gap?: boolean | string;
@@ -54,6 +55,12 @@ export default function CodeBlockWrapper(props: CodeBlockProps): JSX.Element {
   }, [props.children, props.className, props.preview]);
 
   if (previewData) {
+    const minHeight = parseMetaAttributeAsString(props.minHeight);
+    const gap =
+      typeof props.gap === "boolean"
+        ? props.gap
+        : parseMetaAttributeAsString(props.gap);
+
     const { type, code, altCode } = previewData;
     return (
       <NextExample
@@ -61,14 +68,24 @@ export default function CodeBlockWrapper(props: CodeBlockProps): JSX.Element {
         code={code}
         altCode={altCode}
         hiddenStyle={
-          props.gap
-            ? `#preview-root { display: flex; flex-wrap: wrap; gap: ${
-                props.gap === true ? "0.27em" : props.gap
-              }; }`
-            : undefined
+          `${
+            gap
+              ? `#preview-root { display: flex; flex-wrap: wrap; gap: ${
+                  gap === true ? "0.27em" : gap
+                }; }`
+              : ""
+          }${minHeight ? `#preview-root { min-height: ${minHeight}; }` : ""}` ||
+          undefined
         }
       />
     );
   }
   return <CodeBlock {...props} />;
+}
+
+function parseMetaAttributeAsString(value: string | undefined): string {
+  if (typeof value !== "string") {
+    return undefined;
+  }
+  return value.replace(/^(['"])(.*)\1$/, "$2");
 }
