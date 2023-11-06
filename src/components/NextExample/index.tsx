@@ -18,6 +18,7 @@ import useDeferredValue from "@site/src/hooks/useDeferredValue";
 import { EXAMPLE_IFRAME_MIN_HEIGHT } from "@site/src/constants";
 import getContentHeightByCode from "@site/src/utils/getContentHeightByCode";
 import useExampleLanguage from "@site/src/hooks/useExampleLanguage";
+import useExampleUIVersion from "@site/src/hooks/useExampleUIVersion";
 import { GZIP_HASH_PREFIX, compress } from "@site/src/utils/gzip";
 import ChevronUp from "./chevron-up.svg";
 import ChevronDown from "./chevron-down.svg";
@@ -73,6 +74,7 @@ export default function NextExample({
   hiddenStyle,
 }: NextExampleProps): JSX.Element {
   const [language, changeLanguage] = useExampleLanguage();
+  const [uiVersion] = useExampleUIVersion();
   const containerRef = useRef<HTMLDivElement>();
   const { colorMode } = useColorMode();
   const previewSrc = useBaseUrl("/preview/");
@@ -141,10 +143,11 @@ export default function NextExample({
       },
       {
         theme: colorMode,
+        uiVersion,
         styleText: hiddenStyle,
       }
     );
-  }, [colorMode, ready, hiddenStyle, deferredLanguageAndCode]);
+  }, [colorMode, ready, hiddenStyle, deferredLanguageAndCode, uiVersion]);
 
   useLayoutEffect(() => {
     if (!ready) {

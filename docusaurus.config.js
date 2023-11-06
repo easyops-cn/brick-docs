@@ -166,6 +166,20 @@ const config = {
             className: "header-search",
           },
           {
+            type: "custom-uiVersionDropdown",
+            position: "right",
+            // items: [
+            //   {
+            //     label: "UI 8.2",
+            //     href: "/",
+            //   },
+            //   {
+            //     label: "UI 8.0",
+            //     href: "/",
+            //   },
+            // ],
+          },
+          {
             href: "https://brick-next.js.org/",
             position: "right",
             label: "Brick Next",
@@ -288,7 +302,7 @@ const config = {
                         .replace("bootstrap.hash.json", bootstrapJsonPath)
                         .replace(
                           "</head>",
-                          `<style>body{--body-background:transparent}div#preview-root{padding:2em}</style></head>`
+                          `<style>div#preview-root{padding:2em}</style></head>`
                         );
                     }
                     return buf;

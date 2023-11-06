@@ -19,6 +19,7 @@ import usePlaygroundQuery from "@site/src/hooks/usePlaygroundQuery";
 import { b64DecodeUnicode } from "@site/src/utils/b64Unicode";
 import { decorateAltCode } from "@site/src/utils/decorateAltCode";
 import { GZIP_HASH_PREFIX, compress, decompress } from "@site/src/utils/gzip";
+import useExampleUIVersion from "@site/src/hooks/useExampleUIVersion";
 import styles from "./style.module.css";
 
 const { examples } = examplesJson;
@@ -68,6 +69,7 @@ export default function PlaygroundPage(): JSX.Element {
 
 function Playground(): JSX.Element {
   const { colorMode } = useColorMode();
+  const [uiVersion] = useExampleUIVersion();
   const previewSrc = useBaseUrl("/preview/");
   const initialExample = useInitialExample();
   const [isLocal, setIsLocal] = useState(initialExample.isLocal);
@@ -113,12 +115,13 @@ function Playground(): JSX.Element {
       },
       {
         theme: colorMode,
+        uiVersion,
         styleText: hasGap
           ? "#preview-root { display: flex; flex-wrap: wrap; gap: 0.27em }"
           : undefined,
       }
     );
-  }, [colorMode, deferredModeAndCode, ready, hasGap]);
+  }, [colorMode, deferredModeAndCode, ready, hasGap, uiVersion]);
 
   useEffect(() => {
     handleRefresh();
