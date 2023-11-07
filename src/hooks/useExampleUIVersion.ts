@@ -7,7 +7,7 @@ const listeners = new Set<(uiVersion: UI_VERSION) => void>();
 const STORAGE_KEY_UI_VERSION = "example.ui.version";
 
 export default function useExampleUIVersion() {
-  const [uiVersion, setUIVersion] = useState<UI_VERSION>();
+  const [uiVersion, setUIVersion] = useState<UI_VERSION>(null);
 
   useEffect(() => {
     setUIVersion(

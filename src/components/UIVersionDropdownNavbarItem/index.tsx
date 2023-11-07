@@ -14,7 +14,19 @@ export default function UIVersionDropdownNavbarItem({
   const [uiVersion, changeUIVersion] = useExampleUIVersion();
   const items = UIVersions.map((version) => ({
     label: `UI ${version}`,
-    to: "#",
+    to: "javascript:void",
+    target: "_self",
+    autoAddBaseUrl: false,
+    className:
+      // eslint-disable-next-line no-nested-ternary
+      version === uiVersion
+        ? // Similar idea as DefaultNavbarItem: select the right Infima active
+          // class name. This cannot be substituted with isActive, because the
+          // target URLs contain `pathname://` and therefore are not NavLinks!
+          mobile
+          ? "menu__link--active"
+          : "dropdown__link--active"
+        : "",
     isActive: () => version === uiVersion,
     onClick: () => changeUIVersion(version),
   }));
@@ -27,7 +39,9 @@ export default function UIVersionDropdownNavbarItem({
         description:
           "The label for the navbar UI versions dropdown on mobile view",
       })
-    : `UI ${uiVersion}`;
+    : uiVersion
+    ? `UI ${uiVersion}`
+    : "";
   const dropdownTo = undefined;
 
   return (
