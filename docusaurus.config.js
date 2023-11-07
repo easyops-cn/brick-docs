@@ -213,16 +213,8 @@ const config = {
             title: "Community",
             items: [
               {
-                label: "Stack Overflow",
-                href: "https://stackoverflow.com/questions/tagged/docusaurus",
-              },
-              {
-                label: "Discord",
-                href: "https://discordapp.com/invite/docusaurus",
-              },
-              {
-                label: "Twitter",
-                href: "https://twitter.com/docusaurus",
+                label: "GitHub",
+                href: "https://github.com/easyops-cn/next-bricks",
               },
             ],
           },
@@ -232,14 +224,6 @@ const config = {
               {
                 label: "Brick Next",
                 href: "https://brick-next.js.org/",
-              },
-              {
-                label: "Blog",
-                href: "https://brick-next.js.org/blog",
-              },
-              {
-                label: "GitHub",
-                href: "https://github.com/easyops-cn/next-bricks",
               },
             ],
           },
