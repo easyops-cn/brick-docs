@@ -8,16 +8,15 @@ const HTML_DELIMITER_START = "<!-- HTML DELIMITER start (1nbbm8) --";
 const HTML_DELIMITER_END = "-- HTML DELIMITER end (1nbbm8) -->";
 
 interface CodeBlockProps {
-  preview?: boolean;
-  minHeight?: string;
   children: string;
   className: string;
-  gap?: boolean | string;
+  metastring?: string;
 }
 
 export default function CodeBlockWrapper(props: CodeBlockProps): JSX.Element {
   const previewData = useMemo(() => {
-    if (props.preview === true) {
+    const preview = parseMetaAttributeAsBoolean(props.metastring, "preview");
+    if (preview) {
       const fullCode = props.children.trimEnd();
       const type = (
         props.className.replace("language-", "") === "yaml" ? "yaml" : "html"
@@ -52,14 +51,13 @@ export default function CodeBlockWrapper(props: CodeBlockProps): JSX.Element {
       }
       return { type, code, altCode };
     }
-  }, [props.children, props.className, props.preview]);
+  }, [props.children, props.className, props.metastring]);
 
   if (previewData) {
-    const minHeight = parseMetaAttributeAsString(props.minHeight);
+    const minHeight = parseMetaAttributeAsString(props.metastring, "minHeight");
     const gap =
-      typeof props.gap === "boolean"
-        ? props.gap
-        : parseMetaAttributeAsString(props.gap);
+      parseMetaAttributeAsBoolean(props.metastring, "gap") ||
+      parseMetaAttributeAsString(props.metastring, "gap");
 
     const { type, code, altCode } = previewData;
     return (
@@ -83,9 +81,17 @@ export default function CodeBlockWrapper(props: CodeBlockProps): JSX.Element {
   return <CodeBlock {...props} />;
 }
 
-function parseMetaAttributeAsString(value: string | undefined): string {
-  if (typeof value !== "string") {
+function parseMetaAttributeAsBoolean(meta: string, attr: string): boolean {
+  if (typeof meta !== "string") {
+    return false;
+  }
+  return new RegExp(`(?:^|\\s)${attr}(?:\\s|$)`).test(meta);
+}
+
+function parseMetaAttributeAsString(meta: string, attr: string): string {
+  if (typeof meta !== "string") {
     return undefined;
   }
-  return value.replace(/^(['"])(.*)\1$/, "$2");
+  const matches = meta.match(new RegExp(`(?:^|\\s)${attr}=(['"])(.*)\\1$`));
+  return matches ? matches[2] : "";
 }
