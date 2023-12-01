@@ -30,6 +30,7 @@ export interface NextExampleProps {
   code: string;
   altCode: string;
   type: "html" | "yaml";
+  label?: string;
   hiddenStyle?: string;
 }
 
@@ -71,6 +72,7 @@ export default function NextExample({
   code,
   altCode,
   type,
+  label,
   hiddenStyle,
 }: NextExampleProps): JSX.Element {
   const [language, changeLanguage] = useExampleLanguage();
@@ -178,6 +180,20 @@ export default function NextExample({
   const [playgroundUrl, setPlaygroundUrl] = useState("/playground");
 
   useEffect(() => {
+    if (
+      language &&
+      (language === type ? currentCode === code : currentCode === altCode)
+    ) {
+      setPlaygroundUrl(
+        `/playground/?mode=${language}&example=${encodeURIComponent(label)}`
+      );
+    }
+  }, [altCode, code, currentCode, label, language, type]);
+
+  useEffect(() => {
+    if (language === type ? currentCode === code : currentCode === altCode) {
+      return;
+    }
     let ignore = false;
     async function updatePlaygroundUrl() {
       try {
@@ -197,7 +213,7 @@ export default function NextExample({
     return () => {
       ignore = true;
     };
-  }, [currentCode, language]);
+  }, [altCode, code, currentCode, language, type]);
 
   return (
     <div className={styles.example} ref={containerRef}>
