@@ -43,12 +43,14 @@ for (const { path: pkgPath, manifest, types } of packages) {
     const srcFilePath = path.join(srcDocsDir, `${brick.name}.md`);
     const srcFilePathAlt = path.join(srcDocsDir, `${lastName}.md`);
 
+    const examplePath = `${path.basename(pkgPath)}/${lastName}`;
+
     /** @type {string} */
     let brickDoc;
     if (existsSync(srcFilePath)) {
-      brickDoc = await handleExamplesInMarkdown(await readFile(srcFilePath, "utf-8"), manifests);
+      brickDoc = await handleExamplesInMarkdown(examplePath, await readFile(srcFilePath, "utf-8"), manifests);
     } else if (existsSync(srcFilePathAlt)) {
-      brickDoc = await handleExamplesInMarkdown(await readFile(srcFilePathAlt, "utf-8"), manifests);
+      brickDoc = await handleExamplesInMarkdown(examplePath, await readFile(srcFilePathAlt, "utf-8"), manifests);
     } else {
       brickDoc = brick.description ?? "";
     }
@@ -145,12 +147,14 @@ ${
     const srcFilePath = path.join(srcDocsDir, `${provider.name}.md`);
     const srcFilePathAlt = path.join(srcDocsDir, `${lastName}.md`);
 
+    const examplePath = `${path.basename(pkgPath)}/${lastName}`;
+
     /** @type {string} */
     let brickDoc;
     if (existsSync(srcFilePath)) {
-      brickDoc = await handleExamplesInMarkdown(await readFile(srcFilePath, "utf-8"), manifests);
+      brickDoc = await handleExamplesInMarkdown(examplePath, await readFile(srcFilePath, "utf-8"), manifests);
     } else if (existsSync(srcFilePathAlt)) {
-      brickDoc = await handleExamplesInMarkdown(await readFile(srcFilePathAlt, "utf-8"), manifests);
+      brickDoc = await handleExamplesInMarkdown(examplePath, await readFile(srcFilePathAlt, "utf-8"), manifests);
     } else {
       continue;
     }
