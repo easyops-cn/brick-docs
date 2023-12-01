@@ -1835,30 +1835,30 @@
     react-lifecycles-compat "~3.0.4"
     react-textarea-autosize "~8.3.2"
 
-"@next-core/brick-manifest@^0.5.1":
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/@next-core/brick-manifest/-/brick-manifest-0.5.1.tgz#446973b6c80b80eae3fe04c766cce8363c1e4210"
-  integrity sha512-+RxfczyqIUJ+FRrOAXdvjP/zxrk1QsPp/uCky12IrOA6dFtmU9LgmWNkl6rCEDjg2d2IH6dSa5isSzxlsj6K9g==
+"@next-core/brick-manifest@^0.6.0":
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/@next-core/brick-manifest/-/brick-manifest-0.6.0.tgz#eea79c632ed5cbc573bc4e6b7d8371404892f550"
+  integrity sha512-bG6oMAfmjDDiULvpyTXok0FkbpESzTpQZUeSeZMlGBwYGmnpjV6cGEdh9Af+UkIpyYlqPnP4SBNonWgHz9USPg==
 
-"@next-core/doc-helpers@^0.2.3":
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/@next-core/doc-helpers/-/doc-helpers-0.2.3.tgz#4b72b2375c1c950c410e03fd888ad7700fe20f0c"
-  integrity sha512-lzdvmjRXhE52CEMyDmS+7J5TzS5bSTG9++XDIQjaKxVeSK7ZSXanQKmMdVGUeTH25Px0uwWbbRrPxs0PpJ9C8g==
+"@next-core/doc-helpers@^0.2.5":
+  version "0.2.5"
+  resolved "https://registry.yarnpkg.com/@next-core/doc-helpers/-/doc-helpers-0.2.5.tgz#a13fa7f2b82362672977b0ece1119ac3f9ecd4ac"
+  integrity sha512-+BjWnbXqnJkzG6nzyFLd0GwEFvvao0v6ZCJwZ8jTD1qbj/s+ewzFyzeLyC+5EkTYtTqMiWI+L+5aJmsF3myrQg==
   dependencies:
-    "@next-core/brick-manifest" "^0.5.1"
+    "@next-core/brick-manifest" "^0.6.0"
     fast-xml-parser "^4.3.2"
     js-yaml "^3.14.1"
-    prettier "^3.0.3"
+    prettier "^3.1.0"
 
 "@next-core/monaco-contributions@^0.3.3":
   version "0.3.3"
   resolved "https://registry.yarnpkg.com/@next-core/monaco-contributions/-/monaco-contributions-0.3.3.tgz#fc0d1a61e82843f56f72d7feb96706fd4aafefaa"
   integrity sha512-VwRupqC935r81dd02G8gIyaQYdu+KYPmXNzNR8jAmgNMOErNWbjRqDPSIty0t1RhWC0HuvPfBRd8guOrwoJIDg==
 
-"@next-core/preview@^0.2.40":
-  version "0.2.40"
-  resolved "https://registry.yarnpkg.com/@next-core/preview/-/preview-0.2.40.tgz#a3b629740ed20ce60223fa6138519867f1ec21ed"
-  integrity sha512-oR4pCDS7ZbEIpOg2e3VI+Ok1kLkoFpYcujlELS4rP3QtLDYM5cWFWdrWzqr9BxFPtsbKw8f2Tgn9xV4K+nLvYA==
+"@next-core/preview@^0.2.48":
+  version "0.2.48"
+  resolved "https://registry.yarnpkg.com/@next-core/preview/-/preview-0.2.48.tgz#0cc6b15d569f509777e5dddd6db5a4c7310a4aa9"
+  integrity sha512-2BvnEqhcqXfE9ih2t+2lXZ/9lnb+J+YdACJ9GNbdcczYEM7UtvhddKOEch+kV8Ao/9mS3yvSYH1hgwpPi3Ko2Q==
 
 "@node-rs/jieba-android-arm-eabi@1.7.0":
   version "1.7.0"
@@ -7770,10 +7770,10 @@ prelude-ls@^1.2.1:
   resolved "https://registry.yarnpkg.com/prelude-ls/-/prelude-ls-1.2.1.tgz#debc6489d7a6e6b0e7611888cec880337d316396"
   integrity sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==
 
-prettier@^3.0.3:
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-3.0.3.tgz#432a51f7ba422d1469096c0fdc28e235db8f9643"
-  integrity sha512-L/4pUDMxcNa8R/EthV08Zt42WBO4h1rarVtK0K+QJG0X187OLo7l699jWw0GKuwzkPQ//jMFA/8Xm6Fh3J/DAg==
+prettier@^3.0.3, prettier@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-3.1.0.tgz#c6d16474a5f764ea1a4a373c593b779697744d5e"
+  integrity sha512-TQLvXjq5IAibjh8EpBIkNKxO749UEWABoiIZehEPiY4GNpVdhaFKqSTu+QrlU6D2dPAfubRmtJTi4K4YkQ5eXw==
 
 pretty-error@^4.0.0:
   version "4.0.0"
