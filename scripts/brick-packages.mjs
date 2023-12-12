@@ -15,9 +15,14 @@ await Promise.all(
       const pkgPath = path.join(bricksDir, dir.name);
       const manifestJsonPath = path.join(pkgPath, "dist/manifest.json");
       const typesJsonPath = path.join(pkgPath, "dist/types.json");
+      const storiesJson = path.join(pkgPath, "dist/stories.json");
       let types = {};
       if (existsSync(typesJsonPath)) {
         types = (await import(typesJsonPath, { assert: { type: "json" } })).default;
+      }
+      let stories = [];
+      if (existsSync(storiesJson)) {
+        stories = (await import(storiesJson, { assert: { type: "json" } })).default;
       }
       if (existsSync(manifestJsonPath)) {
         const manifest = (await import(manifestJsonPath, { assert: { type: "json" } })).default;
@@ -79,6 +84,7 @@ await Promise.all(
               })
             },
             types,
+            stories,
           });
         }
       }

@@ -11,8 +11,11 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const bricksDir = getBricksDir();
 const manifests = packages.map(({ manifest }) => manifest);
+const stories = packages.map(({ manifest, stories }) => ({ key: manifest.name, stories }));
 const examplesJson = JSON.stringify({ examples: await getExamples(bricksDir, manifests) });
+const storiesJson = JSON.stringify({ stories })
 await writeFile(path.join(__dirname, "../src/examples.json"), examplesJson);
+await writeFile(path.join(__dirname, "../src/stories.json"), storiesJson);
 
 const targetBricksDir = path.join(__dirname, "../docs/bricks");
 if (existsSync(targetBricksDir)) {

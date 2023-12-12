@@ -15,24 +15,29 @@ import copy from "copy-to-clipboard";
 import LoadingRing from "@site/src/components/LoadingRing";
 import useDeferredValue from "@site/src/hooks/useDeferredValue";
 import examplesJson from "@site/src/examples.json";
+import storiesJson from "@site/src/stories.json";
 import usePlaygroundQuery from "@site/src/hooks/usePlaygroundQuery";
 import { b64DecodeUnicode } from "@site/src/utils/b64Unicode";
 import { decorateAltCode } from "@site/src/utils/decorateAltCode";
 import { GZIP_HASH_PREFIX, compress, decompress } from "@site/src/utils/gzip";
 import useExampleUIVersion from "@site/src/hooks/useExampleUIVersion";
 import styles from "./style.module.css";
+import yaml from "js-yaml";
 
 const { examples } = examplesJson;
+const { stories } = storiesJson;
 
 const DEFAULT_SOURCES = {
   html: '<basic.general-button type="primary">\n  Hello world\n</basic.general-button>',
   yaml: "brick: basic.general-button\nproperties:\n  type: primary\n  textContent: Hello world",
+  snippet: "brick: div\nproperties:\n textContent: Hello, I'm snippet",
 };
 
 const STORAGE_KEY_MODE = "playground.mode";
 const STORAGE_KEY_CODES = {
   html: "playground.code.html",
   yaml: "playground.code.yaml",
+  snippet: "playground.code.snippet",
 };
 const SHARE_TEXT = "Share";
 
@@ -107,11 +112,13 @@ function Playground(): JSX.Element {
     }
     const colonIndex = deferredModeAndCode.indexOf(":");
     const deferredMode = deferredModeAndCode.substring(0, colonIndex);
+    const realMode = deferredMode === "snippet" ? "yaml" : deferredMode;
     const deferredCode = deferredModeAndCode.substring(colonIndex + 1);
+
     render(
-      deferredMode,
+      realMode,
       {
-        [deferredMode]: deferredCode,
+        [realMode]: deferredCode,
       },
       {
         theme: colorMode,
@@ -129,26 +136,30 @@ function Playground(): JSX.Element {
 
   const handleSelectMode = useCallback(
     (e: React.ChangeEvent<HTMLSelectElement>) => {
-      const newMode = e.target.value as "html" | "yaml";
+      const newMode = e.target.value as "html" | "yaml" | "snippet";
       setMode(newMode);
-      if (exampleKey) {
+      const localCode =
+        localStorage.getItem(STORAGE_KEY_CODES[newMode]) ||
+        DEFAULT_SOURCES[newMode];
+      let newCode = localCode;
+      if (newMode === "snippet") {
+        const snippet = stories
+          .map((pkg) => pkg.stories.map((story) => story.conf).flat())
+          .flat()
+          .find((story) => story.snippetId === exampleKey);
+        if (snippet) {
+          newCode = yaml.dump(snippet.bricks);
+        }
+      } else if (exampleKey) {
         const example = examples.find(
           (item) => item.key === exampleKey
         ) as Example;
-        const newCode = decorateAltCode(
-          example[newMode],
-          example.mode,
-          newMode
-        );
-        setCode(newCode);
-        setCurrentCode(newCode);
-      } else {
-        const localCode =
-          localStorage.getItem(STORAGE_KEY_CODES[newMode]) ||
-          DEFAULT_SOURCES[newMode];
-        setCode(localCode);
-        setCurrentCode(localCode);
+        if (example) {
+          newCode = decorateAltCode(example[newMode], example.mode, newMode);
+        }
       }
+      setCode(newCode);
+      setCurrentCode(newCode);
       setIsShared(false);
       localStorage.setItem(STORAGE_KEY_MODE, newMode);
       const searchParams = new URLSearchParams();
@@ -162,26 +173,34 @@ function Playground(): JSX.Element {
   );
 
   const handleSelectExample = useCallback(
-    (key) => {
-      const example = key
-        ? (examples.find((item) => item.key === key) as Example)
-        : null;
-      setExampleKey(key);
-      if (example) {
-        const newCode = decorateAltCode(example[mode], example.mode, mode);
-        setCode(newCode);
-        setCurrentCode(newCode);
-        setHasGap(example.gap);
-        setIsLocal(false);
+    (key, option) => {
+      let code =
+        localStorage.getItem(STORAGE_KEY_CODES[mode]) || DEFAULT_SOURCES[mode];
+      let isLocal = false;
+      let isGap = false;
+      if (mode === "snippet") {
+        if (option?.bricks) {
+          code = yaml.dump(option.bricks);
+        } else {
+          isLocal = true;
+        }
       } else {
-        const localCode =
-          localStorage.getItem(STORAGE_KEY_CODES[mode]) ||
-          DEFAULT_SOURCES[mode];
-        setCode(localCode);
-        setCurrentCode(localCode);
-        setHasGap(false);
-        setIsLocal(true);
+        const example = key
+          ? (examples.find((item) => item.key === key) as Example)
+          : null;
+        setExampleKey(key);
+        if (example) {
+          code = decorateAltCode(example[mode], example.mode, mode);
+          isGap = example.gap;
+        } else {
+          isLocal = true;
+        }
       }
+      setCode(code);
+      setCurrentCode(code);
+      setHasGap(isGap);
+      setIsLocal(isLocal);
+      setExampleKey(key);
       setIsShared(false);
       const searchParams = new URLSearchParams();
       searchParams.set("mode", mode);
@@ -234,11 +253,13 @@ function Playground(): JSX.Element {
             <select value={mode} onChange={handleSelectMode}>
               <option value="html">HTML</option>
               <option value="yaml">YAML</option>
+              <option value="snippet">SNIPPET</option>
             </select>
           </div>
           <div className={styles.toolbarColumn}>
             Example:{" "}
             <SelectExamples
+              mode={mode}
               value={exampleKey}
               isShared={isShared}
               onSelect={handleSelectExample}
@@ -253,7 +274,7 @@ function Playground(): JSX.Element {
               return (
                 <MixedEditor
                   code={code}
-                  type={mode}
+                  type={mode === "snippet" ? "yaml" : mode}
                   className={styles.editor}
                   automaticLayout
                   onChange={handleCodeChange}
@@ -308,43 +329,71 @@ function Playground(): JSX.Element {
 interface ExampleOption {
   value: string;
   label: string;
+  [k: string]: unknown;
 }
 
 interface SelectExamplesProps {
+  mode?: "html" | "yaml" | "snippet";
   value?: string;
   isShared?: boolean;
-  onSelect(key: string): void;
+  onSelect(key: string, option: ExampleOption): void;
 }
 
 function SelectExamples({
+  mode,
   value,
   isShared,
   onSelect,
 }: SelectExamplesProps): JSX.Element {
   const groupedExamples = useMemo(() => {
     const groups = new Map<string, ExampleOption[]>();
-    for (const example of examples) {
-      const parts = example.key.split("/");
-      const groupName = parts[0];
-      const groupItems = groups.get(groupName);
-      const option: ExampleOption = {
-        value: example.key,
-        label: parts.slice(1).join("/"),
-      };
-      if (groupItems) {
-        groupItems.push(option);
-      } else {
-        groups.set(groupName, [option]);
+    if (mode === "html" || mode === "yaml") {
+      for (const example of examples) {
+        const parts = example.key.split("/");
+        const groupName = parts[0];
+        const groupItems = groups.get(groupName);
+        const option: ExampleOption = {
+          value: example.key,
+          label: parts.slice(1).join("/"),
+        };
+        if (groupItems) {
+          groupItems.push(option);
+        } else {
+          groups.set(groupName, [option]);
+        }
+      }
+    }
+    if (mode === "snippet") {
+      for (const pkg of stories) {
+        const part = pkg.key;
+        const options = pkg.stories
+          .map((story) =>
+            story.conf.map((item) => ({
+              label: `${part}/${item.snippetId}`,
+              value: item.snippetId,
+              bricks: item.bricks,
+            }))
+          )
+          .flat();
+        if (options.length) {
+          groups.set(part, options);
+        }
       }
     }
     return groups;
-  }, []);
+  }, [mode]);
 
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLSelectElement>) => {
-      onSelect(e.target.value);
+      const { value } = e.target;
+      onSelect(
+        value,
+        [...groupedExamples.values()]
+          .flat()
+          .find((item) => item.value === value)
+      );
     },
-    [onSelect]
+    [groupedExamples, onSelect]
   );
 
   return (
@@ -369,7 +418,7 @@ interface Sources {
 }
 
 interface InitialExample extends Sources {
-  mode: "html" | "yaml";
+  mode: "html" | "yaml" | "snippet";
   key?: string;
   isShared?: boolean;
   isLocal?: boolean;
