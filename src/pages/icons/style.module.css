@@ -1,0 +1,14 @@
+.preview {
+  visibility: hidden;
+}
+
+.preview.ready {
+  visibility: visible;
+}
+
+.preview > iframe {
+  display: block;
+  width: 100%;
+  margin: 0;
+  border: none;
+}

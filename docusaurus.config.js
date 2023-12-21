@@ -156,6 +156,11 @@ const config = {
             position: "left",
           },
           {
+            to: "icons",
+            label: "Icons",
+            position: "left",
+          },
+          {
             to: "playground",
             label: "Playground",
             position: "left",
@@ -251,7 +256,7 @@ const config = {
   plugins: [
     () => ({
       name: "docusaurus-next-runtime",
-      configureWebpack(config, isServer, utils) {
+      configureWebpack() {
         const previewDir = path.join(
           require.resolve("@next-core/preview/package.json"),
           "../dist"

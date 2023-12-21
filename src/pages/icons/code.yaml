@@ -1,0 +1,137 @@
+brick: div
+context:
+  - name: query
+  - name: iconLib
+    value: easyops
+  - name: iconLibs
+    resolve:
+      useProvider: icons.get-libs
+      transform:
+        value: |
+          <%
+            DATA.map(({ title, lib, icons }) => ({
+              title,
+              lib,
+              groups:
+                Object.entries(
+                  _.groupBy(icons, lib === "easyops" ? "icon.category" : lib === "antd" ? "icon.theme" : "icon.prefix")
+                ).map(([group, icons]) => ({ group, icons })),
+            }))
+          %>
+  - name: groups
+    value: |
+      <%
+        ((groups) => (
+          CTX.query
+            ? groups.map(({ group, icons }) => ({
+                group,
+                icons: icons.filter(
+                  (item) => item.$searchTextPool.some(text => text.includes(CTX.query))
+                )
+              })).filter((group) => group.icons.length > 0)
+            : groups
+        ))(
+          CTX.iconLibs.find(lib => lib.lib === CTX.iconLib)?.groups ?? []
+        )
+      %>
+    track: true
+lifeCycle:
+  onPageLoad:
+    action: console.log
+    args:
+      - groups
+      - <% CTX.groups %>
+children:
+  - brick: div
+    properties:
+      style:
+        display: flex
+        gap: 1em
+    children:
+    - brick: sl-input
+      properties:
+        placeholder: Search for icons...
+      events:
+        keydown:
+        - if: <% EVENT.code === 'Enter' %>
+          action: context.replace
+          args:
+          - query
+          - <% EVENT.target.value?.toLowerCase() %>
+    - brick: sl-radio-group
+      properties:
+        value: easyops
+      events:
+        sl-change:
+          action: context.replace
+          args:
+            - iconLib
+            - <% EVENT.target.value %>
+      children:
+        - brick: :forEach
+          dataSource:
+            - label: EasyOps Icons
+              value: easyops
+            - label: AntDesign Icons
+              value: antd
+            - label: FontAwesome Icons
+              value: fa
+          children:
+            - brick: sl-radio-button
+              properties:
+                value: <% ITEM.value %>
+                textContent: <% ITEM.label %>
+  - brick: :forEach
+    dataSource: <%= CTX.groups %>
+    children:
+      - brick: h3
+        properties:
+          textContent: <% ITEM.group %>
+          style:
+            marginTop: 1em
+      - brick: ul
+        properties:
+          style:
+            display: flex
+            flexWrap: wrap
+            gap: 16px 8px
+            listStyle: none
+            margin: 0px
+            padding: 1em
+            color: var(--palette-gray-8)
+        children:
+        - brick: :forEach
+          dataSource: <% ITEM.icons %>
+          children:
+          - brick: li
+            properties:
+              style:
+                display: flex
+                flexDirection: column
+                alignItems: center
+                gap: 4px
+                width: 100px
+                overflow: hidden
+            children:
+            - brick: eo-icon
+              properties:
+                lib: <% ITEM.icon.lib %>
+                category: <% ITEM.icon.category %>
+                theme: <% ITEM.icon.theme %>
+                prefix: <% ITEM.icon.prefix %>
+                icon: <% ITEM.icon.icon %>
+                title: <% ITEM.title %>
+                style:
+                  fontSize: 32px
+            - brick: span
+              properties:
+                textContent: <% ITEM.title %>
+                title: <% ITEM.title %>
+                style:
+                  width: 100%
+                  fontSize: 12px
+                  overflow: hidden
+                  textOverflow: ellipsis
+                  whiteSpace: nowrap
+                  textAlign: center
+                  color: gray
