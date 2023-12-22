@@ -1,9 +1,13 @@
-import React from 'react';
-import LoadingRing from './LoadingRing';
+import React from "react";
+import LoadingRing from "./LoadingRing";
 
-export default function LoadingRingBox({ height }: { height: number }): JSX.Element {
+export default function LoadingRingBox({
+  height,
+}: {
+  height: number | string;
+}): JSX.Element {
   return (
-    <div style={{height, position: "relative"}}>
+    <div style={{ height, position: "relative" }}>
       <LoadingRing />
     </div>
   );
