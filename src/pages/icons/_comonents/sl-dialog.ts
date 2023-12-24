@@ -29,4 +29,8 @@ export interface SlDialogMapEvents {
 export interface SlDialogElement extends HTMLElement {
   show(): void;
   hide(): void;
+  modal: {
+    activateExternal(): void;
+    deactivateExternal(): void;
+  };
 }

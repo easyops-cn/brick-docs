@@ -144,6 +144,7 @@ function IconsComponent(): JSX.Element {
     if (!dialog) {
       return;
     }
+    dialog.modal.activateExternal();
     const listener = () => {
       setSelectedIcon(false);
     };
