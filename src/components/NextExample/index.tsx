@@ -31,7 +31,7 @@ export interface NextExampleProps {
   altCode: string;
   type: "html" | "yaml";
   label?: string;
-  hiddenStyle?: string;
+  previewRootStyle?: React.CSSProperties;
 }
 
 type WaitCallback = () => void;
@@ -73,7 +73,7 @@ export default function NextExample({
   altCode,
   type,
   label,
-  hiddenStyle,
+  previewRootStyle,
 }: NextExampleProps): JSX.Element {
   const [language, changeLanguage] = useExampleLanguage();
   const [uiVersion] = useExampleUIVersion();
@@ -130,6 +130,22 @@ export default function NextExample({
     if (!ready) {
       return;
     }
+    if (previewRootStyle) {
+      const previewRoot = iframeRef.current?.contentDocument.querySelector(
+        "#preview-root"
+      ) as HTMLElement;
+      if (previewRoot) {
+        for (const [prop, value] of Object.entries(previewRootStyle)) {
+          previewRoot.style[prop] = value;
+        }
+      }
+    }
+  }, [previewRootStyle, ready]);
+
+  useEffect(() => {
+    if (!ready) {
+      return;
+    }
     const render = (iframeRef.current?.contentWindow as any)
       ?._preview_only_render;
     if (!render) {
@@ -146,10 +162,9 @@ export default function NextExample({
       {
         theme: colorMode,
         uiVersion,
-        styleText: hiddenStyle,
       }
     );
-  }, [colorMode, ready, hiddenStyle, deferredLanguageAndCode, uiVersion]);
+  }, [colorMode, ready, deferredLanguageAndCode, uiVersion]);
 
   useLayoutEffect(() => {
     if (!ready) {

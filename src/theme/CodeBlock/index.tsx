@@ -112,15 +112,23 @@ export default function CodeBlockWrapper(props: CodeBlockProps): JSX.Element {
         code={code}
         altCode={altCode}
         label={label}
-        hiddenStyle={
-          `${
-            gap
-              ? `#preview-root { display: flex; flex-wrap: wrap; gap: ${
-                  gap === true ? "0.27em" : gap
-                }; }`
-              : ""
-          }${minHeight ? `#preview-root { min-height: ${minHeight}; }` : ""}` ||
-          undefined
+        previewRootStyle={
+          gap || minHeight
+            ? {
+                ...(gap
+                  ? {
+                      display: "flex",
+                      flexWrap: "wrap",
+                      gap: gap === true ? "0.27em" : gap,
+                    }
+                  : null),
+                ...(minHeight
+                  ? {
+                      minHeight,
+                    }
+                  : null),
+              }
+            : undefined
         }
       />
     );
