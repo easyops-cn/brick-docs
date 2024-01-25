@@ -27,7 +27,15 @@ export default function BrickDocProperties({
         {properties.map((prop) => (
           <tr key={prop.name}>
             <td>
-              <code>{prop.name}</code>
+              <code
+                title={
+                  typeof prop.deprecated === "string"
+                    ? prop.deprecated
+                    : undefined
+                }
+              >
+                {prop.deprecated ? <del>{prop.name}</del> : prop.name}
+              </code>
             </td>
             <td>{prop.description}</td>
             <td>

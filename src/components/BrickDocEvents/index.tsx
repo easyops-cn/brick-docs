@@ -27,7 +27,15 @@ export default function BrickDocEvents({
         {events.map((event) => (
           <tr key={event.name}>
             <td>
-              <code>{event.name}</code>
+              <code
+                title={
+                  typeof event.deprecated === "string"
+                    ? event.deprecated
+                    : undefined
+                }
+              >
+                {event.deprecated ? <del>{event.name}</del> : event.name}
+              </code>
             </td>
             <td>{event.description}</td>
             <td>

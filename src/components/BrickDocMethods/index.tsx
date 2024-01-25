@@ -35,7 +35,15 @@ export default function BrickDocMethods({
         {methods.map((method) => (
           <tr key={method.name}>
             <td>
-              <code>{method.name}</code>
+              <code
+                title={
+                  typeof method.deprecated === "string"
+                    ? method.deprecated
+                    : undefined
+                }
+              >
+                {method.deprecated ? <del>{method.name}</del> : method.name}
+              </code>
             </td>
             <td>{method.description}</td>
             <td>
