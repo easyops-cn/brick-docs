@@ -9,6 +9,7 @@
   "packageRules": [
     {
       "excludePackagePatterns": ["^@next-core/"],
+      "matchManagers": ["npm"],
       "enabled": false
     },
     {
