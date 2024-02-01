@@ -32,6 +32,7 @@ jobs:
     - name: Cache nx cache
       uses: actions/cache@v4
       with:
+        save-always: true
         path: .cache
         key: ${{ runner.os }}-nx-${{ hashFiles('yarn.lock', 'package.json') }}-${{ hashFiles('**/package.json') }}
         restore-keys: |
