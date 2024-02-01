@@ -1839,20 +1839,20 @@
     js-yaml "^3.14.1"
     prettier "^3.1.1"
 
-"@next-core/loader@^1.5.2":
-  version "1.5.2"
-  resolved "https://registry.yarnpkg.com/@next-core/loader/-/loader-1.5.2.tgz#64878f7264e501be3343cfa59be4c940dae3e519"
-  integrity sha512-5C524ghbLzGceJ0CI1//NWdP44z3f1aV/j/d+CvE76kkOpoqKH0LCzEzh9eCwSmIvYLKOHZRqYU6P2zsz6Bayg==
+"@next-core/loader@^1.5.3":
+  version "1.5.3"
+  resolved "https://registry.yarnpkg.com/@next-core/loader/-/loader-1.5.3.tgz#647a6a810eb6aa992c79aad8c16be00df84e0983"
+  integrity sha512-yDI12QShqzC52HKEFXZAzI+x2rWldpOddRpV+QPcxCPjdKhTwi1JjHNaBKAy6IukVjC+i1I+PZqIEt3WNUx8UQ==
 
 "@next-core/monaco-contributions@^0.3.4":
   version "0.3.4"
   resolved "https://registry.yarnpkg.com/@next-core/monaco-contributions/-/monaco-contributions-0.3.4.tgz#14a60e2ebf307cf0481f2e21e2da0636707b0bbf"
   integrity sha512-m4ly26ZCqLsuophGpTDES4d+Y4k0AFElhsQzxajNay3CEDmc+ylfxr5r8MMp1bqyMGi+zEqEDcgqfF7MjzEZgg==
 
-"@next-core/preview@^0.2.65":
-  version "0.2.65"
-  resolved "https://registry.yarnpkg.com/@next-core/preview/-/preview-0.2.65.tgz#1b9105b98e459630719259dfa5b013ded7c6a314"
-  integrity sha512-D7kpW7TjB0CZEbs+tTm88mgXB5vc7V+3F2FrikaJHkHWIb4Fr3coWwxrER06JVJVpZ9nAif3APqS6rd6aELNMQ==
+"@next-core/preview@^0.2.73":
+  version "0.2.73"
+  resolved "https://registry.yarnpkg.com/@next-core/preview/-/preview-0.2.73.tgz#7087a6f889fe3e020e9f77c0d60e1c4c22a5b8b0"
+  integrity sha512-U0EW6DmXj/FTazJxZzWNohmpDoGiZfj4BQbxP2Tp+c9xoxC6AfAUIvzHtzh+Vv4J0uVxT2VM94dEQ1xumETViA==
 
 "@node-rs/jieba-android-arm-eabi@1.7.0":
   version "1.7.0"
