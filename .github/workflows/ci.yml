@@ -30,7 +30,7 @@ jobs:
         registry-url: 'https://registry.npmjs.org'
 
     - name: Cache nx cache
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: .cache
         key: ${{ runner.os }}-nx-${{ hashFiles('yarn.lock', 'package.json') }}-${{ hashFiles('**/package.json') }}
@@ -42,7 +42,7 @@ jobs:
       run: echo "::set-output name=dir::$(yarn cache dir)"
 
     - name: Cache for yarn
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
         key: bricks-node-cache-${{ runner.os }}-yarn-v3-${{ hashFiles('yarn.lock') }}
