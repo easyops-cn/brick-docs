@@ -13,10 +13,15 @@
 }
 
 .column,
-.toolbarColumn,
 .editorBox,
 .previewBox {
   flex: 1;
+}
+
+.column,
+.toolbarColumn,
+.editorBox,
+.previewBox {
   min-height: 0;
   min-width: 0;
 }
@@ -43,6 +48,7 @@
 
 .toolbarColumn:first-child {
   justify-content: flex-start;
+  flex-shrink: 0;
 }
 
 .toolbarColumn:last-child {
@@ -51,6 +57,7 @@
 
 .playground select {
   height: 24px;
+  min-width: 0;
 }
 
 .playground :global(.button) {
