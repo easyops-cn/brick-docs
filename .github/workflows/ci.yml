@@ -55,6 +55,8 @@ jobs:
 
     - name: Build (Bricks)
       run: yarn build
+      env:
+        NX_REJECT_UNKNOWN_LOCAL_CACHE: '0'
 
     - name: Compress artifacts
       run: |
