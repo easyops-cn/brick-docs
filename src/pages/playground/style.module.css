@@ -13,13 +13,13 @@
 }
 
 .column,
-.toolbarColumn,
 .editorBox,
 .previewBox {
   flex: 1;
 }
 
 .column,
+.toolbarColumn,
 .editorBox,
 .previewBox {
   min-height: 0;
