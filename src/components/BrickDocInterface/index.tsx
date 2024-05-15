@@ -58,7 +58,7 @@ export default function BrickDocInterface({
               <td style={{ textAlign: "center" }}>
                 {item.type === "indexSignature" || item.optional ? "" : "✅"}
               </td>
-              <td>{item.description}</td>
+              <td className="pre-wrap">{item.description}</td>
             </tr>
           ))}
         </tbody>

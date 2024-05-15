@@ -3,9 +3,9 @@ import type { SlotManifest } from "@next-core/brick-manifest";
 import MaybeEmptyCode from "@site/src/components/MaybeEmptyCode";
 
 export default function BrickDocSlots({
-  slots
+  slots,
 }: {
-  slots: SlotManifest[]
+  slots: SlotManifest[];
 }): JSX.Element {
   return (
     <table>
@@ -16,15 +16,15 @@ export default function BrickDocSlots({
         </tr>
       </thead>
       <tbody>
-        {
-          slots.map(slot => (
-            <tr key={slot.name}>
-              <td><MaybeEmptyCode fallback="(default)">{slot.name}</MaybeEmptyCode></td>
-              <td>{slot.description}</td>
-            </tr>
-          ))
-        }
+        {slots.map((slot) => (
+          <tr key={slot.name}>
+            <td>
+              <MaybeEmptyCode fallback="(default)">{slot.name}</MaybeEmptyCode>
+            </td>
+            <td className="pre-wrap">{slot.description}</td>
+          </tr>
+        ))}
       </tbody>
     </table>
-  )
+  );
 }

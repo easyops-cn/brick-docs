@@ -20,7 +20,7 @@ export default function BrickDocParts({
             <td>
               <code>{part.name}</code>
             </td>
-            <td>{part.description}</td>
+            <td className="pre-wrap">{part.description}</td>
           </tr>
         ))}
       </tbody>

@@ -40,7 +40,7 @@ export default function ProviderDocParams({
                 {param.name}
               </code>
             </td>
-            <td>{param.description}</td>
+            <td className="pre-wrap">{param.description}</td>
             <td>
               <MaybeEmptyCode>
                 <GeneralType annotation={param.annotation} />

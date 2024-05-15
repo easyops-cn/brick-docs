@@ -37,7 +37,7 @@ export default function BrickDocEvents({
                 {event.deprecated ? <del>{event.name}</del> : event.name}
               </code>
             </td>
-            <td>{event.description}</td>
+            <td className="pre-wrap">{event.description}</td>
             <td>
               <MaybeEmptyCode>
                 {event.detail?.annotation ? (

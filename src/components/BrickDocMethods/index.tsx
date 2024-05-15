@@ -45,7 +45,7 @@ export default function BrickDocMethods({
                 {method.deprecated ? <del>{method.name}</del> : method.name}
               </code>
             </td>
-            <td>{method.description}</td>
+            <td className="pre-wrap">{method.description}</td>
             <td>
               {method.params.map((param, index, array) => (
                 <React.Fragment key={index}>
