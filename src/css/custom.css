@@ -96,3 +96,7 @@ html[data-theme="dark"] .header-github-link::before {
 
 @media (max-width: 640px) {
 }
+
+.pre-wrap {
+  white-space: pre-wrap;
+}

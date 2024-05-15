@@ -37,7 +37,7 @@ export default function BrickDocProperties({
                 {prop.deprecated ? <del>{prop.name}</del> : prop.name}
               </code>
             </td>
-            <td>{prop.description}</td>
+            <td className="pre-wrap">{prop.description}</td>
             <td>
               <MaybeEmptyCode>
                 <GeneralType annotation={prop.annotation} />
