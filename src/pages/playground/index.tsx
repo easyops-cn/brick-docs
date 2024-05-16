@@ -446,17 +446,17 @@ function useInitialExample(): InitialExample {
           // eslint-disable-next-line no-console
           console.error("Parse pasted sources failed:", error);
         }
-        if (typeof sharedExample?.yaml === "string") {
+        if (typeof sharedExample?.html === "string") {
           return {
-            mode: "yaml",
-            yaml: sharedExample.yaml,
+            mode: "html",
+            html: sharedExample.html,
             gap: Boolean(sharedExample.gap),
             isShared: true,
           };
         }
         return {
-          mode: "html",
-          html: sharedExample?.html ?? "",
+          mode: "yaml",
+          yaml: sharedExample?.yaml ?? "",
           gap: Boolean(sharedExample?.gap),
           isShared: true,
         };
@@ -471,9 +471,9 @@ function useInitialExample(): InitialExample {
           return {
             ...example,
             mode: paramMode
-              ? paramMode === "yaml"
-                ? "yaml"
-                : "html"
+              ? paramMode === "html"
+                ? "html"
+                : "yaml"
               : example.mode,
             [altMode]: decorateAltCode(example[altMode], example.mode, altMode),
           };
@@ -485,7 +485,7 @@ function useInitialExample(): InitialExample {
         (ExecutionEnvironment.canUseDOM
           ? localStorage.getItem(STORAGE_KEY_MODE)
           : null);
-      const mode = possibleMode === "yaml" ? "yaml" : "html";
+      const mode = possibleMode === "html" ? "html" : "yaml";
 
       return {
         mode,
