@@ -12,7 +12,7 @@ const bricksDir = getBricksDir();
 
 const baseUrl = "/";
 
-/** @type {{brickPackages: any[]; settings: any;}} */
+/** @type {{brickPackages: any[]; settings: { misc: Record<string, any>; };}} */
 const bootstrapJson = {
   brickPackages: [],
   settings: {
@@ -40,6 +40,10 @@ for (const dir of readdirSync(bricksDir, { withFileTypes: true })) {
     }
   }
 }
+
+bootstrapJson.settings.misc.local_editors = bootstrapJson.brickPackages.flatMap(
+  (pkg) => (pkg.id ? pkg.editors ?? [] : pkg.propertyEditors ?? [])
+);
 
 const bootstrapJsonContent = JSON.stringify(bootstrapJson);
 const bootstrapJsonHash = getContentHash(bootstrapJsonContent);
