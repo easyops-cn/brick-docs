@@ -1829,30 +1829,30 @@
   resolved "https://registry.yarnpkg.com/@next-core/brick-manifest/-/brick-manifest-0.7.1.tgz#3c11e7108b2bd147a4e9876fe95e2eb0d723e2dd"
   integrity sha512-g+4m/Ran4ZBIUpIMhqx/fH91F2lYmci18tlI9TCRte2AFnmA/jsTFULdbPQtd/OMIhodrGnjkhN0WshbqeTzew==
 
-"@next-core/doc-helpers@^0.2.12":
-  version "0.2.12"
-  resolved "https://registry.yarnpkg.com/@next-core/doc-helpers/-/doc-helpers-0.2.12.tgz#3ecad58584b828328853c3f9d4f4b9513cacc4dd"
-  integrity sha512-BCHvdwPwuDR99nmfgJNH3l0U4egngyZW4AM4qKCck1YIqgP7vRudOOf/MK1cj+mFM8kNnbVw/SdV9WWuGLCPag==
+"@next-core/doc-helpers@^0.2.13":
+  version "0.2.13"
+  resolved "https://registry.yarnpkg.com/@next-core/doc-helpers/-/doc-helpers-0.2.13.tgz#79ac7c45ccfcddac6922ba5ff255d8f4bfd2c23d"
+  integrity sha512-n4oNqVE9CIXmpQjuzXO3Rm5JCnvHo9xWmcXs2BBxHJUQb7MtKvnUiRPWl5VJLywk6EEB+8R4WDkM9yefbZJvPw==
   dependencies:
     "@next-core/brick-manifest" "^0.7.1"
     fast-xml-parser "^4.4.0"
     js-yaml "^3.14.1"
-    prettier "^3.3.0"
+    prettier "^3.3.2"
 
-"@next-core/loader@^1.6.1":
-  version "1.6.1"
-  resolved "https://registry.yarnpkg.com/@next-core/loader/-/loader-1.6.1.tgz#082dbc7d85d21185fa8793524c8a3f2ed6907ae2"
-  integrity sha512-Tg9m0s0vCtljvlXpnnqx4qVT+/j+AP1BjNMEj+GLglYi+uMeXGdht7T11qN634EqLoDQUR1VsOqTEPcZKWnPwg==
+"@next-core/loader@^1.6.3":
+  version "1.6.3"
+  resolved "https://registry.yarnpkg.com/@next-core/loader/-/loader-1.6.3.tgz#1ccda515810790072db3a0759a439f1f10d91f38"
+  integrity sha512-suThedNc+b0KEfdRPlHo2J9i7k/7oKnDnzceMPkMTv3AaBSimElWOgs6WvpNkT51ee4T7ndNGAGlGGeWCJhyeA==
 
-"@next-core/monaco-contributions@^0.3.8":
-  version "0.3.8"
-  resolved "https://registry.yarnpkg.com/@next-core/monaco-contributions/-/monaco-contributions-0.3.8.tgz#66d90a21c998a2800fe45029b5bb45cedc41bd79"
-  integrity sha512-eNPCGIr03MK+hGacL+zyHVj4dzejEAeS13LsEJyjNcXUV53iXl7XOW15Jy0gxPtELCg6VdSoq7Lw03jAB4NWcw==
+"@next-core/monaco-contributions@^0.3.9":
+  version "0.3.9"
+  resolved "https://registry.yarnpkg.com/@next-core/monaco-contributions/-/monaco-contributions-0.3.9.tgz#3fa38d041243f8dc56f8a66bc6efbd40a8430b0f"
+  integrity sha512-fQGePmfAcd4wzWSWgGMuFz6N2+VyVMVOOhiaZmQLTV4XRWmbm9JG2MP6HW1Z+F4M+ce78XR/BYylYpDXNeQxhw==
 
-"@next-core/preview@^0.6.17":
-  version "0.6.17"
-  resolved "https://registry.yarnpkg.com/@next-core/preview/-/preview-0.6.17.tgz#282ac0e9ea53a5e87ac657b198a0e7b1fcca6617"
-  integrity sha512-GruOb0c9/B4U6QddzeaHH4JDV52tbEtKYEXp7NsoPz8cvVrGkxD/cqJj7YjIu1RiB95tVR+foy8tSCiMNmmWLg==
+"@next-core/preview@^0.6.22":
+  version "0.6.22"
+  resolved "https://registry.yarnpkg.com/@next-core/preview/-/preview-0.6.22.tgz#d3d3c7d46691d31122d6789f5c97a7243de810d3"
+  integrity sha512-QhSEKwCZgYnztykTVOmiXTxCdf7bZ1AvlzbyRa9146qmWPsZXh4Juf8EWxrDMByFHdgRXsP62mgOkqNA90sUuw==
 
 "@node-rs/jieba-android-arm-eabi@1.7.0":
   version "1.7.0"
@@ -7668,10 +7668,10 @@ prelude-ls@^1.2.1:
   resolved "https://registry.yarnpkg.com/prelude-ls/-/prelude-ls-1.2.1.tgz#debc6489d7a6e6b0e7611888cec880337d316396"
   integrity sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==
 
-prettier@^3.0.3, prettier@^3.3.0:
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-3.3.0.tgz#d173ea0524a691d4c0b1181752f2b46724328cdf"
-  integrity sha512-J9odKxERhCQ10OC2yb93583f6UnYutOeiV5i0zEDS7UGTdUt0u+y8erxl3lBKvwo/JHyyoEdXjwp4dke9oyZ/g==
+prettier@^3.0.3, prettier@^3.3.2:
+  version "3.3.2"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-3.3.2.tgz#03ff86dc7c835f2d2559ee76876a3914cec4a90a"
+  integrity sha512-rAVeHYMcv8ATV5d508CFdn+8/pHPpXeIid1DdrPwXnaAdH7cqjVbpJaT5eq4yRAFU/lsbwYwSF/n5iNrdJHPQA==
 
 pretty-error@^4.0.0:
   version "4.0.0"
