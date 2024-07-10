@@ -76,7 +76,9 @@ function Playground(): JSX.Element {
   const { colorMode } = useColorMode();
   const [uiVersion] = useExampleUIVersion();
   const previewSrc = useBaseUrl("/preview/");
-  const initialExample = useInitialExample();
+  const { paramMode, paramExample, paramCollapsed, hash } =
+    usePlaygroundQuery();
+  const initialExample = useInitialExample({ paramMode, paramExample, hash });
   const [isLocal, setIsLocal] = useState(initialExample.isLocal);
   const iframeRef = useRef<HTMLIFrameElement>();
   const [ready, setReady] = useState(false);
@@ -87,6 +89,7 @@ function Playground(): JSX.Element {
   const [shareText, setShareText] = useState(SHARE_TEXT);
   const [isShared, setIsShared] = useState(initialExample.isShared);
   const [hasGap, setHasGap] = useState(initialExample.gap);
+  const [editorCollapsed, setEditorCollapsed] = useState(paramCollapsed);
 
   const handleIframeLoad = useCallback(() => {
     const check = () => {
@@ -245,8 +248,23 @@ function Playground(): JSX.Element {
     }, 2000);
   }, [currentCode, hasGap, mode]);
 
+  const toggleEditor = useCallback((collapsed: boolean) => {
+    const searchParams = new URLSearchParams(location.search);
+    if (collapsed) {
+      searchParams.set("collapsed", "1");
+    } else {
+      searchParams.delete("collapsed");
+    }
+    history.replaceState(null, "", `?${searchParams}`);
+    setEditorCollapsed(collapsed);
+  }, []);
+
   return (
-    <div className={styles.playground}>
+    <div
+      className={clsx(styles.playground, {
+        [styles.editorCollapsed]: editorCollapsed,
+      })}
+    >
       <div className={styles.column}>
         <div className={styles.toolbar}>
           <div className={styles.toolbarColumn}>
@@ -257,13 +275,20 @@ function Playground(): JSX.Element {
             </select>
           </div>
           <div className={styles.toolbarColumn}>
-            Example:{" "}
+            Example:
             <SelectExamples
               mode={mode}
               value={exampleKey}
               isShared={isShared}
               onSelect={handleSelectExample}
             />
+            <button
+              className={`button button--sm button--outline button--secondary ${styles.buttonCollapse}`}
+              onClick={() => toggleEditor(true)}
+              title="Hide source code"
+            >
+              <span className={styles.chevronLeft} />
+            </button>
           </div>
         </div>
         <div className={styles.editorBox}>
@@ -287,7 +312,18 @@ function Playground(): JSX.Element {
       <div className={styles.divider}></div>
       <div className={styles.column}>
         <div className={styles.toolbar}>
-          <div className={styles.toolbarColumn}>Preview</div>
+          <div className={styles.toolbarColumn}>
+            {editorCollapsed && (
+              <button
+                className={`button button--sm button--outline button--secondary ${styles.buttonExpand}`}
+                onClick={() => toggleEditor(false)}
+                title="Show source code"
+              >
+                <span className={styles.chevronRight} />
+              </button>
+            )}
+            <span>Preview</span>
+          </div>
           <div className={styles.toolbarColumn}>
             <button
               className="button button--sm button--outline button--secondary"
@@ -397,7 +433,11 @@ function SelectExamples({
   );
 
   return (
-    <select value={value} onChange={handleChange}>
+    <select
+      value={value}
+      onChange={handleChange}
+      style={{ marginLeft: "0.25em" }}
+    >
       <option value="">{isShared ? "- shared -" : "- local -"}</option>
       {[...groupedExamples.entries()].map(([groupName, options]) => (
         <optgroup key={groupName} label={groupName}>
@@ -431,8 +471,15 @@ interface Example extends Sources {
   gap?: boolean;
 }
 
-function useInitialExample(): InitialExample {
-  const { paramMode, paramExample, hash } = usePlaygroundQuery();
+function useInitialExample({
+  paramMode,
+  paramExample,
+  hash,
+}: {
+  paramMode: string;
+  paramExample: string;
+  hash: string;
+}): InitialExample {
   return useMemo(
     () => {
       if (hash) {
