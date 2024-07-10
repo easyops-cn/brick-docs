@@ -295,7 +295,7 @@ const config = {
                         .replace("bootstrap.hash.json", bootstrapJsonPath)
                         .replace(
                           "</head>",
-                          `<style>div#preview-root{padding:2em}</style></head>`
+                          `<style>#preview-root{padding:2em}</style></head>`
                         );
                     }
                     return buf;
