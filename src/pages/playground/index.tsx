@@ -255,7 +255,7 @@ function Playground(): JSX.Element {
     } else {
       searchParams.delete("collapsed");
     }
-    history.replaceState(null, "", `?${searchParams}`);
+    history.replaceState(null, "", `?${searchParams}${location.hash}`);
     setEditorCollapsed(collapsed);
   }, []);
 

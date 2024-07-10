@@ -118,6 +118,9 @@ html[data-theme="dark"] .playground {
   display: block;
   background: no-repeat var(--ifm-menu-link-sublist-icon) 50% / 2rem 2rem;
   filter: var(--ifm-menu-link-sublist-icon-filter);
+}
+
+.chevronLeft::after {
   transform: rotate(270deg);
 }
 
