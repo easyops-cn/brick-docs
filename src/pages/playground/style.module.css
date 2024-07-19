@@ -132,3 +132,7 @@ html[data-theme="dark"] .playground {
 .editorCollapsed .divider {
   display: none;
 }
+
+.selectLanguage {
+  margin: 0 1em 0 0.25em;
+}

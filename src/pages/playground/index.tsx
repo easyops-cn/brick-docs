@@ -39,6 +39,7 @@ const STORAGE_KEY_CODES = {
   yaml: "playground.code.yaml",
   snippet: "playground.code.snippet",
 };
+const STORAGE_KEY_LANG = "playground.lang";
 const SHARE_TEXT = "Share";
 
 let decompressedExampleString: string;
@@ -90,6 +91,9 @@ function Playground(): JSX.Element {
   const [isShared, setIsShared] = useState(initialExample.isShared);
   const [hasGap, setHasGap] = useState(initialExample.gap);
   const [editorCollapsed, setEditorCollapsed] = useState(paramCollapsed);
+  const [lang, setLang] = useState(
+    () => localStorage.getItem(STORAGE_KEY_LANG) ?? ""
+  );
 
   const handleIframeLoad = useCallback(() => {
     const check = () => {
@@ -126,12 +130,13 @@ function Playground(): JSX.Element {
       {
         theme: colorMode,
         uiVersion,
+        language: lang || undefined,
         styleText: hasGap
           ? "#preview-root { display: flex; flex-wrap: wrap; gap: 0.27em }"
           : undefined,
       }
     );
-  }, [colorMode, deferredModeAndCode, ready, hasGap, uiVersion]);
+  }, [colorMode, deferredModeAndCode, ready, hasGap, uiVersion, lang]);
 
   useEffect(() => {
     handleRefresh();
@@ -223,6 +228,14 @@ function Playground(): JSX.Element {
       }
     },
     [isLocal, mode]
+  );
+
+  const handleSelectLang = useCallback(
+    (e: React.ChangeEvent<HTMLSelectElement>) => {
+      localStorage.setItem(STORAGE_KEY_LANG, e.target.value);
+      setLang(e.target.value);
+    },
+    []
   );
 
   const handleShare = useCallback(async () => {
@@ -334,6 +347,16 @@ function Playground(): JSX.Element {
             </button>
           </div>
           <div className={styles.toolbarColumn}>
+            Language:
+            <select
+              value={lang}
+              onChange={handleSelectLang}
+              className={styles.selectLanguage}
+            >
+              <option value="">auto</option>
+              <option value="zh">中文</option>
+              <option value="en">English</option>
+            </select>
             <button
               className="button button--sm button--outline button--secondary"
               onClick={handleShare}
