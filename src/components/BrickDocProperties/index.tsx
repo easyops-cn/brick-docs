@@ -1,7 +1,8 @@
 import React from "react";
 import type { Annotation, PropertyManifest } from "@next-core/brick-manifest";
 import MaybeEmptyCode from "@site/src/components/MaybeEmptyCode";
-import GeneralType from "../GeneralType";
+import GeneralType from "@site/src/components/GeneralType";
+import SimpleMarkdown from "@site/src/components/SimpleMarkdown";
 
 interface Property extends PropertyManifest {
   annotation: Annotation;
@@ -37,7 +38,9 @@ export default function BrickDocProperties({
                 {prop.deprecated ? <del>{prop.name}</del> : prop.name}
               </code>
             </td>
-            <td className="pre-wrap">{prop.description}</td>
+            <td>
+              <SimpleMarkdown content={prop.description} />
+            </td>
             <td>
               <MaybeEmptyCode>
                 <GeneralType annotation={prop.annotation} />

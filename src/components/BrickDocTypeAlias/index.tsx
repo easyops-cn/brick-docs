@@ -1,7 +1,8 @@
 import React from "react";
 import Heading from "@theme/Heading";
 import { DeclarationTypeAlias } from "@next-core/brick-manifest";
-import GeneralType from "../GeneralType";
+import GeneralType from "@site/src/components/GeneralType";
+import SimpleMarkdown from "@site/src/components/SimpleMarkdown";
 
 export default function BrickDocTypeAlias({
   typeAliasDeclaration,
@@ -14,7 +15,9 @@ export default function BrickDocTypeAlias({
         {typeAliasDeclaration.name}
       </Heading>
       {typeAliasDeclaration.description && (
-        <p>{typeAliasDeclaration.description}</p>
+        <p>
+          <SimpleMarkdown content={typeAliasDeclaration.description} />
+        </p>
       )}
       <pre>
         <code>

@@ -1,7 +1,8 @@
 import React from "react";
 import type { Annotation, EventManifest } from "@next-core/brick-manifest";
 import MaybeEmptyCode from "@site/src/components/MaybeEmptyCode";
-import GeneralType from "../GeneralType";
+import GeneralType from "@site/src/components/GeneralType";
+import SimpleMarkdown from "@site/src/components/SimpleMarkdown";
 
 interface Event extends EventManifest {
   detail?: EventManifest["detail"] & {
@@ -37,7 +38,9 @@ export default function BrickDocEvents({
                 {event.deprecated ? <del>{event.name}</del> : event.name}
               </code>
             </td>
-            <td className="pre-wrap">{event.description}</td>
+            <td>
+              <SimpleMarkdown content={event.description} />
+            </td>
             <td>
               <MaybeEmptyCode>
                 {event.detail?.annotation ? (

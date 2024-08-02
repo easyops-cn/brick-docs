@@ -1,6 +1,7 @@
 import React from "react";
 import type { SlotManifest } from "@next-core/brick-manifest";
 import MaybeEmptyCode from "@site/src/components/MaybeEmptyCode";
+import SimpleMarkdown from "@site/src/components/SimpleMarkdown";
 
 export default function BrickDocSlots({
   slots,
@@ -21,7 +22,9 @@ export default function BrickDocSlots({
             <td>
               <MaybeEmptyCode fallback="(default)">{slot.name}</MaybeEmptyCode>
             </td>
-            <td className="pre-wrap">{slot.description}</td>
+            <td>
+              <SimpleMarkdown content={slot.description} />
+            </td>
           </tr>
         ))}
       </tbody>

@@ -1,8 +1,9 @@
 import React from "react";
 import Heading from "@theme/Heading";
 import { DeclarationInterface } from "@next-core/brick-manifest";
-import GeneralType, { GeneralTypeList } from "../GeneralType";
-import MaybeEmptyCode from "../MaybeEmptyCode";
+import GeneralType, { GeneralTypeList } from "@site/src/components/GeneralType";
+import MaybeEmptyCode from "@site/src/components/MaybeEmptyCode";
+import SimpleMarkdown from "@site/src/components/SimpleMarkdown";
 
 export default function BrickDocInterface({
   interfaceDeclaration,
@@ -58,7 +59,9 @@ export default function BrickDocInterface({
               <td style={{ textAlign: "center" }}>
                 {item.type === "indexSignature" || item.optional ? "" : "✅"}
               </td>
-              <td className="pre-wrap">{item.description}</td>
+              <td>
+                <SimpleMarkdown content={item.description} />
+              </td>
             </tr>
           ))}
         </tbody>
