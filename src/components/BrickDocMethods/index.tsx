@@ -5,7 +5,8 @@ import type {
   MethodParamManifest,
 } from "@next-core/brick-manifest";
 import MaybeEmptyCode from "@site/src/components/MaybeEmptyCode";
-import GeneralType from "../GeneralType";
+import GeneralType from "@site/src/components/GeneralType";
+import SimpleMarkdown from "@site/src/components/SimpleMarkdown";
 
 interface Method extends MethodManifest {
   params: (MethodParamManifest & {
@@ -45,7 +46,9 @@ export default function BrickDocMethods({
                 {method.deprecated ? <del>{method.name}</del> : method.name}
               </code>
             </td>
-            <td className="pre-wrap">{method.description}</td>
+            <td>
+              <SimpleMarkdown content={method.description} />
+            </td>
             <td>
               {method.params.map((param, index, array) => (
                 <React.Fragment key={index}>

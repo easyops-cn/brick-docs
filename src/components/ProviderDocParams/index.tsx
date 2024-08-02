@@ -1,7 +1,8 @@
 import React from "react";
 import { Annotation } from "@next-core/brick-manifest";
-import GeneralType from "../GeneralType";
-import MaybeEmptyCode from "../MaybeEmptyCode";
+import GeneralType from "@site/src/components/GeneralType";
+import MaybeEmptyCode from "@site/src/components/MaybeEmptyCode";
+import SimpleMarkdown from "@site/src/components/SimpleMarkdown";
 
 export interface ProviderDocParamsProps {
   params?: ProviderParam[];
@@ -40,7 +41,9 @@ export default function ProviderDocParams({
                 {param.name}
               </code>
             </td>
-            <td className="pre-wrap">{param.description}</td>
+            <td>
+              <SimpleMarkdown content={param.description} />
+            </td>
             <td>
               <MaybeEmptyCode>
                 <GeneralType annotation={param.annotation} />

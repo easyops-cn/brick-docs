@@ -1,5 +1,6 @@
 import React from "react";
 import type { PartManifest } from "@next-core/brick-manifest";
+import SimpleMarkdown from "@site/src/components/SimpleMarkdown";
 
 export default function BrickDocParts({
   parts,
@@ -20,7 +21,9 @@ export default function BrickDocParts({
             <td>
               <code>{part.name}</code>
             </td>
-            <td className="pre-wrap">{part.description}</td>
+            <td>
+              <SimpleMarkdown content={part.description} />
+            </td>
           </tr>
         ))}
       </tbody>
