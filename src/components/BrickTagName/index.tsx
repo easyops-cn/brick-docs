@@ -6,17 +6,23 @@ export default function BrickTagName({
   alias,
   isProvider,
   insider,
+  deprecated,
 }: {
   name: string;
   alias?: string[];
   isProvider?: boolean;
   insider?: boolean;
+  deprecated?: boolean | string;
 }): JSX.Element {
+  const tagWithBrackets = `<${name}>`;
+
   return (
     <div className={styles.tagNameAndAlias}>
       {insider && <span className="badge badge--primary">Insider</span>}
       <div className={styles.tagName}>
-        <code>&lt;{name}&gt;</code>
+        <code>
+          {deprecated ? <del>{tagWithBrackets}</del> : <>{tagWithBrackets}</>}
+        </code>
         {isProvider && <span className="badge badge--warning">provider</span>}
       </div>
       {!!alias?.length && (

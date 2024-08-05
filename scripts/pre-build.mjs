@@ -73,7 +73,12 @@ import BrickDocParts from "@site/src/components/BrickDocParts";
 import BrickDocTypes from "@site/src/components/BrickDocTypes";
 import { TypeReferencesContext } from "@site/src/components/GeneralType";
 
-<BrickTagName name=${JSON.stringify(brick.name)} alias={${JSON.stringify(brick.alias ?? null)}} insider={${brick.insider}} />
+<BrickTagName
+  name={${JSON.stringify(brick.name)}}
+  alias={${JSON.stringify(brick.alias ?? null)}}
+  insider={${JSON.stringify(brick.insider ?? false)}}
+  deprecated={${JSON.stringify(brick.deprecated ?? false)}}
+/>
 
 ${brickDoc}
 
