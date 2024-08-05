@@ -19,9 +19,9 @@
     "prebuild": "node ./scripts/pre-build.mjs"
   },
   "dependencies": {
-    "@docusaurus/core": "3.0.1",
-    "@docusaurus/preset-classic": "3.0.1",
-    "@easyops-cn/docusaurus-search-local": "^0.37.4",
+    "@docusaurus/core": "3.4.0",
+    "@docusaurus/preset-classic": "3.4.0",
+    "@easyops-cn/docusaurus-search-local": "^0.44.4",
     "@mdx-js/react": "^3.0.0",
     "@next-core/brick-manifest": "^0.7.1",
     "@next-core/doc-helpers": "^0.2.13",
@@ -30,8 +30,8 @@
     "@next-core/preview": "^0.7.11",
     "clsx": "^1.2.1",
     "copy-to-clipboard": "^3.3.3",
-    "monaco-editor": "^0.40.0",
-    "monaco-editor-webpack-plugin": "^7.0.1",
+    "monaco-editor": "^0.50.0",
+    "monaco-editor-webpack-plugin": "^7.1.0",
     "prism-react-renderer": "^2.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -41,9 +41,9 @@
     "unified": "^11.0.4"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "3.0.1",
-    "@docusaurus/tsconfig": "3.0.1",
-    "@docusaurus/types": "3.0.1",
+    "@docusaurus/module-type-aliases": "3.4.0",
+    "@docusaurus/tsconfig": "3.4.0",
+    "@docusaurus/types": "3.4.0",
     "@typescript-eslint/eslint-plugin": "^6.10.0",
     "@typescript-eslint/parser": "^6.10.0",
     "copy-webpack-plugin": "^11.0.0",
@@ -54,8 +54,8 @@
     "husky": "^8.0.3",
     "js-yaml": "^4.1.0",
     "lint-staged": "^13.2.1",
-    "prettier": "^3.0.3",
-    "typescript": "~5.2.2"
+    "prettier": "^3.3.3",
+    "typescript": "~5.5.4"
   },
   "browserslist": {
     "production": [
