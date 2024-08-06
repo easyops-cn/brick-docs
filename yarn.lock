@@ -1849,10 +1849,10 @@
   resolved "https://registry.yarnpkg.com/@next-core/monaco-contributions/-/monaco-contributions-0.3.9.tgz#3fa38d041243f8dc56f8a66bc6efbd40a8430b0f"
   integrity sha512-fQGePmfAcd4wzWSWgGMuFz6N2+VyVMVOOhiaZmQLTV4XRWmbm9JG2MP6HW1Z+F4M+ce78XR/BYylYpDXNeQxhw==
 
-"@next-core/preview@^0.7.11":
-  version "0.7.11"
-  resolved "https://registry.yarnpkg.com/@next-core/preview/-/preview-0.7.11.tgz#6d2cbee0a70a6f06643b45fa75e7e3422cca2efb"
-  integrity sha512-Z6roF/NnnNdIUfs7/6k99D3xMA4PLsy/tgXefM8EnuMHXT+gIKeDZE3Gv7OeVb+M5Pgm2LxWGO9i2F2mdVEs6g==
+"@next-core/preview@^0.7.12":
+  version "0.7.12"
+  resolved "https://registry.yarnpkg.com/@next-core/preview/-/preview-0.7.12.tgz#1a381cbb0d29ad2cec950f20eaca616c55517787"
+  integrity sha512-Q9nlHPCm0AsI0g5eFqBpkI+sR7z6HvrrpK3SFP/xHXhfSDg3VQ2RMh2xIGNi63JiGue3UK6gonlL7H0kDyN0qQ==
 
 "@node-rs/jieba-android-arm-eabi@1.7.0":
   version "1.7.0"
@@ -8141,18 +8141,7 @@ remark-parse@^11.0.0:
     micromark-util-types "^2.0.0"
     unified "^11.0.0"
 
-remark-rehype@^11.0.0:
-  version "11.0.0"
-  resolved "https://registry.yarnpkg.com/remark-rehype/-/remark-rehype-11.0.0.tgz#7f21c08738bde024be5f16e4a8b13e5d7a04cf6b"
-  integrity sha512-vx8x2MDMcxuE4lBmQ46zYUDfcFMmvg80WYX+UNLeG6ixjdCCLcw1lrgAukwBTuOFsS78eoAedHGn9sNM0w7TPw==
-  dependencies:
-    "@types/hast" "^3.0.0"
-    "@types/mdast" "^4.0.0"
-    mdast-util-to-hast "^13.0.0"
-    unified "^11.0.0"
-    vfile "^6.0.0"
-
-remark-rehype@^11.1.0:
+remark-rehype@^11.0.0, remark-rehype@^11.1.0:
   version "11.1.0"
   resolved "https://registry.yarnpkg.com/remark-rehype/-/remark-rehype-11.1.0.tgz#d5f264f42bcbd4d300f030975609d01a1697ccdc"
   integrity sha512-z3tJrAs2kIs1AqIIy6pzHmAHlF1hWQ+OdY4/hv+Wxe35EhyLKcajL33iUEn3ScxtFox9nUvRufR/Zre8Q08H/g==
