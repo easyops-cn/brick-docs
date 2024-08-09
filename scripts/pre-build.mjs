@@ -58,12 +58,17 @@ for (const { path: pkgPath, manifest, types } of packages) {
       brickDoc = brick.description ?? "";
     }
     const typeRefs = brick.types?.map((item) => item.name);
+    const deprecated = brick.deprecated ?? false;
 
     const content =
 `---
-description: ${JSON.stringify(`<${brick.name}>`)}
+description: ${JSON.stringify(`<${brick.name}>`)}${
+  deprecated ? `\ndeprecated: true` : ""
+}
 ---
-
+${deprecated ? `\n<head>
+  <meta name="robots" content="noindex, nofollow" />
+</head>\n` : ""}
 import BrickTagName from "@site/src/components/BrickTagName";
 import BrickDocProperties from "@site/src/components/BrickDocProperties";
 import BrickDocSlots from "@site/src/components/BrickDocSlots";
@@ -77,7 +82,7 @@ import { TypeReferencesContext } from "@site/src/components/GeneralType";
   name={${JSON.stringify(brick.name)}}
   alias={${JSON.stringify(brick.alias ?? null)}}
   insider={${JSON.stringify(brick.insider ?? false)}}
-  deprecated={${JSON.stringify(brick.deprecated ?? false)}}
+  deprecated={${JSON.stringify(deprecated)}}
 />
 
 ${brickDoc}

@@ -42,7 +42,7 @@ for (const dir of readdirSync(bricksDir, { withFileTypes: true })) {
 }
 
 bootstrapJson.settings.misc.local_editors = bootstrapJson.brickPackages.flatMap(
-  (pkg) => (pkg.id ? pkg.editors ?? [] : pkg.propertyEditors ?? [])
+  (pkg) => (pkg.id ? (pkg.editors ?? []) : (pkg.propertyEditors ?? []))
 );
 
 const bootstrapJsonContent = JSON.stringify(bootstrapJson);
@@ -129,6 +129,18 @@ const config = {
           routeBasePath: "/",
           sidebarPath: require.resolve("./sidebars.js"),
           // editUrl: "https://github.com/easyops-cn/next-docs/tree/master/",
+          // Ignore deprecated bricks
+          async sidebarItemsGenerator({
+            defaultSidebarItemsGenerator,
+            docs,
+            ...args
+          }) {
+            const sidebarItems = await defaultSidebarItemsGenerator({
+              ...args,
+              docs: docs.filter((doc) => !doc.frontMatter.deprecated),
+            });
+            return sidebarItems;
+          },
         },
         blog: false,
         theme: {
