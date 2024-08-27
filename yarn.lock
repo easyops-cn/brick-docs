@@ -1852,10 +1852,10 @@
   resolved "https://registry.yarnpkg.com/@next-core/loader/-/loader-1.6.8.tgz#530b266f68bb76bc4ef6de210cc58aee41b28721"
   integrity sha512-T4xXiCTlHh6J7ohC2IYzApVvuump44tRq+N+mDybK+6OE7P8VNYd8nMsQDGPOjT+daskQjtFBS4IQ1Zu0pzeJA==
 
-"@next-core/monaco-contributions@^0.3.10":
-  version "0.3.10"
-  resolved "https://registry.yarnpkg.com/@next-core/monaco-contributions/-/monaco-contributions-0.3.10.tgz#637e549778ce2dfe4cdb3eafadf4b8822a90eafc"
-  integrity sha512-OpHqHoDQDAH/TjRSYdeJBV7LnW7ByJt0HhdBR1JFz6wCWcCxQ+7t3UqDeJ5mkGnjn86GBm8FHWFUTvEqZp7lUA==
+"@next-core/monaco-contributions@^0.3.11":
+  version "0.3.11"
+  resolved "https://registry.yarnpkg.com/@next-core/monaco-contributions/-/monaco-contributions-0.3.11.tgz#98292b44df89729ffb97cde6fef22e679ac82b4f"
+  integrity sha512-C7k3zeEGqLgIH67M7bz1foIbU7haI/ONv/EeK/pDbVslWMk2DjxpBXQ03SvurGneBxtw3h6tOx5CONPwN6Jolw==
 
 "@next-core/preview@^0.7.19":
   version "0.7.19"
