@@ -298,7 +298,7 @@ const config = {
               },
               {
                 // This file contains static initialization blocks which are not supported until Chrome 94
-                test: /[\\/]node_modules[\\/]monaco-editor[\\/]esm[\\/]vs[\\/].+\.js$/,
+                test: /[\\/]node_modules[\\/]monaco-editor[\\/]esm[\\/]vs[\\/]language[\\/]typescript[\\/]tsMode\.js$/,
                 loader: "babel-loader",
                 options: {
                   rootMode: "upward",
