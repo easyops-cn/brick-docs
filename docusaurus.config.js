@@ -2,12 +2,18 @@
 // Note: type annotations allow type checking and IDEs autocompletion
 
 const path = require("path");
-const CopyPlugin = require("copy-webpack-plugin");
-const { createHash } = require("crypto");
-const MonacoEditorWebpackPlugin = require("monaco-editor-webpack-plugin");
 const { existsSync, readdirSync, readFileSync } = require("fs");
+const { createHash } = require("crypto");
+const webpack = require("webpack");
+const _ = require("lodash");
+const CopyPlugin = require("copy-webpack-plugin");
+const MonacoEditorWebpackPlugin = require("monaco-editor-webpack-plugin");
 const getBricksDir = require("./scripts/getBricksDir.js");
 
+const originalFilePath = path.resolve(
+  require.resolve("monaco-editor/package.json"),
+  "../esm/vs/editor/common/services/findSectionHeaders.js"
+);
 const bricksDir = getBricksDir();
 
 const baseUrl = "/";
@@ -290,6 +296,14 @@ const config = {
                 test: /\.yaml/,
                 type: "asset/source",
               },
+              {
+                // This file contains static initialization blocks which are not supported until Chrome 94
+                test: /[\\/]node_modules[\\/]monaco-editor[\\/]esm[\\/]vs[\\/].+\.js$/,
+                loader: "babel-loader",
+                options: {
+                  rootMode: "upward",
+                },
+              },
             ],
           },
           plugins: [
@@ -348,6 +362,11 @@ const config = {
               ],
               filename: `workers/[name].[contenthash:8].worker.js`,
             }),
+            new webpack.NormalModuleReplacementPlugin(
+              new RegExp(`^${_.escapeRegExp(originalFilePath)}$`),
+              // Refactor without 'd' flag of RegExp
+              path.resolve(__dirname, "src/replaces/findSectionHeaders.js")
+            ),
           ],
         };
       },

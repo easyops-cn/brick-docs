@@ -30,7 +30,8 @@
     "@next-core/preview": "^0.7.19",
     "clsx": "^1.2.1",
     "copy-to-clipboard": "^3.3.3",
-    "monaco-editor": "^0.50.0",
+    "lodash": "^4.17.21",
+    "monaco-editor": "^0.51.0",
     "monaco-editor-webpack-plugin": "^7.1.0",
     "prism-react-renderer": "^2.3.1",
     "react": "^18.2.0",
@@ -59,9 +60,10 @@
   },
   "browserslist": {
     "production": [
-      ">0.5%",
-      "not dead",
-      "not op_mini all"
+      "Edge >= 84",
+      "Chrome >= 84",
+      "last 10 firefox version",
+      "Safari >= 14.1"
     ],
     "development": [
       "last 1 chrome version",
