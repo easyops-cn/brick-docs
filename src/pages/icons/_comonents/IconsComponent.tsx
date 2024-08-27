@@ -19,6 +19,7 @@ import { wrapBrick } from "./wrapBrick";
 // import { initializeIcon } from "./SvgCache";
 import { SlDialogElement, WrappedSlDialog } from "./sl-dialog";
 import { WrappedSlInput } from "./sl-input";
+import "../../../utils/replaceChildren";
 import styles from "./style.module.css";
 
 const EoEasyopsIcon = "eo-easyops-icon" as any;
