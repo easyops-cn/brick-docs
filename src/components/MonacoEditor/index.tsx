@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { useColorMode } from "@docusaurus/theme-common";
 import * as monaco from "monaco-editor/esm/vs/editor/editor.api";
 import {
@@ -68,7 +68,7 @@ export default function MonacoEditor({
     }
   }, [code, type]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (automaticLayoutRef.current) {
       return;
     }

@@ -192,6 +192,13 @@ export default function NextExample({
     setSourceShown((prev) => !prev);
   }, []);
 
+  const sourceShownOnceRef = useRef(false);
+  useEffect(() => {
+    if (!sourceShownOnceRef.current && sourceShown) {
+      sourceShownOnceRef.current = true;
+    }
+  }, [sourceShown]);
+
   const [playgroundUrl, setPlaygroundUrl] = useState("/playground");
 
   useEffect(() => {
@@ -260,7 +267,8 @@ export default function NextExample({
           [styles.sourceShown]: sourceShown,
         })}
       >
-        {wait || !ready ? (
+        {!(sourceShown || sourceShownOnceRef.current) ? null : wait ||
+          !ready ? (
           <LoadingRingBox height={editorInitialHeight} />
         ) : (
           <BrowserOnly
