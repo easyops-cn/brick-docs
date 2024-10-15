@@ -1,6 +1,8 @@
 import React, { createContext, useContext } from "react";
 import { Annotation } from "@next-core/brick-manifest";
 import clsx from "clsx";
+import Link from "@docusaurus/Link";
+import IconExternalLink from "@theme/Icon/ExternalLink";
 import styles from "./styles.module.css";
 
 export interface GeneralTypeProps {
@@ -12,6 +14,13 @@ export interface GeneralTypeProps {
 export const TypeReferencesContext = createContext<string[] | undefined>(
   undefined
 );
+
+const ExternalLinks = new Map<string, string>([
+  [
+    "RequestInit",
+    "https://developer.mozilla.org/zh-CN/docs/Web/API/RequestInit",
+  ],
+]);
 
 export default function GeneralType({
   annotation,
@@ -40,11 +49,19 @@ export default function GeneralType({
       );
 
     case "identifier": {
-      const hasLink = typeReferences?.includes(annotation.name);
+      const hasRef = typeReferences?.includes(annotation.name);
+      const link = hasRef
+        ? `#ref-${annotation.name}`
+        : ExternalLinks.get(annotation.name);
       return (
         <>
-          {hasLink ? (
-            <a href={`#ref-${annotation.name}`}>{annotation.name}</a>
+          {hasRef ? (
+            <Link href={link}>{annotation.name}</Link>
+          ) : link ? (
+            <Link href={link} target="_blank">
+              {annotation.name}
+              <IconExternalLink width={12} height={12} />
+            </Link>
           ) : annotation.annotation ? (
             <>
               {annotation.name}
