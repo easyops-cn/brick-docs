@@ -27,7 +27,7 @@
     "@next-core/doc-helpers": "^0.2.15",
     "@next-core/loader": "^1.6.10",
     "@next-core/monaco-contributions": "^0.3.11",
-    "@next-core/preview": "^0.7.30",
+    "@next-core/preview": "^0.7.34",
     "clsx": "^1.2.1",
     "copy-to-clipboard": "^3.3.3",
     "lodash": "^4.17.21",
