@@ -101,6 +101,7 @@ export default function CodeBlockWrapper(props: CodeBlockProps): JSX.Element {
 
   if (previewData) {
     const minHeight = parseMetaAttributeAsString(props.metastring, "minHeight");
+    const height = parseMetaAttributeAsString(props.metastring, "height");
     const gap =
       parseMetaAttributeAsBoolean(props.metastring, "gap") ||
       parseMetaAttributeAsString(props.metastring, "gap");
@@ -125,6 +126,11 @@ export default function CodeBlockWrapper(props: CodeBlockProps): JSX.Element {
                 ...(minHeight
                   ? {
                       minHeight,
+                    }
+                  : null),
+                ...(height
+                  ? {
+                      height,
                     }
                   : null),
               }
