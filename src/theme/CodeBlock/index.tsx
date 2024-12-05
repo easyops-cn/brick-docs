@@ -114,7 +114,7 @@ export default function CodeBlockWrapper(props: CodeBlockProps): JSX.Element {
         altCode={altCode}
         label={label}
         previewRootStyle={
-          gap || minHeight
+          gap || minHeight || height
             ? {
                 ...(gap
                   ? {
