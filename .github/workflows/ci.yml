@@ -31,6 +31,22 @@ jobs:
         workflow: ci.yml
         workflow_conclusion: ""
 
+    - name: Download artifact from next-advanced-bricks
+      id: download-artifact-from-next-advanced-bricks
+      uses: dawidd6/action-download-artifact@v7
+      with:
+        name: brick-artifacts
+        path: ci-advanced-bricks
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        repo: easyops-cn/next-advanced-bricks
+        branch: master
+        event: push
+        workflow: ci.yml
+        workflow_conclusion: ""
+
+    - name: Merge bricks
+      run: cp -r ci-advanced-bricks/* ci-bricks/bricks/
+
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
