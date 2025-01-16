@@ -21,7 +21,7 @@
   "dependencies": {
     "@docusaurus/core": "3.4.0",
     "@docusaurus/preset-classic": "3.4.0",
-    "@easyops-cn/docusaurus-search-local": "^0.48.1",
+    "@easyops-cn/docusaurus-search-local": "^0.48.3",
     "@mdx-js/react": "^3.0.0",
     "@next-core/brick-manifest": "^0.7.1",
     "@next-core/doc-helpers": "^0.2.15",
