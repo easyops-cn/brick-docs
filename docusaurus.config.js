@@ -117,16 +117,7 @@ const config = {
   onBrokenMarkdownLinks: "warn",
 
   future: {
-    // experimental_faster: true,
-    experimental_faster: {
-      swcJsLoader: true,
-      swcJsMinimizer: true,
-      swcHtmlMinimizer: true,
-      lightningCssMinimizer: true,
-      // rspackBundler: false,
-      rspackBundler: true,
-      mdxCrossCompilerCache: true,
-    },
+    experimental_faster: true,
   },
 
   // Even if you don't use internalization, you can use this field to set useful
@@ -311,6 +302,7 @@ const config = {
             ],
           },
           plugins: [
+            new currentBundler.instance.container.ModuleFederationPluginV1({}),
             new currentBundler.instance.CopyRspackPlugin({
               patterns: [
                 {
