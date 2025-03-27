@@ -2100,22 +2100,17 @@
     "@module-federation/runtime" "0.8.4"
     "@module-federation/sdk" "0.8.4"
 
-"@next-core/brick-manifest@^0.7.1":
-  version "0.7.1"
-  resolved "https://registry.yarnpkg.com/@next-core/brick-manifest/-/brick-manifest-0.7.1.tgz#3c11e7108b2bd147a4e9876fe95e2eb0d723e2dd"
-  integrity sha512-g+4m/Ran4ZBIUpIMhqx/fH91F2lYmci18tlI9TCRte2AFnmA/jsTFULdbPQtd/OMIhodrGnjkhN0WshbqeTzew==
-
 "@next-core/brick-manifest@^0.7.2":
   version "0.7.2"
   resolved "https://registry.yarnpkg.com/@next-core/brick-manifest/-/brick-manifest-0.7.2.tgz#9821d23571e3622c7903cdbaf204f5da5b528ccd"
   integrity sha512-CbcoQWzUCLWhx6FnG5sl09mzJOfFtqUSwDoBqKkfZ7hYKidNPXSr+YRywc9IOPgDQGCQKqCW4JULzQOWRH+3Yw==
 
-"@next-core/doc-helpers@^0.2.17":
-  version "0.2.17"
-  resolved "https://registry.yarnpkg.com/@next-core/doc-helpers/-/doc-helpers-0.2.17.tgz#d75b580f28fc168c64f79e77c1255684950b45f2"
-  integrity sha512-fOPNSVBkvicNjc1FSA3mhvWkgOnBLPYRK3IUueLDzt4Q/4KSeXo/hrOXcGec14FEKxHY4YA1kYYOEPuOrJvN6g==
+"@next-core/doc-helpers@^0.2.18":
+  version "0.2.18"
+  resolved "https://registry.yarnpkg.com/@next-core/doc-helpers/-/doc-helpers-0.2.18.tgz#a06582bd0121529647f039e7d3fc9f9732e5e721"
+  integrity sha512-U/w7hlFGY74fzoFuiGbg1QwBxGT81XIrHX7VCvVgSXijuy1q2ZLXYLX92QSWoToDvcAPLTjhyTwRtVXvhJhLNw==
   dependencies:
-    "@next-core/brick-manifest" "^0.7.1"
+    "@next-core/brick-manifest" "^0.7.2"
     fast-xml-parser "^5.0.8"
     js-yaml "^3.14.1"
     prettier "^3.5.3"
@@ -2130,10 +2125,10 @@
   resolved "https://registry.yarnpkg.com/@next-core/monaco-contributions/-/monaco-contributions-0.3.14.tgz#2627f6256c9832d1844c7107719f0d3893a0a7ac"
   integrity sha512-9iw5SIA/O6USb5mrr3zrK1L8yNymobn3WdgC2SA3Ms4F6K2ESu0BGHNKASOVAJe7ko1PKs5uMPUCqG5+pjKLmA==
 
-"@next-core/preview@^0.7.51":
-  version "0.7.51"
-  resolved "https://registry.yarnpkg.com/@next-core/preview/-/preview-0.7.51.tgz#d0998eb96e87315bfdab9e181f5b7500c693488e"
-  integrity sha512-ZbX3wm+GN3ZpVW4M8Z6tazi9ZUmcXKlGoshlHQICCLuu9gPJ4a3BjnMML9A2bj1ko53nW9W7DW1HNcfjTchd6Q==
+"@next-core/preview@^0.7.54":
+  version "0.7.54"
+  resolved "https://registry.yarnpkg.com/@next-core/preview/-/preview-0.7.54.tgz#ae49ad6227e1736c9eb0ad204824ab2c91ed21f4"
+  integrity sha512-faXsLwvipBvPkXOjZbSVQt4AlDFibYpLaU2nQoxuByTXGRFk41c4y41h1imrDi6Jb5ly/8B+uAwOq8nkSrB/FA==
 
 "@node-rs/jieba-android-arm-eabi@1.7.0":
   version "1.7.0"
