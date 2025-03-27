@@ -97,3 +97,7 @@ html[data-theme="dark"] .header-github-link::before {
 td > :last-child {
   margin-bottom: 0;
 }
+
+.monaco-editor .find-widget .button {
+  color: inherit;
+}
