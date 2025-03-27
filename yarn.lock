@@ -2105,6 +2105,11 @@
   resolved "https://registry.yarnpkg.com/@next-core/brick-manifest/-/brick-manifest-0.7.1.tgz#3c11e7108b2bd147a4e9876fe95e2eb0d723e2dd"
   integrity sha512-g+4m/Ran4ZBIUpIMhqx/fH91F2lYmci18tlI9TCRte2AFnmA/jsTFULdbPQtd/OMIhodrGnjkhN0WshbqeTzew==
 
+"@next-core/brick-manifest@^0.7.2":
+  version "0.7.2"
+  resolved "https://registry.yarnpkg.com/@next-core/brick-manifest/-/brick-manifest-0.7.2.tgz#9821d23571e3622c7903cdbaf204f5da5b528ccd"
+  integrity sha512-CbcoQWzUCLWhx6FnG5sl09mzJOfFtqUSwDoBqKkfZ7hYKidNPXSr+YRywc9IOPgDQGCQKqCW4JULzQOWRH+3Yw==
+
 "@next-core/doc-helpers@^0.2.17":
   version "0.2.17"
   resolved "https://registry.yarnpkg.com/@next-core/doc-helpers/-/doc-helpers-0.2.17.tgz#d75b580f28fc168c64f79e77c1255684950b45f2"
