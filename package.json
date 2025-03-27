@@ -26,7 +26,7 @@
     "@next-core/brick-manifest": "^0.7.2",
     "@next-core/doc-helpers": "^0.2.17",
     "@next-core/loader": "^1.6.15",
-    "@next-core/monaco-contributions": "^0.3.13",
+    "@next-core/monaco-contributions": "^0.3.14",
     "@next-core/preview": "^0.7.51",
     "clsx": "^1.2.1",
     "copy-to-clipboard": "^3.3.3",
