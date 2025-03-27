@@ -1,6 +1,9 @@
 import React from "react";
 import Heading from "@theme/Heading";
-import { DeclarationInterface } from "@next-core/brick-manifest";
+import {
+  DeclarationInterface,
+  type AnnotationPropertySignature,
+} from "@next-core/brick-manifest";
 import GeneralType, { GeneralTypeList } from "@site/src/components/GeneralType";
 import MaybeEmptyCode from "@site/src/components/MaybeEmptyCode";
 import SimpleMarkdown from "@site/src/components/SimpleMarkdown";
@@ -34,9 +37,10 @@ export default function BrickDocInterface({
         <thead>
           <tr>
             <th>Name</th>
-            <th>Type</th>
-            <th>Required</th>
             <th>Description</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Required</th>
           </tr>
         </thead>
         <tbody>
@@ -52,15 +56,20 @@ export default function BrickDocInterface({
                 </MaybeEmptyCode>
               </td>
               <td>
+                <SimpleMarkdown content={item.description} />
+              </td>
+              <td>
                 <MaybeEmptyCode>
                   <GeneralType annotation={item} signaturePart="type" />
                 </MaybeEmptyCode>
               </td>
+              <td>
+                <MaybeEmptyCode>
+                  {(item as AnnotationPropertySignature).default}
+                </MaybeEmptyCode>
+              </td>
               <td style={{ textAlign: "center" }}>
                 {item.type === "indexSignature" || item.optional ? "" : "✅"}
-              </td>
-              <td>
-                <SimpleMarkdown content={item.description} />
               </td>
             </tr>
           ))}

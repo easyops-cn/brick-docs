@@ -61,7 +61,7 @@
   min-width: 0;
 }
 
-.playground :global(.button) {
+.playground .toolbar :global(.button) {
   --ifm-button-border-color: var(--ifm-color-emphasis-500);
 }
 
