@@ -2100,40 +2100,35 @@
     "@module-federation/runtime" "0.8.4"
     "@module-federation/sdk" "0.8.4"
 
-"@next-core/brick-manifest@^0.7.1":
-  version "0.7.1"
-  resolved "https://registry.yarnpkg.com/@next-core/brick-manifest/-/brick-manifest-0.7.1.tgz#3c11e7108b2bd147a4e9876fe95e2eb0d723e2dd"
-  integrity sha512-g+4m/Ran4ZBIUpIMhqx/fH91F2lYmci18tlI9TCRte2AFnmA/jsTFULdbPQtd/OMIhodrGnjkhN0WshbqeTzew==
-
 "@next-core/brick-manifest@^0.7.2":
   version "0.7.2"
   resolved "https://registry.yarnpkg.com/@next-core/brick-manifest/-/brick-manifest-0.7.2.tgz#9821d23571e3622c7903cdbaf204f5da5b528ccd"
   integrity sha512-CbcoQWzUCLWhx6FnG5sl09mzJOfFtqUSwDoBqKkfZ7hYKidNPXSr+YRywc9IOPgDQGCQKqCW4JULzQOWRH+3Yw==
 
-"@next-core/doc-helpers@^0.2.17":
-  version "0.2.17"
-  resolved "https://registry.yarnpkg.com/@next-core/doc-helpers/-/doc-helpers-0.2.17.tgz#d75b580f28fc168c64f79e77c1255684950b45f2"
-  integrity sha512-fOPNSVBkvicNjc1FSA3mhvWkgOnBLPYRK3IUueLDzt4Q/4KSeXo/hrOXcGec14FEKxHY4YA1kYYOEPuOrJvN6g==
+"@next-core/doc-helpers@^0.2.19":
+  version "0.2.19"
+  resolved "https://registry.yarnpkg.com/@next-core/doc-helpers/-/doc-helpers-0.2.19.tgz#e9085f46fed1dcfc426656b96437b930cc699695"
+  integrity sha512-AUhYofjsaSy7wPH1Ford2dekkwI0rLRB7vZjHo8XbmKYBHgvyEElUToKXE2Rk8w7NTvQNczExAVYfr/sgvykFA==
   dependencies:
-    "@next-core/brick-manifest" "^0.7.1"
-    fast-xml-parser "^5.0.8"
+    "@next-core/brick-manifest" "^0.7.2"
+    fast-xml-parser "^5.2.5"
     js-yaml "^3.14.1"
-    prettier "^3.5.3"
+    prettier "^3.6.0"
 
-"@next-core/loader@^1.6.15":
-  version "1.6.15"
-  resolved "https://registry.yarnpkg.com/@next-core/loader/-/loader-1.6.15.tgz#fc957905749263dadbd682398427ec8ce1dc4aba"
-  integrity sha512-cRH6zbJbQjtZQqcq8RGPPg15fKizYeDa5N9RJR6ACylSLk6VRreal06d9fCXEIsQ5dCSejBUPcLhR2yOrHn0pQ==
+"@next-core/loader@^1.6.16":
+  version "1.6.16"
+  resolved "https://registry.yarnpkg.com/@next-core/loader/-/loader-1.6.16.tgz#1ca798e10b4a412805585c2e575b48f56d70ef09"
+  integrity sha512-mFU8EgxGjedtI+P/hMHw9SLNPsva1T+kVzP4+LSn7aCMvS7cuc0Tz1kc4xJnQ5CGxQfdYpII8PQRuDXZLnniSA==
 
 "@next-core/monaco-contributions@^0.3.14":
   version "0.3.14"
   resolved "https://registry.yarnpkg.com/@next-core/monaco-contributions/-/monaco-contributions-0.3.14.tgz#2627f6256c9832d1844c7107719f0d3893a0a7ac"
   integrity sha512-9iw5SIA/O6USb5mrr3zrK1L8yNymobn3WdgC2SA3Ms4F6K2ESu0BGHNKASOVAJe7ko1PKs5uMPUCqG5+pjKLmA==
 
-"@next-core/preview@^0.7.51":
-  version "0.7.51"
-  resolved "https://registry.yarnpkg.com/@next-core/preview/-/preview-0.7.51.tgz#d0998eb96e87315bfdab9e181f5b7500c693488e"
-  integrity sha512-ZbX3wm+GN3ZpVW4M8Z6tazi9ZUmcXKlGoshlHQICCLuu9gPJ4a3BjnMML9A2bj1ko53nW9W7DW1HNcfjTchd6Q==
+"@next-core/preview@^0.8.2":
+  version "0.8.2"
+  resolved "https://registry.yarnpkg.com/@next-core/preview/-/preview-0.8.2.tgz#cc20acaac9eea627ef2561eff207e5870376e794"
+  integrity sha512-tZ6/7f4jcfBH4EgJnZ0HRDpLcV01r6Ntck+XL9QNiP32CJpLfmzgGZrPBghR0THnRX+jcCOcpZLhYwYVm+LqHw==
 
 "@node-rs/jieba-android-arm-eabi@1.7.0":
   version "1.7.0"
@@ -5044,12 +5039,12 @@ fast-levenshtein@^2.0.6:
   resolved "https://registry.yarnpkg.com/fast-levenshtein/-/fast-levenshtein-2.0.6.tgz#3d8a5c66883a16a30ca8643e851f19baa7797917"
   integrity sha512-DCXu6Ifhqcks7TZKY3Hxp3y6qphY5SJZmrWMDrKcERSOXWQdMhU9Ig/PYrzyw/ul9jOIyh0N4M0tbC5hodg8dw==
 
-fast-xml-parser@^5.0.8:
-  version "5.0.8"
-  resolved "https://registry.yarnpkg.com/fast-xml-parser/-/fast-xml-parser-5.0.8.tgz#cb84ca077c0c5c45906051c13c4075ed44d3f271"
-  integrity sha512-qY8NiI5L8ff00F2giyICiJxSSKHO52tC36LJqx2JtvGyAd5ZfehC/l4iUVVHpmpIa6sM9N5mneSLHQG2INGoHA==
+fast-xml-parser@^5.2.5:
+  version "5.2.5"
+  resolved "https://registry.yarnpkg.com/fast-xml-parser/-/fast-xml-parser-5.2.5.tgz#4809fdfb1310494e341098c25cb1341a01a9144a"
+  integrity sha512-pfX9uG9Ki0yekDHx2SiuRIyFdyAr1kMIMitPvb0YBo8SUfKvia7w7FIyd/l6av85pFYRhZscS75MwMnbvY+hcQ==
   dependencies:
-    strnum "^2.0.5"
+    strnum "^2.1.0"
 
 fastq@^1.6.0:
   version "1.15.0"
@@ -8548,10 +8543,10 @@ prelude-ls@^1.2.1:
   resolved "https://registry.yarnpkg.com/prelude-ls/-/prelude-ls-1.2.1.tgz#debc6489d7a6e6b0e7611888cec880337d316396"
   integrity sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==
 
-prettier@^3.3.3, prettier@^3.5.3:
-  version "3.5.3"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-3.5.3.tgz#4fc2ce0d657e7a02e602549f053b239cb7dfe1b5"
-  integrity sha512-QQtaxnoDJeAkDvDKWCLiwIXkTgRhwYDEQCghU9Z6q03iyek/rxRh/2lC3HB7P8sWT2xC/y5JDctPLBIGzHKbhw==
+prettier@^3.3.3, prettier@^3.6.0:
+  version "3.6.2"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-3.6.2.tgz#ccda02a1003ebbb2bfda6f83a074978f608b9393"
+  integrity sha512-I7AIg5boAr5R0FFtJ6rCfD+LFsWHp81dolrFD8S79U9tb8Az2nGrJncnMSnys+bpQJfRUzqs9hnA81OAA3hCuQ==
 
 pretty-error@^4.0.0:
   version "4.0.0"
@@ -9691,10 +9686,10 @@ strip-json-comments@~2.0.1:
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-2.0.1.tgz#3c531942e908c2697c0ec344858c286c7ca0a60a"
   integrity sha512-4gB8na07fecVVkOI6Rs4e7T6NOTki5EmL7TUduTs6bu3EdnSycntVJ4re8kgZA+wx9IueI2Y11bfbgwtzuE0KQ==
 
-strnum@^2.0.5:
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/strnum/-/strnum-2.0.5.tgz#40700b1b5bf956acdc755e98e90005d7657aaaea"
-  integrity sha512-YAT3K/sgpCUxhxNMrrdhtod3jckkpYwH6JAuwmUdXZsmzH1wUyzTMrrK2wYCEEqlKwrWDd35NeuUkbBy/1iK+Q==
+strnum@^2.1.0:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/strnum/-/strnum-2.1.1.tgz#cf2a6e0cf903728b8b2c4b971b7e36b4e82d46ab"
+  integrity sha512-7ZvoFTiCnGxBtDqJ//Cu6fWtZtc7Y3x+QOirG15wztbdngGSkht27o2pyGWrVy0b4WAy3jbKmnoK6g5VlVNUUw==
 
 style-to-object@^0.4.0:
   version "0.4.4"
