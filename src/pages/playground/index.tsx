@@ -41,6 +41,7 @@ const STORAGE_KEY_CODES = {
 };
 const STORAGE_KEY_LANG = "playground.lang";
 const SHARE_TEXT = "Share";
+const SHARE_SHORTER_TEXT = "Share shorter";
 
 let decompressedExampleString: string;
 
@@ -88,6 +89,7 @@ function Playground(): JSX.Element {
   const [currentCode, setCurrentCode] = useState(code);
   const [exampleKey, setExampleKey] = useState(initialExample.key ?? "");
   const [shareText, setShareText] = useState(SHARE_TEXT);
+  const [shareShorterText, setShareShorterText] = useState(SHARE_SHORTER_TEXT);
   const [isShared, setIsShared] = useState(initialExample.isShared);
   const [hasGap, setHasGap] = useState(initialExample.gap);
   const [editorCollapsed, setEditorCollapsed] = useState(paramCollapsed);
@@ -253,11 +255,48 @@ function Playground(): JSX.Element {
       );
       ok = copy(location.href);
     } catch (e) {
-      console.error("Compress shared example failed:", e);
+      console.error("Generate shared url failed:", e);
     }
     setShareText(ok ? "URL copied" : "Failed to copy URL");
     setTimeout(() => {
       setShareText(SHARE_TEXT);
+    }, 2000);
+  }, [currentCode, hasGap, mode]);
+
+  const handleShareShorter = useCallback(async () => {
+    setShareShorterText("Requesting ...");
+    let ok = false;
+    try {
+      history.replaceState(
+        null,
+        "",
+        `${GZIP_HASH_PREFIX}${await compress(
+          JSON.stringify({
+            [mode]: currentCode,
+            gap: hasGap,
+          })
+        )}`
+      );
+      const req = await fetch(`https://bricks-url.netlify.app/a`, {
+        mode: "cors",
+        method: "POST",
+        body: JSON.stringify({
+          url: location.href,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (req.ok) {
+        const url = await req.text();
+        ok = copy(url);
+      }
+    } catch (e) {
+      console.error("Generate shared url failed:", e);
+    }
+    setShareShorterText(ok ? "URL copied" : "Failed to copy URL");
+    setTimeout(() => {
+      setShareShorterText(SHARE_SHORTER_TEXT);
     }, 2000);
   }, [currentCode, hasGap, mode]);
 
@@ -362,6 +401,12 @@ function Playground(): JSX.Element {
               onClick={handleShare}
             >
               {shareText}
+            </button>
+            <button
+              className="button button--sm button--outline button--secondary"
+              onClick={handleShareShorter}
+            >
+              {shareShorterText}
             </button>
           </div>
         </div>
