@@ -56,6 +56,10 @@
   justify-content: flex-end;
 }
 
+.toolbarColumn > button:not(:last-child) {
+  margin-right: 1em;
+}
+
 .playground select {
   height: 24px;
   min-width: 0;
