@@ -25,6 +25,7 @@ import styles from "./style.module.css";
 const EoEasyopsIcon = "eo-easyops-icon" as any;
 const EoAntdIcon = "eo-antd-icon" as any;
 const EoFaIcon = "eo-fa-icon" as any;
+const EoLucideIcon = "eo-lucide-icon" as any;
 const iconsGetLibs = "icons.get-libs";
 const SlDialog = "sl-dialog";
 const SlInput = "sl-input";
@@ -41,6 +42,9 @@ const WrappedEoFaIcon = wrapBrick<
   HTMLElement,
   { prefix?: string; icon: string }
 >(EoFaIcon);
+const WrappedLucideFaIcon = wrapBrick<HTMLElement, { icon: string }>(
+  EoLucideIcon
+);
 
 let libs = [];
 
@@ -78,10 +82,12 @@ const LazyIconsComponent = React.lazy(async () => {
   libs = iconLibs.map(({ lib, icons }) => ({
     label:
       lib === "easyops"
-        ? "EasyOps Icons"
+        ? "EasyOps"
         : lib === "antd"
-          ? "AntDesign Icons"
-          : "FontAwesome Icons",
+          ? "AntDesign"
+          : lib === "fa"
+            ? "FontAwesome"
+            : "Lucide",
     lib,
     groups: Array.from(
       icons.reduce((acc, item) => {
@@ -90,7 +96,9 @@ const LazyIconsComponent = React.lazy(async () => {
             ? item.icon.category
             : lib === "antd"
               ? item.icon.theme
-              : item.icon.prefix;
+              : lib === "fa"
+                ? item.icon.prefix
+                : "default";
         const list = acc.get(group);
         if (list) {
           list.push(item);
@@ -196,11 +204,13 @@ function IconsComponent(): JSX.Element {
               theme={selectedIcon.theme}
               icon={selectedIcon.icon}
             />
-          ) : (
+          ) : selectedIcon.lib === "fa" ? (
             <WrappedEoFaIcon
               prefix={selectedIcon.prefix}
               icon={selectedIcon.icon}
             />
+          ) : (
+            <WrappedLucideFaIcon icon={selectedIcon.icon} />
           )}
         </div>
         <CodeBlock
@@ -224,9 +234,13 @@ function IconsComponent(): JSX.Element {
                   ? `theme: ${selectedIcon.theme}`
                   : selectedIcon.lib === "fa"
                     ? `prefix: ${selectedIcon.prefix}`
-                    : `category: ${selectedIcon.category}`,
+                    : selectedIcon.lib === "easyops"
+                      ? `category: ${selectedIcon.category}`
+                      : "",
                 `icon: ${selectedIcon.icon}`,
-              ].join("\n")
+              ]
+                .filter(Boolean)
+                .join("\n")
             : ""}
         </CodeBlock>
       </WrappedSlDialog>
@@ -382,8 +396,10 @@ function Icon({ icon: _icon }: { icon: any }): JSX.Element {
       ) : // : <svg width="1em" height="1em" fill="currentColor"><use href={`#${category}--${icon}`}></use></svg>
       lib === "antd" ? (
         <WrappedEoAntdIcon theme={theme} icon={actualIcon} />
-      ) : (
+      ) : lib === "fa" ? (
         <WrappedEoFaIcon prefix={prefix} icon={actualIcon} />
+      ) : (
+        <WrappedLucideFaIcon icon={actualIcon} />
       )}
       <span className={styles.label}>{icon}</span>
     </li>
