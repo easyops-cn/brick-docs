@@ -2120,15 +2120,18 @@
   resolved "https://registry.yarnpkg.com/@next-core/loader/-/loader-1.6.16.tgz#1ca798e10b4a412805585c2e575b48f56d70ef09"
   integrity sha512-mFU8EgxGjedtI+P/hMHw9SLNPsva1T+kVzP4+LSn7aCMvS7cuc0Tz1kc4xJnQ5CGxQfdYpII8PQRuDXZLnniSA==
 
-"@next-core/monaco-contributions@^0.3.14":
-  version "0.3.14"
-  resolved "https://registry.yarnpkg.com/@next-core/monaco-contributions/-/monaco-contributions-0.3.14.tgz#2627f6256c9832d1844c7107719f0d3893a0a7ac"
-  integrity sha512-9iw5SIA/O6USb5mrr3zrK1L8yNymobn3WdgC2SA3Ms4F6K2ESu0BGHNKASOVAJe7ko1PKs5uMPUCqG5+pjKLmA==
-
 "@next-core/preview@^0.8.2":
   version "0.8.2"
   resolved "https://registry.yarnpkg.com/@next-core/preview/-/preview-0.8.2.tgz#cc20acaac9eea627ef2561eff207e5870376e794"
   integrity sha512-tZ6/7f4jcfBH4EgJnZ0HRDpLcV01r6Ntck+XL9QNiP32CJpLfmzgGZrPBghR0THnRX+jcCOcpZLhYwYVm+LqHw==
+
+"@next-shared/monaco-textmate@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@next-shared/monaco-textmate/-/monaco-textmate-0.1.2.tgz#e72c5f42c8e90e4f5c9e842915c9e7723477ed9b"
+  integrity sha512-gSoF4VtFpwh55gS9jYC71wOwnPCXBBDDIU+LgXhpAc08y7qQFCfHunDoTE6gPpoAuDUO+TKIjc4uvS8QJKGyxw==
+  dependencies:
+    vscode-oniguruma "^2.0.1"
+    vscode-textmate "^9.2.0"
 
 "@node-rs/jieba-android-arm-eabi@1.7.0":
   version "1.7.0"
@@ -6568,7 +6571,7 @@ loader-runner@^4.2.0:
   resolved "https://registry.yarnpkg.com/loader-runner/-/loader-runner-4.3.0.tgz#c1b4a163b99f614830353b16755e7149ac2314e1"
   integrity sha512-3R/1M+yS3j5ou80Me59j7F9IMs4PXs3VqRrm0TU3AbKPxlmpoY1TNscJV/oGJXo8qCatFGTfDbY6W6ipGOYXfg==
 
-loader-utils@^2.0.0, loader-utils@^2.0.2:
+loader-utils@^2.0.0:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/loader-utils/-/loader-utils-2.0.4.tgz#8b5cb38b5c34a9a018ee1fc0e6a066d1dfcc528c"
   integrity sha512-xXqpXoINfFhgua9xiqD8fPFHgkoq1mmmpE92WlDbm9rNRd/EbRb+Gqf908T2DMfuHjjJlksiK2RbHVOdD/MqSw==
@@ -7464,13 +7467,6 @@ minimist@^1.2.0:
   version "1.2.8"
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.8.tgz#c1a464e7693302e082a075cee0c057741ac4772c"
   integrity sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==
-
-monaco-editor-webpack-plugin@^7.1.0:
-  version "7.1.0"
-  resolved "https://registry.yarnpkg.com/monaco-editor-webpack-plugin/-/monaco-editor-webpack-plugin-7.1.0.tgz#16f265c2b5dbb5fe08681b6b3b7d00d3c5b2ee97"
-  integrity sha512-ZjnGINHN963JQkFqjjcBtn1XBtUATDZBMgNQhDQwd78w2ukRhFXAPNgWuacaQiDZsUr4h1rWv5Mv6eriKuOSzA==
-  dependencies:
-    loader-utils "^2.0.2"
 
 monaco-editor@^0.50.0:
   version "0.50.0"
@@ -10133,6 +10129,16 @@ vfile@^6.0.0, vfile@^6.0.1:
     "@types/unist" "^3.0.0"
     unist-util-stringify-position "^4.0.0"
     vfile-message "^4.0.0"
+
+vscode-oniguruma@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/vscode-oniguruma/-/vscode-oniguruma-2.0.1.tgz#1196a343635ff8d42eb880e325b5f4e70731c02f"
+  integrity sha512-poJU8iHIWnC3vgphJnrLZyI3YdqRlR27xzqDmpPXYzA93R4Gk8z7T6oqDzDoHjoikA2aS82crdXFkjELCdJsjQ==
+
+vscode-textmate@^9.2.0:
+  version "9.2.0"
+  resolved "https://registry.yarnpkg.com/vscode-textmate/-/vscode-textmate-9.2.0.tgz#be2b04b3f8853135b2d67274670540215c5bb92b"
+  integrity sha512-rkvG4SraZQaPSN/5XjwKswdU0OP9MF28QjrYzUBbhb8QyG3ljB1Ky996m++jiI7KdiAP2CkBiQZd9pqEDTClqA==
 
 watchpack@^2.4.1:
   version "2.4.2"

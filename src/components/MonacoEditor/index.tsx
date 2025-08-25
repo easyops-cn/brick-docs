@@ -1,22 +1,26 @@
 import React, { useEffect, useRef } from "react";
 import { useColorMode } from "@docusaurus/theme-common";
-import * as monaco from "monaco-editor/esm/vs/editor/editor.api";
+import * as monaco from "monaco-editor";
+import { initializeTokensProvider } from "@next-shared/monaco-textmate";
+import "@next-shared/monaco-textmate/workers.js";
+import tmVsLight from "@next-shared/monaco-textmate/themes/light-modern.json";
+import tmVsDark from "@next-shared/monaco-textmate/themes/dark-modern.json";
 import {
   EDITOR_SCROLLBAR_SIZE,
   EDITOR_PADDING_TOP,
   EXAMPLE_CODE_LINE_HEIGHT,
   EXAMPLE_MIN_HEIGHT,
 } from "@site/src/constants";
-import { register as registerJavaScript } from "@next-core/monaco-contributions/javascript";
-import { register as registerTypeScript } from "@next-core/monaco-contributions/typescript";
-import { register as registerYaml } from "@next-core/monaco-contributions/yaml";
-import { register as registerHtml } from "@next-core/monaco-contributions/html";
 import getContentHeightByCode from "@site/src/utils/getContentHeightByCode";
 
-registerJavaScript(monaco);
-registerTypeScript(monaco);
-registerYaml(monaco);
-registerHtml(monaco);
+monaco.editor.defineTheme(
+  "tm-vs-light",
+  tmVsLight as monaco.editor.IStandaloneThemeData
+);
+monaco.editor.defineTheme(
+  "tm-vs-dark",
+  tmVsDark as monaco.editor.IStandaloneThemeData
+);
 
 export interface MonacoEditorProps {
   code: string;
@@ -56,17 +60,25 @@ export default function MonacoEditor({
     if (colorMode) {
       // Currently theme is configured globally.
       // See https://github.com/microsoft/monaco-editor/issues/338
-      monaco.editor.setTheme(colorMode === "dark" ? "vs-dark" : "vs");
+      monaco.editor.setTheme(
+        colorMode === "dark" ? "tm-vs-dark" : "tm-vs-light"
+      );
     }
   }, [colorMode]);
+
+  const language = type === "html" ? type : "brick_next_yaml";
+
+  useEffect(() => {
+    initializeTokensProvider(language);
+  }, [language]);
 
   useEffect(() => {
     if (editorRef.current) {
       const currentModel = editorRef.current.getModel();
-      monaco.editor.setModelLanguage(currentModel, type);
+      monaco.editor.setModelLanguage(currentModel, language);
       currentModel.setValue(code);
     }
-  }, [code, type]);
+  }, [code, language]);
 
   useEffect(() => {
     if (automaticLayoutRef.current) {
@@ -101,7 +113,7 @@ export default function MonacoEditor({
     if (editorRef.current) {
       return;
     }
-    const model = monaco.editor.createModel(code, type ?? "yaml");
+    const model = monaco.editor.createModel(code, language);
     editorRef.current = monaco.editor.create(containerRef.current, {
       model,
       minimap: {
@@ -157,7 +169,7 @@ export default function MonacoEditor({
       );
       editorRef.current.layout(size.current);
     }
-  }, [code, type]);
+  }, [code, language]);
 
   useEffect(() => {
     const currentModel = editorRef.current.getModel();
