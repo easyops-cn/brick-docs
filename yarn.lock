@@ -2115,15 +2115,15 @@
     js-yaml "^3.14.1"
     prettier "^3.6.0"
 
-"@next-core/loader@^1.6.16":
-  version "1.6.16"
-  resolved "https://registry.yarnpkg.com/@next-core/loader/-/loader-1.6.16.tgz#1ca798e10b4a412805585c2e575b48f56d70ef09"
-  integrity sha512-mFU8EgxGjedtI+P/hMHw9SLNPsva1T+kVzP4+LSn7aCMvS7cuc0Tz1kc4xJnQ5CGxQfdYpII8PQRuDXZLnniSA==
+"@next-core/loader@^1.6.21":
+  version "1.6.21"
+  resolved "https://registry.yarnpkg.com/@next-core/loader/-/loader-1.6.21.tgz#fd8c6873af6448b13c903e66072f6cff00cf5844"
+  integrity sha512-R1Qx20KNK6fult3oVkdOav0SQWcWOhXnI2ZJlgRth+5mqSLLowAIDay3xfiLjAov7UITlCiWR3zkbhF1IwVrkw==
 
-"@next-core/preview@^0.8.2":
-  version "0.8.2"
-  resolved "https://registry.yarnpkg.com/@next-core/preview/-/preview-0.8.2.tgz#cc20acaac9eea627ef2561eff207e5870376e794"
-  integrity sha512-tZ6/7f4jcfBH4EgJnZ0HRDpLcV01r6Ntck+XL9QNiP32CJpLfmzgGZrPBghR0THnRX+jcCOcpZLhYwYVm+LqHw==
+"@next-core/preview@^0.8.36":
+  version "0.8.36"
+  resolved "https://registry.yarnpkg.com/@next-core/preview/-/preview-0.8.36.tgz#7210a134b8bdc5f6f81a4e637528288da59a8537"
+  integrity sha512-j8w/e2K6D8i/R5pw/+xu23j+Y8lLEljG23/nE2aVGgyKE2O6XJ4NxveRsdzphgVeo/DmmS5tNHd09l8XiE53lQ==
 
 "@next-shared/monaco-textmate@^0.1.2":
   version "0.1.2"
