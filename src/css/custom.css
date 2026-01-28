@@ -101,3 +101,30 @@ td > :last-child {
 .monaco-editor .find-widget .button {
   color: inherit;
 }
+
+.ask-ai-navbar-item {
+  padding-left: 10px;
+  margin-right: -10px;
+}
+
+.ask-ai-navbar-item button {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  height: 36px;
+}
+
+.menu__list .ask-ai-navbar-item {
+  display: none;
+}
+
+@media (max-width: 996px) {
+  .ask-ai-navbar-item {
+    margin-right: 160px;
+  }
+}
+
+@media (max-width: 576px) {
+  .ask-ai-navbar-item {
+    margin-right: 60px;
+  }
+}

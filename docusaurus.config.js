@@ -194,6 +194,10 @@ const config = {
             className: "header-search",
           },
           {
+            position: "left",
+            type: "custom-ask-ai",
+          },
+          {
             type: "custom-uiVersionDropdown",
             position: "right",
             // items: [
