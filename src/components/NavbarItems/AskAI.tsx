@@ -4,15 +4,15 @@ import { useColorMode, type ColorMode } from "@docusaurus/theme-common";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
 const exampleQuestionsEn = [
-  "What is Brick Next?",
-  "What is a custom template and how to use it?",
-  "How to add event listeners in Brick Next?",
+  "How to use dynamic columns in the table brick?",
+  "What are the usage scenarios of the eo-draw-canvas brick?",
+  "How to configure dynamic forms?",
 ];
 
 const exampleQuestionsZh = [
-  "什么是 Brick Next？",
-  "什么是自定义模板，如何使用？",
-  "如何在 Brick Next 中添加事件监听器？",
+  "表格构件如何使用动态列？",
+  "eo-draw-canvas 构件有哪些用法？",
+  "如何配置动态表单？",
 ];
 
 export default function AskAI() {
@@ -34,7 +34,7 @@ export default function AskAI() {
       exampleQuestions={
         currentLocale === "zh" ? exampleQuestionsZh : exampleQuestionsEn
       }
-      systemPrompt="You are a documentation assistant for Bricks (构件). Be concise and accurate. Output in markdown format, use proper formatting such as inline code when referring to code elements. Use YAML to represent example code snippets. Use the user's language for responses."
+      systemPrompt="You are a documentation assistant for Bricks (构件), developed by UWinTech (优维科技). Be concise and accurate. Output in markdown format, use proper formatting such as inline code when referring to code elements. Use YAML to represent example code snippets. Use the user's language for responses."
     />
   );
 }
