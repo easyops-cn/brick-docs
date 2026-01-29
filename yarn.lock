@@ -1878,10 +1878,10 @@
     cssesc "^3.0.0"
     immediate "^3.2.3"
 
-"@easyops-cn/docusaurus-search-local@^0.49.1":
-  version "0.49.1"
-  resolved "https://registry.yarnpkg.com/@easyops-cn/docusaurus-search-local/-/docusaurus-search-local-0.49.1.tgz#c558cf21f42e7ae180b402ecf3807c07e1954f3e"
-  integrity sha512-UXt4G/5lLwxmd2NmX5CL5BRtPAIG09UHIowu4Q8cvrzcBE3O0sWAAq/NmF0SMyP8EmxHWWOyPJi8F2cx/rjSVg==
+"@easyops-cn/docusaurus-search-local@^0.52.3":
+  version "0.52.3"
+  resolved "https://registry.yarnpkg.com/@easyops-cn/docusaurus-search-local/-/docusaurus-search-local-0.52.3.tgz#3e82d17b67dff64fa648c41eac02d2b44227f711"
+  integrity sha512-bkKHD+FoAY+sBvd9vcHudx8X5JQXkyGBcpstpJwOUTTpKwT0rOtUtnfmizpMu113LqdHxOxvlekYkGeTNGYYvw==
   dependencies:
     "@docusaurus/plugin-content-docs" "^2 || ^3"
     "@docusaurus/theme-translations" "^2 || ^3"
@@ -7915,10 +7915,10 @@ onetime@^6.0.0:
   dependencies:
     mimic-fn "^4.0.0"
 
-open-ask-ai@^0.3.5:
-  version "0.3.5"
-  resolved "https://registry.yarnpkg.com/open-ask-ai/-/open-ask-ai-0.3.5.tgz#441598b7c5cdfbc40806a3930c413d32250cfa23"
-  integrity sha512-iUWGdI4PEGoS7VwDPuZVYz/ep/uq7bWqwuK+MxDfxvtIWwCaN20pnHArt893zZ1VgBNnz23sKpOJz+HuR8N3BQ==
+open-ask-ai@^0.4.2:
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/open-ask-ai/-/open-ask-ai-0.4.2.tgz#20d655c377e6de86c1bc74ee8c16031eec09a88f"
+  integrity sha512-OaUTvRXKkxwlEP+9PN1lVSkvgDNfrrdsndRJpcjqdxZgukuuOf0Faxk3XPXeWElHZmZ3m+eEN048EDJS9GokPw==
   dependencies:
     "@radix-ui/react-dialog" "^1.1.3"
     "@radix-ui/react-scroll-area" "^1.2.2"

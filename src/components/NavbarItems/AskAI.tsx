@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { AskAIWidget, type WidgetTexts } from "open-ask-ai";
+import "open-ask-ai/styles.css";
 import { useColorMode, type ColorMode } from "@docusaurus/theme-common";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
