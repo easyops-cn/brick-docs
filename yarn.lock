@@ -7915,10 +7915,10 @@ onetime@^6.0.0:
   dependencies:
     mimic-fn "^4.0.0"
 
-open-ask-ai@^0.3.4:
-  version "0.3.4"
-  resolved "https://registry.yarnpkg.com/open-ask-ai/-/open-ask-ai-0.3.4.tgz#6cf1954d83cc4eb400fa93cc3d51ddf82a0f0213"
-  integrity sha512-EBVv+8ZvuKxjpPLz+GNpjdKRvmk4NcJM3Z5D9Lo5RRgGmC3H6Bj0MtS+OsGlCjGwPKgNhxFM08rSoIs76nmLUw==
+open-ask-ai@^0.3.5:
+  version "0.3.5"
+  resolved "https://registry.yarnpkg.com/open-ask-ai/-/open-ask-ai-0.3.5.tgz#441598b7c5cdfbc40806a3930c413d32250cfa23"
+  integrity sha512-iUWGdI4PEGoS7VwDPuZVYz/ep/uq7bWqwuK+MxDfxvtIWwCaN20pnHArt893zZ1VgBNnz23sKpOJz+HuR8N3BQ==
   dependencies:
     "@radix-ui/react-dialog" "^1.1.3"
     "@radix-ui/react-scroll-area" "^1.2.2"
