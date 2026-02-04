@@ -43,7 +43,7 @@ export default function AskAI() {
       className="ask-ai-navbar-item"
       theme={theme}
       project="bricks"
-      apiUrl="https://open-ask-ai.vercel.app/api/stream"
+      apiUrl="https://ask-ai.shenwei.xyz"
       texts={currentLocale === "zh" ? textsZh : textsEn}
       exampleQuestions={
         currentLocale === "zh" ? exampleQuestionsZh : exampleQuestionsEn
