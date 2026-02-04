@@ -43,7 +43,7 @@ export default function AskAI() {
       className="ask-ai-navbar-item"
       theme={theme}
       project="bricks"
-      apiUrl="https://ask-ai.shenwei.xyz"
+      apiUrl="https://ask-ai.shenwei.xyz/api/stream"
       texts={currentLocale === "zh" ? textsZh : textsEn}
       exampleQuestions={
         currentLocale === "zh" ? exampleQuestionsZh : exampleQuestionsEn
