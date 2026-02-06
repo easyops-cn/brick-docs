@@ -2115,15 +2115,15 @@
     js-yaml "^3.14.1"
     prettier "^3.6.0"
 
-"@next-core/loader@^1.6.16":
-  version "1.6.16"
-  resolved "https://registry.yarnpkg.com/@next-core/loader/-/loader-1.6.16.tgz#1ca798e10b4a412805585c2e575b48f56d70ef09"
-  integrity sha512-mFU8EgxGjedtI+P/hMHw9SLNPsva1T+kVzP4+LSn7aCMvS7cuc0Tz1kc4xJnQ5CGxQfdYpII8PQRuDXZLnniSA==
+"@next-core/loader@^1.6.21":
+  version "1.6.21"
+  resolved "https://registry.yarnpkg.com/@next-core/loader/-/loader-1.6.21.tgz#fd8c6873af6448b13c903e66072f6cff00cf5844"
+  integrity sha512-R1Qx20KNK6fult3oVkdOav0SQWcWOhXnI2ZJlgRth+5mqSLLowAIDay3xfiLjAov7UITlCiWR3zkbhF1IwVrkw==
 
-"@next-core/preview@^0.8.2":
-  version "0.8.2"
-  resolved "https://registry.yarnpkg.com/@next-core/preview/-/preview-0.8.2.tgz#cc20acaac9eea627ef2561eff207e5870376e794"
-  integrity sha512-tZ6/7f4jcfBH4EgJnZ0HRDpLcV01r6Ntck+XL9QNiP32CJpLfmzgGZrPBghR0THnRX+jcCOcpZLhYwYVm+LqHw==
+"@next-core/preview@^0.8.37":
+  version "0.8.37"
+  resolved "https://registry.yarnpkg.com/@next-core/preview/-/preview-0.8.37.tgz#6d186d07d072c037347bf63c2593c87abdaf3961"
+  integrity sha512-aZiI01WaXahzy/bqsTgZPGS/oZ4LVviyFHR+zpQBLUksPJjrJVN18LocoIO+g7RhjQKKmiuw16YX02yHzN/Mvw==
 
 "@next-shared/monaco-textmate@^0.1.2":
   version "0.1.2"
@@ -9269,19 +9269,7 @@ remark-frontmatter@^5.0.0:
     micromark-extension-frontmatter "^2.0.0"
     unified "^11.0.0"
 
-remark-gfm@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/remark-gfm/-/remark-gfm-4.0.0.tgz#aea777f0744701aa288b67d28c43565c7e8c35de"
-  integrity sha512-U92vJgBPkbw4Zfu/IiW2oTZLSL3Zpv+uI7My2eq8JxKgqraFdU8YUGicEJCEgSbeaG+QDFqIcwwfMTOEelPxuA==
-  dependencies:
-    "@types/mdast" "^4.0.0"
-    mdast-util-gfm "^3.0.0"
-    micromark-extension-gfm "^3.0.0"
-    remark-parse "^11.0.0"
-    remark-stringify "^11.0.0"
-    unified "^11.0.0"
-
-remark-gfm@^4.0.1:
+remark-gfm@^4.0.0, remark-gfm@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/remark-gfm/-/remark-gfm-4.0.1.tgz#33227b2a74397670d357bf05c098eaf8513f0d6b"
   integrity sha512-1quofZ2RQ9EWdeN34S79+KExV1764+wCUGop5CPL1WGdD0ocPpu91lzPGbwWMECpEpd42kJGQwzRfyov9j4yNg==
@@ -10139,15 +10127,10 @@ ts-api-utils@^1.0.1:
   resolved "https://registry.yarnpkg.com/ts-api-utils/-/ts-api-utils-1.0.3.tgz#f12c1c781d04427313dbac808f453f050e54a331"
   integrity sha512-wNMeqtMz5NtwpT/UZGY5alT+VoKdSsOOP/kqHFcUW1P/VRhH2wJ48+DN2WwUliNbQ976ETwDL0Ifd2VVvgonvg==
 
-tslib@^2.0.0:
+tslib@^2.0.0, tslib@^2.0.3, tslib@^2.1.0, tslib@^2.4.0, tslib@^2.6.0:
   version "2.8.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.8.1.tgz#612efe4ed235d567e8aba5f2a5fab70280ade83f"
   integrity sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==
-
-tslib@^2.0.3, tslib@^2.1.0, tslib@^2.4.0, tslib@^2.6.0:
-  version "2.6.2"
-  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.6.2.tgz#703ac29425e7b37cd6fd456e92404d46d1f3e4ae"
-  integrity sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==
 
 type-check@^0.4.0, type-check@~0.4.0:
   version "0.4.0"
